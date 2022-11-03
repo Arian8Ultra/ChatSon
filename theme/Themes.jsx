@@ -2,11 +2,8 @@ import { createTheme } from "@mui/material/styles";
 import React from "react";
 import {
   primary,
-  primary2,
   primaryDark,
-  primaryDark2,
   primaryLight,
-  primaryLight2,
   secondaryYellow,
   secondaryYellowDark,
   secondaryYellowLight,
@@ -18,8 +15,9 @@ export const theme = createTheme({
     fontFamily: "Vazirmatn,sans-serif",
   },
   palette: {
+    mode:"dark",
     primary: {
-      main: primary2,
+      main: primary,
     },
     secondary: {
       main: secondaryYellow,

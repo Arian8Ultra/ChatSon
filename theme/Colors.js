@@ -1,14 +1,6 @@
-export const primary = "#1a237e";
-export const primaryLight = "#4c45b8";
-export const primaryDark = "#000059";
-export const secondaryYellow = "#fdd835";
-export const secondaryYellowLight = "#ffff6b";
-export const secondaryYellowDark = "#c6a700";
-export const secondaryRed = "#ff3f6c";
-
-export const primary2 = "#80deea";/* #222d45 */
-export const primaryLight2 = "#b4ffff";/* #abb8ff */
-export const primaryDark2 = "#4bacb8";/* #212121 */
+export const primary = "#ff8f00";/* #222d45 */
+export const primaryLight = "#ffc046";/* #abb8ff */
+export const primaryDark = "#c56000";/* #212121 */
 export const backgroundC = "#c4d1ed";
 export const Green = "#00C853";
 export const GreenLight = "#B9F6CA";
@@ -21,3 +13,7 @@ export const Blue = "#00B0FF";
 export const BlueLight = "#E1F5FE";
 export const CardBackGround = "#424242";
 export const CardHeaderBackGround = "#606060";
+export const secondaryYellow = "#fdd835";
+export const secondaryYellowLight = "#ffff6b";
+export const secondaryYellowDark = "#c6a700";
+export const secondaryRed = "#ff3f6c";
