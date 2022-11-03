@@ -4,7 +4,7 @@ import * as React from "react";
 import { borderRadiuosTextField } from "../theme/Themes";
 
 
-export default function TextInputFixedNum({id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
+function TextInputFixedNum({id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
 
   const changeData = (data) => {
     props.getText(value);
@@ -38,3 +38,4 @@ export default function TextInputFixedNum({id, label, type,idNum,autoComplete,di
     />
   );
 }
+export default TextInputFixedNum

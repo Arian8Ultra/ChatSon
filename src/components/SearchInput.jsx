@@ -2,10 +2,10 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import { Autocomplete } from "@mui/material";
 import { Box } from "@mui/system";
-import { borderRadiuosTextField } from "../theme/Themes";
+import { borderRadiuosTextField } from "../../theme/Themes";
 
 
-export default function SearchInput(props,{id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
+function SearchInput(props,{id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
  
 
   const changeData = (data) => {
@@ -32,3 +32,4 @@ export default function SearchInput(props,{id, label, type,idNum,autoComplete,di
     />
   );
 }
+export default SearchInput
