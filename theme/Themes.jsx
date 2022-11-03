@@ -13,7 +13,7 @@ import {
 } from "./Colors";
 
 
-export const theme2 = createTheme({
+export const theme = createTheme({
   typography: {
     fontFamily: "Vazirmatn,sans-serif",
   },
