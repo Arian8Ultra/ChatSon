@@ -1,6 +1,6 @@
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { primary, primaryDark } from "../../theme/Colors";
+import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import useSideBarStore from "../stores/SideBarStore";
 
 export default function DrawerItem(props) {
@@ -22,7 +22,7 @@ export default function DrawerItem(props) {
   const backGround = () => {
     const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
-      return primary;
+      return primaryLight;
     }
     return "";
   };
@@ -31,7 +31,7 @@ export default function DrawerItem(props) {
     if (pageName == text) {
       return primaryDark;
     }
-    return primary;
+    return primaryLight;
   };
 
   const hoverBackGround = () => {
@@ -61,7 +61,7 @@ export default function DrawerItem(props) {
     <ListItem key={text} disablePadding sx={{ my: 1 }}>
       <ListItemButton
         sx={{
-          height: "4vmin",
+          height: "5vmin",
           borderTopRightRadius: borderRadius,
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,

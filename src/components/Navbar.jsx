@@ -1,5 +1,5 @@
 import { Center } from "@chakra-ui/react";
-import { AppBar, Box, Container, IconButton, Menu, Stack, Toolbar } from "@mui/material";
+import { AppBar, Box, Container, IconButton, Menu, Stack, Toolbar, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
@@ -40,14 +40,18 @@ export default function Navbar() {
               aria-label="open drawer"
               edge="start"
               onClick={changeDrawer}
-              sx={{ color:primary }}
+              sx={{ color:primaryLight }}
             >
               {!open ? <MenuIcon color="white"/> : <ArrowForwardIosRoundedIcon />}
             </IconButton>}
 
 
 
-          <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}></Stack>
+          <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}>
+            <Typography color={primaryLight}  fontSize={30} fontFamily="cursive">
+              ChatSon
+            </Typography>
+          </Stack>
 
           <Box sx={{ px: 1 }}>
             <Center height={"70px"}>
