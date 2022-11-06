@@ -5,6 +5,9 @@ import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
 import { LabelChipFill } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import MenuIcon from "@mui/icons-material/Menu";
+import useSideBarStore from "../stores/SideBarStore";
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState();
@@ -14,6 +17,10 @@ export default function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  let open = useSideBarStore((state)=> state.open)
+  const changeDrawer = useSideBarStore((state)=> state.changeSideBar)
+
 
   return (
     <AppBar
@@ -27,6 +34,19 @@ export default function Navbar() {
     >
       <Container maxWidth=''>
         <Toolbar disableGutters>
+          
+        { <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={changeDrawer}
+              sx={{ color:primary }}
+            >
+              {!open ? <MenuIcon color="white"/> : <ArrowForwardIosRoundedIcon />}
+            </IconButton>}
+
+
+
           <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}></Stack>
 
           <Box sx={{ px: 1 }}>

@@ -11,9 +11,6 @@ import {
 
 
 export const theme = createTheme({
-  typography: {
-    fontFamily: "Vazirmatn,sans-serif",
-  },
   palette: {
     mode:"dark",
     primary: {
@@ -25,7 +22,7 @@ export const theme = createTheme({
       dark: secondaryYellowDark,
     },
   },
-  direction: "rtl",
+  direction: "ltr",
 });
 
 export const borderRadiuos = 4; /* 4 */

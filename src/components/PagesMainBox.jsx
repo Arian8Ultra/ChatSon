@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { memo } from "react";
 
-const drawerWidth = "15vmax";
+const drawerWidth = "12vmax";
 
 const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     ({ theme, open }) => ({
