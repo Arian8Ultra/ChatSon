@@ -42,7 +42,7 @@ export default function Navbar() {
               onClick={changeDrawer}
               sx={{ color:primaryLight }}
             >
-              {!open ? <MenuIcon color="white"/> : <ArrowForwardIosRoundedIcon />}
+              {!open ? <MenuIcon /> : <ArrowForwardIosRoundedIcon />}
             </IconButton>}
 
 

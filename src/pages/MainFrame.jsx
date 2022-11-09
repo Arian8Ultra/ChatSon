@@ -19,9 +19,9 @@ export default function MainFrame() {
               sx={{
                 display: "flex",
                 mt: "80px",
-                mx:3,
+                mx:1,
                 p: 3,
-                borderRadius: borderRadiuos,
+                borderRadius: 2,
                 bgcolor: "rgba(255,255,255,0.2)",
               }}
             >
