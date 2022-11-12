@@ -17,7 +17,7 @@ export default function ChatCard({ name, date, time, message, checked, ...rest }
     <Card>
       <Stack py={0}>
         <Box mb={1} py={2} bgcolor='rgba(255,255,255,0.1)'>
-          <Grid container xs={12} px={5}>
+          <Grid container px={5}>
             <Grid item lg={4} sx={{ display: "flex" }}>
               <Avatar />
               <Box height={"100%"}>

@@ -1,5 +1,14 @@
 import { Center } from "@chakra-ui/react";
-import { AppBar, Box, Container, IconButton, Menu, Stack, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Container,
+  IconButton,
+  Menu,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import React, { useCallback } from "react";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
@@ -18,9 +27,8 @@ export default function Navbar() {
     setAnchorElUser(null);
   };
 
-  let open = useSideBarStore((state)=> state.open)
-  const changeDrawer = useSideBarStore((state)=> state.changeSideBar)
-
+  let open = useSideBarStore((state) => state.open);
+  const changeDrawer = useSideBarStore((state) => state.changeSideBar);
 
   return (
     <AppBar
@@ -34,23 +42,24 @@ export default function Navbar() {
     >
       <Container maxWidth=''>
         <Toolbar disableGutters>
-          
-        { <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
+          {
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              edge='start'
               onClick={changeDrawer}
-              sx={{ color:primaryLight }}
+              sx={{ color: primaryLight }}
             >
               {!open ? <MenuIcon /> : <ArrowForwardIosRoundedIcon />}
-            </IconButton>}
-
-
+            </IconButton>
+          }
 
           <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}>
-            <Typography color={primaryLight}  fontSize={30} fontWeight={700}>
-              ChatSon
-            </Typography>
+            <Center height={"100%"}>
+              <Typography color={primaryLight} fontSize={30} fontWeight={700}>
+                ChatSon
+              </Typography>
+            </Center>
           </Stack>
 
           <Box sx={{ px: 1 }}>

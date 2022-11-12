@@ -5,11 +5,13 @@ import { borderRadiuos, theme } from "../../theme/Themes";
 import Navbar from "../components/Navbar";
 import PagesMainBox from "../components/PagesMainBox";
 import SideBarMain from "../components/SideBar";
+import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 import HomePage from "./Home/HomePage";
 
 export default function MainFrame() {
   let open = useSideBarStore((state) => state.open);
+  const pageName = usePageStore((state) => state.pageName);
 
   return (
     <ThemeProvider theme={theme}>
@@ -30,7 +32,7 @@ export default function MainFrame() {
           }}
           bgcolor={"white"}
         >
-          Home
+          {pageName}
         </Box>
         <Box
           sx={{
