@@ -11,6 +11,9 @@ import {
 
 
 export const theme = createTheme({
+  typography:{
+    fontFamily:'Comfortaa,cursive'
+  },
   palette: {
     mode:"dark",
     primary: {

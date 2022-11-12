@@ -48,7 +48,7 @@ export default function Navbar() {
 
 
           <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}>
-            <Typography color={primaryLight}  fontSize={30} fontFamily="cursive">
+            <Typography color={primaryLight}  fontSize={30} fontWeight={700}>
               ChatSon
             </Typography>
           </Stack>

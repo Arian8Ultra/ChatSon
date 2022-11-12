@@ -1,7 +1,8 @@
 import { styled } from "@mui/material/styles";
 import { memo } from "react";
 
-const drawerWidth = "12vmax";
+const drawerWidth = "20vmax";
+const halfDrawerWidth = "10vmax";
 
 const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     ({ theme, open }) => ({
@@ -11,13 +12,16 @@ const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      marginLeft: -drawerWidth,
+      marginLeft: halfDrawerWidth,
+      marginRight: halfDrawerWidth,
       ...(open && {
         transition: theme.transitions.create("margin", {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen,
         }),
         marginLeft: drawerWidth,
+        marginRight: drawerWidth,
+
       }),
     })
   );
