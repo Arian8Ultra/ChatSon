@@ -11,10 +11,11 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { borderRadiuos } from "../../theme/Themes";
 
 export default function ChatCard({ name, date, time, message, checked, ...rest }) {
   return (
-    <Card>
+    <Card sx={{borderRadius:borderRadiuos}}>
       <Stack py={0}>
         <Box mb={1} py={2} bgcolor='rgba(255,255,255,0.1)'>
           <Grid container px={5}>

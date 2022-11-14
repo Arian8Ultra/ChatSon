@@ -72,7 +72,7 @@ function SideBarMain(props) {
         <List sx={{ mt: 0, mx: 0, px:1 }}>
           <DrawerItemRight text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Home' />
           <DrawerItemRight text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
-          <DrawerItemRight text='Peoples' icon={<PeopleAltRoundedIcon />} link='' />
+          <DrawerItemRight text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
       </Drawer>
     </ThemeProvider>

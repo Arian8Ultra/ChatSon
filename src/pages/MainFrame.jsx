@@ -1,6 +1,7 @@
 import { Center } from "@chakra-ui/react";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { primaryLight } from "../../theme/Colors";
 import { borderRadiuos, theme } from "../../theme/Themes";
 import Navbar from "../components/Navbar";
 import PagesMainBox from "../components/PagesMainBox";
@@ -13,6 +14,10 @@ export default function MainFrame() {
   let open = useSideBarStore((state) => state.open);
   const pageName = usePageStore((state) => state.pageName);
 
+
+  useEffect(()=>{
+    document.title = pageName;
+  })
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
@@ -23,14 +28,15 @@ export default function MainFrame() {
           sx={{
             mt: "100px",
             mx: 1,
-            borderRadius: 2,
+            borderRadius: borderRadiuos,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
             bgcolor: "rgba(255,255,255,0.1)",
             fontSize: 35,
-            fontWeight: 700,
+            borderBottom:1,
+            borderColor:primaryLight,
+            color:primaryLight,
           }}
-          bgcolor={"white"}
         >
           {pageName}
         </Box>
@@ -39,7 +45,7 @@ export default function MainFrame() {
             display: "flex",
             mx: 1,
             p: 3,
-            borderRadius: 2,
+            borderRadius: borderRadiuos,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
             bgcolor: "rgba(255,255,255,0.2)",

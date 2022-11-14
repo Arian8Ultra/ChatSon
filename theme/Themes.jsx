@@ -28,7 +28,7 @@ export const theme = createTheme({
   direction: "ltr",
 });
 
-export const borderRadiuos = 4; /* 4 */
+export const borderRadiuos = 3; /* 4 */
 export const borderRadiuosMenu = 4; /* 4 */
 export const borderRadiuosTextField = 50; /* 50 */
 export const borderRadiuosButton = 100; /* 180 */

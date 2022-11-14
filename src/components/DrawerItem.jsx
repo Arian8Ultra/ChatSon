@@ -11,10 +11,10 @@ export default function DrawerItem(props) {
   const pageTitle = props.pageTitle != null ? props.pageTitle : "";
   let open = useSideBarStore((state) => state.open);
   let changePageName = usePageStore((state) => state.changePageName);
-
+  const pageName = usePageStore((state) => state.pageName);
+  
   const navigate = useNavigate();
   const handleClick = () => {
-    sessionStorage.setItem("pageName", text);
     if (props.text != null) {
       document.title = text;
       changePageName(text)
@@ -23,14 +23,12 @@ export default function DrawerItem(props) {
   };
 
   const backGround = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return primaryLight;
     }
     return "";
   };
   const textColor = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return primaryDark;
     }
@@ -38,7 +36,6 @@ export default function DrawerItem(props) {
   };
 
   const hoverBackGround = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return primary;
     }
@@ -46,14 +43,12 @@ export default function DrawerItem(props) {
   };
 
   const borderLine = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return 0;
     }
     return 0;
   };
   const borderRadius = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return 50;
     }
