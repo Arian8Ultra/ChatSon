@@ -112,14 +112,12 @@ export function DrawerItemRight(props) {
   };
 
   const backGround = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return primaryLight;
     }
     return "";
   };
   const textColor = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return primaryDark;
     }
@@ -127,7 +125,6 @@ export function DrawerItemRight(props) {
   };
 
   const hoverBackGround = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return primary;
     }
@@ -135,14 +132,12 @@ export function DrawerItemRight(props) {
   };
 
   const borderLine = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return 0;
     }
     return 0;
   };
   const borderRadius = () => {
-    const pageName = sessionStorage.getItem("pageName");
     if (pageName == text) {
       return 50;
     }
