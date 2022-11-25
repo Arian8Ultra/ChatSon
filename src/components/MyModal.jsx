@@ -27,7 +27,7 @@ export default function MyModal({
   ...rest
 }) {
   return (
-      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={"outside"} size={"4xl"} isCentered>
+      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={"outside"} size={"3xl"} isCentered>
         <ModalOverlay />
         <ModalContent
           bgColor={bgGradient == null ? bgColor : "black"}
