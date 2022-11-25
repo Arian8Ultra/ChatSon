@@ -14,7 +14,7 @@ export default function LinkButton(props) {
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : {};
   const minWidth = props.minWidth != null ? props.minWidth : {};
-  const textColor = props.textColor != null ? props.textColor : primaryDark;
+  const textColor = props.textColor != null ? props.textColor : 'black';
   const backgroundColor = props.backgroundColor != null ? props.backgroundColor : primary;
   const hoverColor = props.hoverColor != null ? props.hoverColor : primaryLight;
   const position = props.position != null ? props.position : {};
@@ -80,14 +80,14 @@ export default function LinkButton(props) {
         "boxShadow": boxShadow,
         "&:hover": {
           backgroundColor: hoverColor,
-          "boxShadow": boxShadow,
+          boxShadow: boxShadow,
         },
       }}
       onClick={handleClick}
       disabled={disabled}
       fullWidth={fullWidth}
     >
-      <Center height={"100%"} >{text}</Center>
+      <Center height={"100%"}>{text}</Center>
     </Button>
   );
 }

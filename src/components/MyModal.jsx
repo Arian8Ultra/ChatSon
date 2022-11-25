@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import React from "react";
+import { primary } from "../../theme/Colors";
 
 export default function MyModal({
   width,
@@ -37,7 +38,7 @@ export default function MyModal({
           <ModalHeader
             bgColor={bgGradient == null ? bgColor : "black"}
             borderTopRadius={10}
-            borderTopColor={"white"}
+            borderTopColor={primary}
             borderTopWidth={4}
             {...rest}
           >

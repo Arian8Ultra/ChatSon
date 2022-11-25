@@ -6,7 +6,7 @@ import { borderRadiuosTextField } from "../../theme/Themes";
 function TextInputNormal({id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
 
   const changeData = (data) => {
-    props.getText(data);
+    getText(data);
   };
 
   return (
@@ -15,21 +15,21 @@ function TextInputNormal({id, label, type,idNum,autoComplete,disabled,fontSize,t
       name={id}
       label={label}
       fullWidth
-      defaultValue={props.value}
+      defaultValue={value}
       autoComplete={autoComplete}
       variant='outlined'
       type={type}
       disabled={disabled}
       error={error}
       helperText={helperText}
-      sx={{ boxShadow: 0, height: 10, borderRadius: borderRadiuosTextField }}
-      InputProps={{ sx: { height: height, borderRadius: borderRadiuosTextField } }}
+      sx={{ boxShadow: 0, height: 45, borderRadius: borderRadiuosTextField }}
+      InputProps={{ sx: { height: 45, borderRadius: borderRadiuosTextField } }}
       {...rest}
       InputLabelProps={{
-        size: size,
+        size: size!=null ? size : 'small',
       }}
     />
   );
 }
 
-export default TextInputNormal
+export default TextInputNormal;

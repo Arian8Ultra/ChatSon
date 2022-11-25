@@ -1,7 +1,7 @@
 export const primary = "#88ffff";/* #ff8f00 */
 export const primaryLight = "#b2ebf2";/* #ffc046 */
 export const primaryDark = "#009faf";/* #c56000 */
-export const backgroundC = "#c4d1ed";
+export const backgroundC = "#424242";
 export const Green = "#00C853";
 export const GreenLight = "#B9F6CA";
 export const Red = "#D50000";

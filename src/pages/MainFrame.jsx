@@ -32,8 +32,11 @@ export default function MainFrame() {
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
             bgcolor: primaryLight,
+            bgcolor: "rgba(255,255,255,0.2)",
+            borderTop:4,
+            borderColor:primary,
             fontSize: 35,
-            color: "black",
+            color: primary,
           }}
         >
           {pageName}
