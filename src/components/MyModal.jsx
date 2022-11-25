@@ -6,22 +6,52 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  ChakraProvider,
+  Center,
 } from "@chakra-ui/react";
 
 import React from "react";
 
-export default function MyModal({ width, height, header, content, footer, isOpen, onClose,bgColor,bgGradient, ...rest }) {
+export default function MyModal({
+  width,
+  height,
+  header,
+  content,
+  footer,
+  isOpen,
+  onClose,
+  bgColor,
+  bgGradient,
+  color,
+  ...rest
+}) {
   return (
-    <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={"outside"} size={'2xl'}>
-      <ModalOverlay />
-      <ModalContent bgColor={bgGradient== null ? bgColor : 'transparent'} bgGradient={bgGradient}  borderRadius={8}>
-        <ModalHeader  bgColor={bgGradient== null ? bgColor : 'transparent' } borderTopRadius={7} borderTopColor={'red'} borderTopWidth={4} {...rest} >{header}</ModalHeader>
-        <ModalCloseButton color={'white'}/>
-        <ModalBody bgColor={bgGradient== null ? bgColor : 'transparent'} >{content}</ModalBody>
-        <ModalFooter bgColor={bgGradient== null ? bgColor : 'transparent'} borderBottomRadius={7}>
-          {footer}
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={"outside"} size={"4xl"} isCentered>
+        <ModalOverlay />
+        <ModalContent
+          bgColor={bgGradient == null ? bgColor : "black"}
+          bgGradient={bgGradient}
+          borderRadius={10}
+          height={height != null ? height : "60vmin"}
+        >
+          <ModalHeader
+            bgColor={bgGradient == null ? bgColor : "black"}
+            borderTopRadius={10}
+            borderTopColor={"white"}
+            borderTopWidth={4}
+            {...rest}
+          >
+            {header}
+          </ModalHeader>
+          <ModalCloseButton color={color} />
+          <ModalBody bgColor={bgGradient == null ? bgColor : "black"}>{content}</ModalBody>
+          <ModalFooter
+            bgColor={bgGradient == null ? bgColor : "transparent"}
+            borderBottomRadius={10}
+          >
+            {footer}
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
   );
 }

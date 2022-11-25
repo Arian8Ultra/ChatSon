@@ -1,10 +1,10 @@
 import create from 'zustand'
 
-const useModalStore = create(
+const useNewChatModalStore = create(
     (set, get) => ({
       open: false,
       changeModal: () => set({ open: !get().open }),
     })
 )
 
-export default useModalStore;
+export default useNewChatModalStore;
