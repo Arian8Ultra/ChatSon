@@ -17,7 +17,7 @@ export default function MyRouter() {
 
       <Route path='App' element={<App />}>
         <Route path='' element={<HomePage />} />
-        <Route path='HomePage' element={<HomePage />} />
+        <Route path='Home' element={<HomePage />} />
       </Route>
 
     </Routes>
