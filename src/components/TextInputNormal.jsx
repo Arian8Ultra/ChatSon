@@ -2,9 +2,36 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import { borderRadiuosTextField } from "../../theme/Themes";
 
-
-function TextInputNormal({id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
-
+function TextInputNormal({
+  id,
+  label,
+  type,
+  idNum,
+  autoComplete,
+  disabled,
+  fontSize,
+  textColor,
+  backgroundColor,
+  hoverColor,
+  position,
+  bottom,
+  right,
+  top,
+  left,
+  margin,
+  text,
+  value,
+  helperText,
+  error,
+  size,
+  width,
+  height,
+  getText,
+  multiline,
+  rows,
+  borderRadius,
+  ...rest
+}) {
   const changeData = (data) => {
     getText(data);
   };
@@ -22,11 +49,18 @@ function TextInputNormal({id, label, type,idNum,autoComplete,disabled,fontSize,t
       disabled={disabled}
       error={error}
       helperText={helperText}
-      sx={{ boxShadow: 0, height: 45, borderRadius: borderRadiuosTextField }}
-      InputProps={{ sx: { height: 45, borderRadius: borderRadiuosTextField } }}
+      multiline={multiline}
+      rows={rows}
+      sx={{
+        boxShadow: 0,
+        borderRadius: borderRadius != null ? borderRadius : borderRadiuosTextField,
+      }}
+      InputProps={{
+        sx: { borderRadius: borderRadius != null ? borderRadius : borderRadiuosTextField },
+      }}
       {...rest}
       InputLabelProps={{
-        size: size!=null ? size : 'small',
+        size: size,
       }}
     />
   );

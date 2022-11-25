@@ -28,15 +28,15 @@ export default function HomePage() {
         position={"fixed"}
         text={"NEW CHAT"}
         bottom={0}
+        padding={4}
         right={'13vmax'}
         margin={2}
-        textColor={primaryDark}
+        textColor={'black'}
         backgroundColor={primary}
         hoverColor={primaryLight}
-        pageTitle='فایل جدید'
         fun={() => changeModal()}
         icon={<AddCircleRoundedIcon />}
-      />{" "}
+      />
     </Box>
   );
 }
