@@ -44,6 +44,7 @@ export default function SignInPage() {
     } else {
     }
   };
+
   const handleAnonSignIn = () => {
     setTimeout(() => {
       handleNavigate();
@@ -89,12 +90,10 @@ export default function SignInPage() {
             error={PasswordError}
             helperText={PasswordErrorHelperText}
             autoComplete='password'
-            fun={handleSignIn}
-
           />
           <Divider />
           <Center>
-            <LinkButton text={"Sign In"} width={"50%"} />
+            <LinkButton text={"Sign In"} width={"50%"} fun={handleSignIn} />
           </Center>
           <Center>
             <LinkButton
