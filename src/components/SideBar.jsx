@@ -9,12 +9,12 @@ import * as React from "react";
 import { theme } from "../../theme/Themes";
 import useSideBarStore from "../stores/SideBarStore";
 import DrawerItem, { DrawerItemRight } from "./DrawerItem";
-import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
-import HistoryToggleOffRoundedIcon from '@mui/icons-material/HistoryToggleOffRounded';
+import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import HistoryToggleOffRoundedIcon from "@mui/icons-material/HistoryToggleOffRounded";
 import { primaryLight } from "../../theme/Colors";
-import LocalFireDepartmentRoundedIcon from '@mui/icons-material/LocalFireDepartmentRounded';
-import ExploreRoundedIcon from '@mui/icons-material/ExploreRounded';
-import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
+import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
+import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
+import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 
 /* 
 
@@ -24,57 +24,64 @@ Space For Me
 
 function SideBarMain(props) {
   const drawerWidth = "13vmax";
-  let open = useSideBarStore((state)=> state.open)
-
-
+  let open = useSideBarStore((state) => state.open);
 
   return (
     <ThemeProvider theme={theme}>
       <Drawer
         sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "width": drawerWidth,
+          "flexShrink": 0,
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            boxSizing: 'border-box'}
+            boxSizing: "border-box",
+          },
         }}
         PaperProps={{
-          sx: { backgroundColor:  "rgba(255,255,255,0.02)", border:0 },
+          sx: { backgroundColor: "rgba(255,255,255,0.02)", border: 0 },
         }}
-        variant="persistent"
-        anchor="left"
+        variant='persistent'
+        anchor='left'
         open={open}
       >
         <Toolbar />
-        <List sx={{ mt: -0, mx: 0, px:1 }}>
+        <List sx={{ mt: -0, mx: 0, px: 1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='' />
-          {/* <DrawerItem text='Explore More' icon={<ExploreRoundedIcon />} link='' /> */}
+          <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='' />
+          <DrawerItem text='History' icon={<HistoryToggleOffRoundedIcon />} link=''/>
+          <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
       </Drawer>
-
+{/* 
       <Drawer
         sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "width": drawerWidth,
+          "flexShrink": 0,
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            boxSizing: 'border-box'}
+            boxSizing: "border-box",
+          },
         }}
         PaperProps={{
-          sx: { backgroundColor: "rgba(255,255,255,0.01)", border:0, borderLeft:1, borderColor:primaryLight },
+          sx: {
+            backgroundColor: "rgba(255,255,255,0.01)",
+            border: 0,
+            borderLeft: 1,
+            borderColor: primaryLight,
+          },
         }}
-        variant="persistent"
-        anchor="right"
+        variant='persistent'
+        anchor='right'
         open={open}
       >
         <Toolbar />
-        <List sx={{ mt: 0, mx: 0, px:1 }}>
+        <List sx={{ mt: 0, mx: 0, px: 1 }}>
           <DrawerItemRight text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Home' />
           <DrawerItemRight text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
           <DrawerItemRight text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
-      </Drawer>
+      </Drawer> */}
     </ThemeProvider>
   );
 }
