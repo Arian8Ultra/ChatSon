@@ -49,7 +49,7 @@ function SideBarMain(props) {
         <List sx={{ mt: -0, mx: 0, px:1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='' />
-          <DrawerItem text='Explore More' icon={<ExploreRoundedIcon />} link='' />
+          {/* <DrawerItem text='Explore More' icon={<ExploreRoundedIcon />} link='' /> */}
         </List>
       </Drawer>
 
