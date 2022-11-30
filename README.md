@@ -1,3 +1,3 @@
 # ChatSon
-This is for everybody seecuriy and safty in internet
+This is for everybody's security and safety in internet
  Good Luck and happy codding
