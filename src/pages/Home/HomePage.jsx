@@ -6,6 +6,7 @@ import LinkButton from "../../components/LinkButton";
 import useNewChatModalStore from "../../stores/NewChatModalStore";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import { primary, primaryDark, primaryLight } from "../../../theme/Colors";
+import ChatCard2 from "../../components/ChatCard copy";
 
 export default function HomePage() {
   const openModal = useNewChatModalStore((state) => state.open);
@@ -21,6 +22,7 @@ export default function HomePage() {
         />
         <ChatCard />
         <ChatCard />
+        <ChatCard2 name={'Arian Rezaei '} />
       </Stack>
     </Box>
   );

@@ -66,7 +66,6 @@ export default function Navbar() {
             <Center height={"70px"}>
               <IconButton
                 onClick={handleOpenUserMenu}
-                onMouseEnter={handleOpenUserMenu}
                 sx={{ p: 0, mr: -3 }}
               >
                 <LabelChipFill

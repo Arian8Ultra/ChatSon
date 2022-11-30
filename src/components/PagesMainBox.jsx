@@ -3,7 +3,7 @@ import { memo } from "react";
 
 const drawerWidth = "20vmax";
 const halfDrawerWidth = "15vmax";
-const halfhalfDrawerWidth = "7vmax";
+const halfhalfDrawerWidth = "15vmax";
 
 const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({

@@ -11,7 +11,7 @@ import useSideBarStore from "../stores/SideBarStore";
 import DrawerItem, { DrawerItemRight } from "./DrawerItem";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import HistoryToggleOffRoundedIcon from "@mui/icons-material/HistoryToggleOffRounded";
-import { primaryLight } from "../../theme/Colors";
+import { primary, primaryLight } from "../../theme/Colors";
 import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
@@ -41,7 +41,7 @@ function SideBarMain(props) {
           },
         }}
         PaperProps={{
-          sx: { backgroundColor: "rgba(255,255,255,0.1)", border: 0,borderTopRightRadius:20,borderBottomRightRadius:20 },
+          sx: { backgroundColor: "rgba(255,255,255,0.1)", border: 0,borderTopRightRadius:20,borderBottomRightRadius:20 , borderRight:4, borderColor:primary },
         }}
         variant='persistent'
         anchor='left'
