@@ -6,7 +6,7 @@ import LinkButton from "../../components/LinkButton";
 import useNewChatModalStore from "../../stores/NewChatModalStore";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import { primary, primaryDark, primaryLight } from "../../../theme/Colors";
-import ChatCard2 from "../../components/ChatCard copy";
+import DBtable from "../../../Images/DBtable.png";
 
 export default function HomePage() {
   const openModal = useNewChatModalStore((state) => state.open);
@@ -19,10 +19,11 @@ export default function HomePage() {
           date='1/1/1401'
           time={"7:30"}
           message='this is a test for this shit'
+          ChatImage={DBtable}
+          official='chatSon'
         />
-        <ChatCard />
-        <ChatCard />
-        <ChatCard2 name={'Arian Rezaei '} />
+        <ChatCard official='news' />
+        <ChatCard official='danger' />
       </Stack>
     </Box>
   );

@@ -1,6 +1,7 @@
 import { Center, ChakraProvider } from "@chakra-ui/react";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import { borderRadiuos, theme } from "../../theme/Themes";
 import Navbar from "../components/Navbar";
@@ -53,7 +54,7 @@ export default function MainFrame() {
           }}
         >
           <CssBaseline />
-          <HomePage />
+          <Outlet />
         </Box>
       </PagesMainBox>
     </ThemeProvider>
