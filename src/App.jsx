@@ -33,7 +33,7 @@ function App() {
       <MyModal height={''} bgColor={backgroundC} color={primary} isOpen={openModal} onClose={changeModal}
       header={
         <Container my={1}>
-          <Heading color={primary} fontWeight={"bold"} textAlign={"center"} fontSize={"30"}>
+          <Heading color={primary} fontWeight={"normal"} textAlign={"center"} fontSize={"30"}>
             New Chat
           </Heading>
         </Container>

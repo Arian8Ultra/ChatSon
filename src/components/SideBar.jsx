@@ -6,7 +6,7 @@ import List from "@mui/material/List";
 import { ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
-import { theme } from "../../theme/Themes";
+import { borderRadiuos, borderRadiuosButton, theme } from "../../theme/Themes";
 import useSideBarStore from "../stores/SideBarStore";
 import DrawerItem, { DrawerItemRight } from "./DrawerItem";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
@@ -31,29 +31,32 @@ function SideBarMain(props) {
       <Drawer
         sx={{
           "width": drawerWidth,
+          height:'100%',
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
             width: drawerWidth,
+            height: "85vmin",
+            top:'11vmin',
             boxSizing: "border-box",
           },
         }}
         PaperProps={{
-          sx: { backgroundColor: "rgba(255,255,255,0.02)", border: 0 },
+          sx: { backgroundColor: "rgba(255,255,255,0.1)", border: 0,borderTopRightRadius:20,borderBottomRightRadius:20 },
         }}
         variant='persistent'
         anchor='left'
         open={open}
       >
         <Toolbar />
-        <List sx={{ mt: -0, mx: 0, px: 1 }}>
+        <List sx={{ mt: '-60px', mx: 0, px: 1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
           <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
-          <DrawerItem text='History' icon={<HistoryToggleOffRoundedIcon />} link=''/>
+          <DrawerItem text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
           <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
       </Drawer>
-{/* 
+      {/* 
       <Drawer
         sx={{
           "width": drawerWidth,
