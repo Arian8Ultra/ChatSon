@@ -5,20 +5,20 @@
     </clipPath>
   </defs>
   <g id="ChatSonLogo" clip-path="url(#clip-ChatSonLogo)">
-    <circle id="backGround" cx="230" cy="230" r="230" transform="translate(26 26)" fill="#8ff"/>
-    <g id="Group_1" data-name="Group 1" transform="translate(29.736 40.284)">
-      <g id="Rectangle_2" data-name="Rectangle 2" transform="translate(121.264 34.716)" fill="none" stroke="#000" stroke-width="50">
-        <rect width="217" height="362" rx="108.5" stroke="none"/>
-        <rect x="25" y="25" width="167" height="312" rx="83.5" fill="none"/>
+    <circle id="backGround" cx="256" cy="256" r="256" fill="#8ff"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(134.678 54.539)">
+      <g id="Rectangle_2" data-name="Rectangle 2" transform="translate(4.322 0.461)" fill="none" stroke="#000" stroke-width="50">
+        <rect width="242" height="402" rx="121" stroke="none"/>
+        <rect x="25" y="25" width="192" height="352" rx="96" fill="none"/>
       </g>
-      <rect id="Rectangle_4" data-name="Rectangle 4" width="97" height="72" transform="translate(287.264 132.716)" fill="#8ff"/>
-      <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(117.264 150.716)" fill="none" stroke="#8ff" stroke-width="50">
-        <rect width="250" height="247" rx="123.5" stroke="none"/>
-        <rect x="25" y="25" width="200" height="197" rx="98.5" fill="none"/>
+      <rect id="Rectangle_4" data-name="Rectangle 4" width="108" height="80" transform="translate(189.322 109.461)" fill="#8ff"/>
+      <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(0.322 129.461)" fill="none" stroke="#8ff" stroke-width="50">
+        <rect width="278" height="275" rx="137.5" stroke="none"/>
+        <rect x="25" y="25" width="228" height="225" rx="112.5" fill="none"/>
       </g>
-      <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(121.264 180.716)" fill="none" stroke="#000" stroke-width="50">
-        <rect width="217" height="217" rx="108.5" stroke="none"/>
-        <rect x="25" y="25" width="167" height="167" rx="83.5" fill="none"/>
+      <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(4.322 162.461)" fill="none" stroke="#000" stroke-width="50">
+        <rect width="242" height="242" rx="121" stroke="none"/>
+        <rect x="25" y="25" width="192" height="192" rx="96" fill="none"/>
       </g>
     </g>
   </g>
