@@ -1,6 +1,7 @@
 import { ChakraProvider, Container, Heading } from "@chakra-ui/react";
 import { useState } from "react";
-import { backgroundC, primary, primaryDark } from "../theme/Colors";
+import { backgroundC, primary, primaryDark, primaryLight } from "../theme/Colors";
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import "./App.css";
 import LinkButton from "./components/LinkButton";
 import MyModal from "./components/MyModal";
@@ -14,6 +15,21 @@ function App() {
   return (
     <ChakraProvider>
       <MainFrame />
+      <LinkButton
+        height={50}
+        fontSize={16}
+        position={"fixed"}
+        text={"NEW CHAT"}
+        bottom={0}
+        padding={4}
+        right={0}
+        margin={2}
+        textColor={'black'}
+        backgroundColor={primary}
+        hoverColor={primaryLight}
+        fun={() => changeModal()}
+        icon={<AddCircleRoundedIcon />}
+      />
       <MyModal height={''} bgColor={backgroundC} color={primary} isOpen={openModal} onClose={changeModal}
       header={
         <Container my={1}>

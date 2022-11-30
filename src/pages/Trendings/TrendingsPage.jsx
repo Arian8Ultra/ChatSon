@@ -7,7 +7,7 @@ import useNewChatModalStore from "../../stores/NewChatModalStore";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import { primary, primaryDark, primaryLight } from "../../../theme/Colors";
 
-export default function HomePage() {
+export default function TrendingsPage() {
   const openModal = useNewChatModalStore((state) => state.open);
   const changeModal = useNewChatModalStore((state) => state.changeModal);
   return (
