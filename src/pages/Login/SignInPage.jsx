@@ -93,13 +93,15 @@ export default function SignInPage() {
           />
           <Divider />
           <Center>
-            <LinkButton text={"Sign In"} width={"50%"} fun={handleSignIn} />
+            <LinkButton text={"Sign In"} width={"50%"} fun={handleSignIn}               fontSize='1vmax'
+ />
           </Center>
           <Center>
             <LinkButton
               text={"Anonymouse Sign In"}
               width={"100%"}
               icon={<PersonOutlineRoundedIcon />}
+              fontSize='1vmax'
               fun={handleAnonSignIn}
             />
           </Center>

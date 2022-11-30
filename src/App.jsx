@@ -17,7 +17,7 @@ function App() {
       <MainFrame />
       <LinkButton
         height={50}
-        fontSize={16}
+        fontSize={'1.7vmin'}
         position={"fixed"}
         text={"NEW CHAT"}
         bottom={0}

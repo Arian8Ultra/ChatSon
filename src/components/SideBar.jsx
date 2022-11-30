@@ -31,24 +31,32 @@ function SideBarMain(props) {
       <Drawer
         sx={{
           "width": drawerWidth,
-          height:'100%',
+          "height": "100%",
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             height: "85vmin",
-            top:'11vmin',
+            top: "11vmin",
             boxSizing: "border-box",
+            display: { xs: "none", lg: "flex" },
           },
         }}
         PaperProps={{
-          sx: { backgroundColor: "rgba(255,255,255,0.1)", border: 0,borderTopRightRadius:20,borderBottomRightRadius:20 , borderRight:4, borderColor:primary },
+          sx: {
+            backgroundColor: "rgba(255,255,255,0.1)",
+            border: 0,
+            borderTopRightRadius: 20,
+            borderBottomRightRadius: 20,
+            borderRight: 4,
+            borderColor: primary,
+          },
         }}
         variant='persistent'
         anchor='left'
         open={open}
       >
         <Toolbar />
-        <List sx={{ mt: '-60px', mx: 0, px: 1 }}>
+        <List sx={{ mt: "-60px", mx: 0, px: 1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
           <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
@@ -56,35 +64,49 @@ function SideBarMain(props) {
           <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
       </Drawer>
-      {/* 
+
       <Drawer
         sx={{
-          "width": drawerWidth,
+          "height": "100%",
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
             boxSizing: "border-box",
+            display: { xs: "flex", lg: "none" },
           },
         }}
         PaperProps={{
           sx: {
-            backgroundColor: "rgba(255,255,255,0.01)",
+            backgroundColor: "rgba(255,255,255,0.1)",
             border: 0,
-            borderLeft: 1,
-            borderColor: primaryLight,
+            borderTopRightRadius: 20,
+            borderBottomRightRadius: 20,
+            borderRight: 4,
+            borderColor: primary,
+          },
+        }}
+        BackdropProps={{
+          sx: {
+            display: { xs: "flex", lg: "none" },
+          },
+        }}
+        ModalProps={{
+          sx: {
+            display: { xs: "flex", lg: "none" },
           },
         }}
         variant='persistent'
-        anchor='right'
+        anchor='left'
         open={open}
       >
         <Toolbar />
-        <List sx={{ mt: 0, mx: 0, px: 1 }}>
-          <DrawerItemRight text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Home' />
-          <DrawerItemRight text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
-          <DrawerItemRight text='People' icon={<PeopleAltRoundedIcon />} link='' />
+        <List sx={{ mt: "-60px", mx: 0, px: 1 }}>
+          <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
+          <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
+          <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
+          <DrawerItem text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
+          <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
-      </Drawer> */}
+      </Drawer>
     </ThemeProvider>
   );
 }

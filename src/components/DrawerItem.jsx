@@ -168,9 +168,8 @@ export function DrawerItemRight(props) {
         <ListItemIcon
           sx={{
             color: textColor,
-            mr: -7,
+            mr: 2,
             minWidth: 0,
-            mr: open ? 3 : "auto",
             justifyContent: "center",
           }}
         >

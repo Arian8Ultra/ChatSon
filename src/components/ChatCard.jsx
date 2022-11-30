@@ -30,20 +30,18 @@ export default function ChatCard({
 
   ...rest
 }) {
-
-
-  const borderColor=()=>{
+  const borderColor = () => {
     switch (official) {
-      case 'chatSon':
-        return primary
-      case 'news':
-        return Yellow
-      case 'danger':
-        return Red
+      case "chatSon":
+        return primary;
+      case "news":
+        return Yellow;
+      case "danger":
+        return Red;
       default:
-        return 'rgba(255,255,255,0.03)'
+        return "rgba(255,255,255,0.03)";
     }
-  }
+  };
 
   return (
     <Card
@@ -54,14 +52,14 @@ export default function ChatCard({
       }}
     >
       <Grid container>
-        <Grid item lg={0.6} minWidth='60px' maxWidth='60px'>
+        <Grid item xs={2} sm={2} md={2} lg={0.6}  maxWidth='60px'>
           <Box p={2} height='100%' bgcolor='rgba(255,255,255,0.03)'>
             <Center>
-              <Avatar src={profileImage != null ? profileImage : ''} />
+              <Avatar src={profileImage != null ? profileImage : ""} />
             </Center>
           </Box>
         </Grid>
-        <Grid item lg={11}>
+        <Grid item xs={10} sm={11} md={10} lg={11.4}>
           <Stack py={0}>
             <Box mb={1} py={2}>
               <Grid container px={1}>
@@ -73,9 +71,9 @@ export default function ChatCard({
                   </Box>
                 </Grid>
 
-                <Grid item lg={6}></Grid>
+                <Grid item xs={6} sm={6} md={6} lg={6}></Grid>
 
-                <Grid item lg={1}>
+                <Grid item xs={1} sm={1} md={1} lg={1}>
                   <Center height={"100%"}>
                     <Typography textAlign={"end"} color='gray'>
                       {date != null ? date : "Date"}
@@ -83,7 +81,7 @@ export default function ChatCard({
                   </Center>
                 </Grid>
 
-                <Grid item lg={1}>
+                <Grid item xs={1} sm={1} md={1} lg={1}>
                   <Center height={"100%"}>
                     <Typography textAlign={"end"} color='gray'>
                       {time != null ? time : "Time"}
@@ -98,7 +96,7 @@ export default function ChatCard({
                 {message != null ? message : "Text"}
               </Typography>
             </CardContent>
-            <Box p={5} display={ChatImage==null ? 'none': {}}>
+            <Box p={5} display={ChatImage == null ? "none" : {}}>
               <Center>
                 <Image
                   borderRadius={10}

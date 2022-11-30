@@ -68,7 +68,7 @@ export function LabelChipFill(props) {
   const text = props.text != null ? props.text : "text";
   const link = props.link != null ? props.link : "";
   const disabled = props.disabled != null ? props.disabled : false;
-  const fontSize = props.fontSize != null ? props.fontSize : 16;
+  const fontSize = props.fontSize != null ? props.fontSize : '1.9vmin';
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : {};
   const minWidth = props.minWidth != null ? props.minWidth : {};

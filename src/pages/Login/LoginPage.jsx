@@ -11,7 +11,6 @@ export default function LoginPage() {
     <ThemeProvider theme={theme}>
       <Center w={"100vmax"} h={"100vmin"} justifyItems={"center"}>
         <Container
-          maxWidth='xs'
           sx={{
             bgcolor: backgroundC,
             borderRadius: borderRadiuos,
@@ -19,6 +18,7 @@ export default function LoginPage() {
             boxShadow: 5,
             margin: 20,
             justifySelf: "center",
+            width:'22vmax'
           }}
         >
           <Outlet />

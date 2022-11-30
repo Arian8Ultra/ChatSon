@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import React from "react";
 import {
   primary,
@@ -10,9 +10,12 @@ import {
 } from "./Colors";
 
 
-export const theme = createTheme({
+const theme1 = createTheme({
   typography:{
-    fontFamily:'Comfortaa,cursive'
+    fontFamily:'Comfortaa,cursive',
+    '@media (min-width:600px)': {
+      fontSize: '1.5rem',
+    },
   },
   palette: {
     mode:"dark",
@@ -27,6 +30,8 @@ export const theme = createTheme({
   },
   direction: "ltr",
 });
+
+export const theme = responsiveFontSizes(theme1)
 
 export const borderRadiuos = 4; /* 4 */
 export const borderRadiuosMenu = 4; /* 4 */

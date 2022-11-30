@@ -23,7 +23,8 @@ export default function MainFrame() {
     <ThemeProvider theme={theme}>
       <Navbar />
       <SideBarMain />
-      <PagesMainBox open={open}>
+      <PagesMainBox open={open} >
+      {/* sx={{ display:{sm:'none', lg:'block'}}} */}
         <Box
           py={1}
           sx={{
@@ -36,7 +37,7 @@ export default function MainFrame() {
             bgcolor: "rgba(255,255,255,0.2)",
             borderTop:4,
             borderColor:primary,
-            fontSize: 35,
+            fontSize: '3vmin',
             color: primary,
           }}
         >
