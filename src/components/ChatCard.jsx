@@ -57,7 +57,7 @@ export default function ChatCard({
         <Grid item lg={0.6} minWidth='60px' maxWidth='60px'>
           <Box p={2} height='100%' bgcolor='rgba(255,255,255,0.03)'>
             <Center>
-              <Avatar src={profileImage != null ? profileImage : Logo} />
+              <Avatar src={profileImage != null ? profileImage : ''} />
             </Center>
           </Box>
         </Grid>

@@ -18,7 +18,6 @@ export default function MyRouter() {
       </Route>
 
       <Route path='App' element={<App />}>
-        <Route path='' element={<HomePage />} />
         <Route path='Home' element={<HomePage />} />
         <Route path='Trendings' element={<TrendingsPage />} />
         <Route path='MyChats' element={<MyChatsPage />} />
