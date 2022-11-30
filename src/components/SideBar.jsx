@@ -15,6 +15,7 @@ import { primary, primaryLight } from "../../theme/Colors";
 import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
+import { SwipeableDrawer } from "@mui/material";
 
 /* 
 
@@ -65,7 +66,7 @@ function SideBarMain(props) {
         </List>
       </Drawer>
 
-      <Drawer
+      <SwipeableDrawer
         sx={{
           "height": "100%",
           "flexShrink": 0,
@@ -76,7 +77,7 @@ function SideBarMain(props) {
         }}
         PaperProps={{
           sx: {
-            backgroundColor: "rgba(255,255,255,0.1)",
+            backgroundColor: "rgba(35,35,35)",
             border: 0,
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
@@ -99,14 +100,14 @@ function SideBarMain(props) {
         open={open}
       >
         <Toolbar />
-        <List sx={{ mt: "-60px", mx: 0, px: 1 }}>
+        <List sx={{ mt: 0, mx: 0, px: 1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
           <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
           <DrawerItem text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
           <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
-      </Drawer>
+      </SwipeableDrawer>
     </ThemeProvider>
   );
 }

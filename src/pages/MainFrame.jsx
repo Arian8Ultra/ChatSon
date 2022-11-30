@@ -11,7 +11,6 @@ import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 import HomePage from "./Home/HomePage";
 
-
 export default function MainFrame() {
   let open = useSideBarStore((state) => state.open);
   const pageName = usePageStore((state) => state.pageName);
@@ -23,8 +22,7 @@ export default function MainFrame() {
     <ThemeProvider theme={theme}>
       <Navbar />
       <SideBarMain />
-      <PagesMainBox open={open} >
-      {/* sx={{ display:{sm:'none', lg:'block'}}} */}
+      <PagesMainBox open={open} sx={{ display: { xs: "none", sm: "none", md: "none", lg: "block" } }}>
         <Box
           py={1}
           sx={{
@@ -35,10 +33,11 @@ export default function MainFrame() {
             borderBottomRightRadius: 0,
             bgcolor: primaryLight,
             bgcolor: "rgba(255,255,255,0.2)",
-            borderTop:4,
-            borderColor:primary,
-            fontSize: '3vmin',
+            borderTop: 4,
+            borderColor: primary,
+            fontSize: "3vmin",
             color: primary,
+            display: {  xs: "none", sm: "none", md: "none", lg: "block" },
           }}
         >
           {pageName}
@@ -52,12 +51,48 @@ export default function MainFrame() {
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
             bgcolor: "rgba(255,255,255,0.2)",
+            display: { xs: "none", sm: "none", md: "none", lg: "block" },
           }}
         >
           <CssBaseline />
           <Outlet />
         </Box>
       </PagesMainBox>
+
+      <Box
+        py={1}
+        sx={{
+          mt: "100px",
+          mx: 4,
+          borderRadius: borderRadiuos,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+          bgcolor: primaryLight,
+          bgcolor: "rgba(255,255,255,0.2)",
+          borderTop: 4,
+          borderColor: primary,
+          fontSize: "3vmin",
+          color: primary,
+          display: {  xs: "block", sm: "block", md: "block", lg: "none" },
+        }}
+      >
+        {pageName}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          mx: 4,
+          p: 3,
+          borderRadius: borderRadiuos,
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
+          bgcolor: "rgba(255,255,255,0.2)",
+          display: { xs: "block", sm: "block", md: "block", lg: "none" },
+        }}
+      >
+        <CssBaseline />
+        <Outlet />
+      </Box>
     </ThemeProvider>
   );
 }

@@ -21,7 +21,7 @@ function App() {
         position={"fixed"}
         text={"NEW CHAT"}
         bottom={0}
-        padding={4}
+        padding={2}
         right={0}
         margin={2}
         textColor={'black'}
