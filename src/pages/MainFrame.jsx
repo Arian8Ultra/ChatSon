@@ -63,7 +63,6 @@ export default function MainFrame() {
         py={1}
         sx={{
           mt: "100px",
-          mx: 4,
           borderRadius: borderRadiuos,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
@@ -81,7 +80,6 @@ export default function MainFrame() {
       <Box
         sx={{
           display: "flex",
-          mx: 4,
           p: 3,
           borderRadius: borderRadiuos,
           borderTopLeftRadius: 0,

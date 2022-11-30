@@ -12,7 +12,7 @@ import {
 import React, { useCallback } from "react";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
-import { LabelChipFill } from "./LabelChip";
+import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -72,7 +72,17 @@ export default function Navbar() {
                   text={"Arian" + " " + "Rezaei"}
                   textColor='#242424'
                   backgroundColor={primaryLight}
-                  width='10vmax'
+                  minWidth='10vmax'
+                  maxWidth ='20vmax'
+                  borderRadius={borderRadiuosButton}
+                  boxShadow={0}
+                />
+                <LabelChipFillBig
+                  text={"Arian" + " " + "Rezaei"}
+                  textColor='#242424'
+                  backgroundColor={primaryLight}
+                  minWidth='10vmax'
+                  maxWidth ='20vmax'
                   borderRadius={borderRadiuosButton}
                   boxShadow={0}
                 />
