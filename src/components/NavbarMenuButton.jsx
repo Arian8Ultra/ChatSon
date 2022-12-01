@@ -34,11 +34,9 @@ function NavbarMenuButton(props,{...rest}) {
         {...rest}
         sx={{
           color: "#242424",
-          display: "block",
           width:props.width,
           height:props.height,
           borderRadius: borderRadiuosButton,
-          fontSize: '1.7vmin',
           fontWeight:'bold',
           "&:hover": {
             backgroundColor: "rgba(255,255,255,0.2)",

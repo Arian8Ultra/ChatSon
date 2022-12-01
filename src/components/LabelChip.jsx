@@ -127,7 +127,7 @@ export function LabelChipFill(props) {
         maxHeight: maxHeight,
         p: padding,
         boxShadow: boxShadow,
-        display: { xs: "none", lg: "block" }
+        display: { xs: "none",md:"block", lg: "block" }
       }}
       onClick={handleClick}
     >
@@ -198,13 +198,14 @@ export function LabelChipFillBig(props) {
         right: right,
         top: top,
         m: margin,
+        mx:2,
         minWidth: minWidth,
         minHeight: minHeight,
         maxWidth: maxWidth,
         maxHeight: maxHeight,
         p: padding,
         boxShadow: boxShadow,
-        display: { xs: "block", lg: "none" },
+        display: { xs: "block", md:"none", lg: "none" },
       }}
       onClick={handleClick}
     >

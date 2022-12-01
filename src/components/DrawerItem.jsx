@@ -88,7 +88,7 @@ export default function DrawerItem(props) {
         </ListItemIcon>
         <ListItemText sx={{ color: textColor, textAlign: "center" }}>
           <Center height={"100%"}>
-            <Typography fontSize={"1.8vmin"}>{text}</Typography>
+            <Typography>{text}</Typography>
           </Center>
         </ListItemText>
       </ListItemButton>
@@ -268,7 +268,7 @@ export function DrawerItemBig(props) {
         </ListItemIcon>
         <ListItemText sx={{ color: textColor, textAlign: "center", fontSize: "3vmin" }}>
           <Center height={"100%"}>
-            <Typography fontSize={"3vmin"}>{text}</Typography>
+            <Typography>{text}</Typography>
           </Center>
         </ListItemText>
       </ListItemButton>

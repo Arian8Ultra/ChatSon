@@ -90,7 +90,7 @@ export default function Navbar() {
             </Center>
 
             <Menu
-              sx={{ mt: "65px", ml: "10px" }}
+              sx={{ mt: "50px", ml: "10px" }}
               id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
