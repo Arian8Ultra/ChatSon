@@ -51,19 +51,19 @@ export default function ChatCard({
         borderColor: borderColor(),
       }}
     >
-      <Grid container>
-        <Grid item xs={2} sm={2} md={2} lg={0.6}  maxWidth='60px'>
+      <Grid container  xs={12} sm={12} md={12} lg={12} >
+        <Grid item xs={2} sm={2} md={2} lg={1}  maxWidth='60px'>
           <Box p={2} height='100%' bgcolor='rgba(255,255,255,0.03)'>
             <Center>
               <Avatar src={profileImage != null ? profileImage : ""} />
             </Center>
           </Box>
         </Grid>
-        <Grid item xs={10} sm={11} md={10} lg={11.4}>
+        <Grid item xs={10} sm={10} md={10} lg={11}>
           <Stack py={0}>
             <Box mb={1} py={2}>
               <Grid container px={1}>
-                <Grid item lg={4} sx={{ display: "flex" }}>
+                <Grid item xs={6} sm={6} md={6} lg={4} sx={{ display: "flex" }}>
                   <Box height={"100%"}>
                     <Center height={"100%"} pl={15}>
                       <Typography textAlign={"left"}>{name != null ? name : "Name"}</Typography>
@@ -71,19 +71,19 @@ export default function ChatCard({
                   </Box>
                 </Grid>
 
-                <Grid item xs={6} sm={6} md={6} lg={6}></Grid>
+                <Grid item  xs={2} sm={2} md={2} lg={6}></Grid>
 
-                <Grid item xs={1} sm={1} md={1} lg={1}>
+                <Grid item xs={2} sm={2} md={2} lg={1}>
                   <Center height={"100%"}>
-                    <Typography textAlign={"end"} color='gray'>
+                    <Typography mx={2} textAlign={"end"} color='gray'>
                       {date != null ? date : "Date"}
                     </Typography>
                   </Center>
                 </Grid>
 
-                <Grid item xs={1} sm={1} md={1} lg={1}>
+                <Grid item xs={2} sm={2} md={2} lg={1}>
                   <Center height={"100%"}>
-                    <Typography textAlign={"end"} color='gray'>
+                    <Typography mx={2} textAlign={"end"} color='gray'>
                       {time != null ? time : "Time"}
                     </Typography>
                   </Center>
