@@ -15,7 +15,7 @@ import { primary, primaryLight } from "../../theme/Colors";
 import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import { SwipeableDrawer } from "@mui/material";
+import { ClickAwayListener, SwipeableDrawer } from "@mui/material";
 
 /* 
 
@@ -26,6 +26,7 @@ Space For Me
 function SideBarMain(props) {
   const drawerWidth = "13vmax";
   let open = useSideBarStore((state) => state.open);
+  let changeSideBar = useSideBarStore((state) => state.changeSideBar);
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,7 +73,7 @@ function SideBarMain(props) {
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: '25vmax',
+            width: "25vmax",
             display: { xs: "block", lg: "none" },
           },
         }}
@@ -96,7 +97,7 @@ function SideBarMain(props) {
             display: { xs: "block", lg: "none" },
           },
         }}
-        variant="persistent"
+        variant='persistent'
         anchor='left'
         open={open}
       >
@@ -104,7 +105,11 @@ function SideBarMain(props) {
         <List sx={{ mt: 0, mx: 0, px: 1 }}>
           <DrawerItemBig text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItemBig text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
-          <DrawerItemBig text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
+          <DrawerItemBig
+            text='Trendings'
+            icon={<LocalFireDepartmentRoundedIcon />}
+            link='Trendings'
+          />
           <DrawerItemBig text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
           <DrawerItemBig text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
