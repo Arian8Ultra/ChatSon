@@ -91,11 +91,9 @@ export default function ChatCard({
               </Grid>
             </Box>
 
-            <CardContent>
               <Typography textAlign={"left"} px={5}>
                 {message != null ? message : "Text"}
               </Typography>
-            </CardContent>
             <Box p={5} display={ChatImage == null ? "none" : {}}>
               <Center>
                 <Image

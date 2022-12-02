@@ -111,7 +111,7 @@ export default function Navbar() {
                 },
               }}
             >
-              <NavbarMenuButton name='Profile' link='' width='8.5vmax' />
+              <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
               <NavbarMenuButton name='Sign Out' link='/' />
             </Menu>
           </Box>

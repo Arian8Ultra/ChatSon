@@ -3,6 +3,7 @@ import { height, width } from "@mui/system";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { borderRadiuosButton } from "../../theme/Themes";
+import usePageStore from "../stores/PageStore";
 
 function NavbarMenuButton(props,{...rest}) {
   const name = props.name;
@@ -12,14 +13,19 @@ function NavbarMenuButton(props,{...rest}) {
     () => navigate(`${link}`, { replace: true }),
     [navigate]
   );
-
+  let changePageName = usePageStore((state) => state.changePageName);
+  const pageName = usePageStore((state) => state.pageName);
 
 
   const handleClick = () => {
     if (!link == "") {
       if (link == "/") {
+        handleOnClick()
+        console.warn('signOut');
       }
-      handleOnClick();
+      else{
+        navigate(`${link}`);
+      }
     } else {
       props.fun();
     }

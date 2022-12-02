@@ -72,13 +72,13 @@ function SideBarMain(props) {
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: '20vmax',
-            display: { xs: "flex", lg: "none" },
+            width: '25vmax',
+            display: { xs: "block", lg: "none" },
           },
         }}
         PaperProps={{
           sx: {
-            backgroundColor: "rgba(35,35,35)",
+            backgroundColor: "rgba(45,45,45)",
             border: 0,
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
@@ -88,15 +88,15 @@ function SideBarMain(props) {
         }}
         BackdropProps={{
           sx: {
-            display: { xs: "flex", lg: "none" },
+            display: { xs: "block", lg: "none" },
           },
         }}
         ModalProps={{
           sx: {
-            display: { xs: "flex", lg: "none" },
+            display: { xs: "block", lg: "none" },
           },
         }}
-        variant='persistent'
+        variant="persistent"
         anchor='left'
         open={open}
       >

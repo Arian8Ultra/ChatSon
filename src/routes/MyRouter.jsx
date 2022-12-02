@@ -6,6 +6,7 @@ import LoginPage from "../pages/Login/LoginPage";
 import SignInPage from "../pages/Login/SignInPage";
 import SignUpPage from "../pages/Login/SignUpPage";
 import MyChatsPage from "../pages/MyChats/MyChatsPage";
+import ProfilePage from "../pages/Profile/ProfilePage";
 import TrendingsPage from "../pages/Trendings/TrendingsPage";
 
 export default function MyRouter() {
@@ -21,6 +22,7 @@ export default function MyRouter() {
         <Route path='Home' element={<HomePage />} />
         <Route path='Trendings' element={<TrendingsPage />} />
         <Route path='MyChats' element={<MyChatsPage />} />
+        <Route path='Profile' element={<ProfilePage />} />
       </Route>
 
     </Routes>
