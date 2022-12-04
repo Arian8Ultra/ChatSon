@@ -31,7 +31,6 @@ export default function MainFrame() {
             borderRadius: borderRadiuos,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
-            bgcolor: primaryLight,
             bgcolor: "rgba(255,255,255,0.2)",
             borderTop: 4,
             borderColor: primary,

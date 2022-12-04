@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/ChatSonLogo.svg" />
@@ -14,4 +15,15 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
+  
+  <script type="module">
+    import RefreshRuntime from 'http://localhost:30000/@react-refresh'
+    RefreshRuntime.injectIntoGlobalHook(window)
+    window.$RefreshReg$ = () => {}
+    window.$RefreshSig$ = () => (type) => type
+    window.__vite_plugin_react_preamble_installed__ = true
+  </script>
+  
+  <script type="module" src="http://192.168.1.104:3000/@vite/client"></script>
+  <script type="module" src="http://192.168.1.104:3000/main.js"></script>
 </html>

@@ -15,7 +15,9 @@ import { primary, primaryLight } from "../../theme/Colors";
 import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import { ClickAwayListener, SwipeableDrawer } from "@mui/material";
+import { ClickAwayListener, SwipeableDrawer, Typography } from "@mui/material";
+import { Box, styled } from "@mui/system";
+import { grey } from "@mui/material/colors";
 
 /* 
 
@@ -23,10 +25,12 @@ Space For Me
 
  */
 
-function SideBarMain(props) {
+function SideBarMain() {
   const drawerWidth = "13vmax";
   let open = useSideBarStore((state) => state.open);
   let changeSideBar = useSideBarStore((state) => state.changeSideBar);
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,7 +53,10 @@ function SideBarMain(props) {
             border: 0,
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
-            borderRight: 4,
+            borderTopLeftRadius: 20,
+            borderBottomLeftRadius: 20,
+            borderLeft: 6,
+            ml:2,
             borderColor: primary,
           },
         }}
@@ -83,7 +90,7 @@ function SideBarMain(props) {
             border: 0,
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
-            borderRight: 4,
+            borderLeft: 6,
             borderColor: primary,
           },
         }}
@@ -100,7 +107,12 @@ function SideBarMain(props) {
         variant='persistent'
         anchor='left'
         open={open}
+        onClose={changeSideBar}
+        onOpen={changeSideBar}
+        swipeAreaWidth={'50vmin'}
+        disableSwipeToOpen={false}
       >
+
         <Toolbar />
         <List sx={{ mt: 0, mx: 0, px: 1 }}>
           <DrawerItemBig text='Home' icon={<HomeRoundedIcon />} link='Home' />
