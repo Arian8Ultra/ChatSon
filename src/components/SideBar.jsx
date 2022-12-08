@@ -44,7 +44,8 @@ function SideBarMain() {
             height: "85vmin",
             top: "11vmin",
             boxSizing: "border-box",
-            display: { xs: "none", lg: "flex" },
+            backdropFilter:'blur(8px)',
+            display: { xs: "none", sm: "block" },
           },
         }}
         PaperProps={{
@@ -74,14 +75,14 @@ function SideBarMain() {
         </List>
       </Drawer>
 
-      <SwipeableDrawer
+      <Drawer
         sx={{
           "height": "100%",
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: "25vmax",
-            display: { xs: "block", lg: "none" },
+            display: { xs: "block", sm: "none" },
           },
         }}
         PaperProps={{
@@ -108,9 +109,6 @@ function SideBarMain() {
         anchor='left'
         open={open}
         onClose={changeSideBar}
-        onOpen={changeSideBar}
-        swipeAreaWidth={'50vmin'}
-        disableSwipeToOpen={false}
       >
 
         <Toolbar />
@@ -125,7 +123,7 @@ function SideBarMain() {
           <DrawerItemBig text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
           <DrawerItemBig text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
-      </SwipeableDrawer>
+      </Drawer>
     </ThemeProvider>
   );
 }
