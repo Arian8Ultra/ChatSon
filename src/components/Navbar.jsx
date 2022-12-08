@@ -151,11 +151,11 @@ export default function Navbar() {
           }}
         >
             <Toolbar disableGutters>
-              <Grid container my={1} mx={0} >
+              <Grid container my={0} mx={0} >
                 <Grid item xs={2.25}>
                   <Center height={"100%"}>
                     <IconButton onClick={changeDrawer}>
-                      <HomeRoundedIcon sx={{ color: primary, width:  "90%", height: "40px" }} />
+                      <HomeRoundedIcon sx={{ color: primary, width:  "90%", height: "35px" }} />
                     </IconButton>
                   </Center>
                 </Grid>
@@ -173,7 +173,7 @@ export default function Navbar() {
                   <Center height={"100%"}>
                     <IconButton onClick={changeDrawer}>
                       <LocalFireDepartmentRoundedIcon
-                        sx={{ color: primary, width:  "90%", height: "40px" }}
+                        sx={{ color: primary, width:  "90%", height: "35px" }}
                       />
                     </IconButton>
                   </Center>
@@ -182,7 +182,7 @@ export default function Navbar() {
                   <Center height={"100%"}>
                     <IconButton onClick={handleOpenUserMenuB}>
                       <AccountCircleRoundedIcon
-                        sx={{ color: primary, width: "90%", height: "40px" }}
+                        sx={{ color: primary, width: "90%", height: "35px" }}
                       />
                     </IconButton>
                   </Center>

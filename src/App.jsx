@@ -29,7 +29,7 @@ function App() {
         hoverColor={primaryLight}
         fun={() => changeModal()}
         icon={<AddCircleRoundedIcon />}
-        display={{xs:'none',sm:'block'}}
+        display={{xs:'none',sm:'flex'}}
       />
       <MyModal height={''} bgColor={backgroundC} color={primary} isOpen={openModal} onClose={changeModal}
       header={
