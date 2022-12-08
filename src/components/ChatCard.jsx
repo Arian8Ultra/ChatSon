@@ -51,7 +51,7 @@ export default function ChatCard({
         borderColor: borderColor(),
       }}
     >
-      <Grid container  xs={12} sm={12} md={12} lg={12} >
+      <Grid container>
         <Grid item xs={2} sm={2} md={2} lg={1}  maxWidth='60px'>
           <Box p={2} height='100%' bgcolor='rgba(255,255,255,0.03)'>
             <Center>
