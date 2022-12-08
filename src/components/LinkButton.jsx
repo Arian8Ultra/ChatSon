@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Button } from "@mui/material";
+import { Button, ThemeProvider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Center } from "@chakra-ui/react";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
-import { borderRadiuosTextField } from "../../theme/Themes";
+import { borderRadiuosTextField, theme } from "../../theme/Themes";
+import { display } from "@mui/system";
 
 export default function LinkButton(props) {
   const text = props.text != null ? props.text : "LinkButton";
@@ -14,7 +15,7 @@ export default function LinkButton(props) {
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : {};
   const minWidth = props.minWidth != null ? props.minWidth : {};
-  const textColor = props.textColor != null ? props.textColor : 'black';
+  const textColor = props.textColor != null ? props.textColor : "black";
   const backgroundColor = props.backgroundColor != null ? props.backgroundColor : primary;
   const hoverColor = props.hoverColor != null ? props.hoverColor : primaryLight;
   const position = props.position != null ? props.position : {};
@@ -33,6 +34,7 @@ export default function LinkButton(props) {
   const Endicon = props.Endicon != null ? props.Endicon : "";
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosTextField;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
+  const display = props.display != null ? props.display : {};
 
   function fn() {
     return props.fun();
@@ -53,41 +55,44 @@ export default function LinkButton(props) {
   };
 
   return (
-    <Button
-      variant='contained'
-      type={props.type}
-      startIcon={icon}
-      endIcon={Endicon}
-      sx={{
-        "width": width,
-        "height": height,
-        "borderRadius": borderRadius,
-        "color": textColor,
-        "backgroundColor": backgroundColor,
-        "fontSize": fontSize,
-        "position": position,
-        "bottom": bottom,
-        "left": left,
-        "right": right,
-        "top": top,
-        "m": margin,
-        "mt": mt,
-        "mr": mr,
-        "ml": ml,
-        "mb": mb,
-        "minWidth": minWidth,
-        "padding": padding,
-        "boxShadow": boxShadow,
-        "&:hover": {
-          backgroundColor: hoverColor,
-          boxShadow: boxShadow,
-        },
-      }}
-      onClick={handleClick}
-      disabled={disabled}
-      fullWidth={fullWidth}
-    >
-      <Center height={"100%"}>{text}</Center>
-    </Button>
+    <ThemeProvider theme={theme}>
+      <Button
+        variant='contained'
+        type={props.type}
+        startIcon={icon}
+        endIcon={Endicon}
+        sx={{
+          "width": width,
+          "height": height,
+          "borderRadius": borderRadius,
+          "color": textColor,
+          "backgroundColor": backgroundColor,
+          "fontSize": fontSize,
+          "position": position,
+          "bottom": bottom,
+          "left": left,
+          "right": right,
+          "top": top,
+          "m": margin,
+          "mt": mt,
+          "mr": mr,
+          "ml": ml,
+          "mb": mb,
+          "minWidth": minWidth,
+          "padding": padding,
+          "boxShadow": boxShadow,
+          "display": display,
+          "&:hover": {
+            backgroundColor: hoverColor,
+            boxShadow: boxShadow,
+          },
+        }}
+        onClick={handleClick}
+        disabled={disabled}
+        fullWidth={fullWidth}
+      >
+        <Center height={"100%"}>{text}</Center>
+      </Button>
+    </ThemeProvider>
   );
 }
