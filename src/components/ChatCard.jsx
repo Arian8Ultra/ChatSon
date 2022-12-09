@@ -47,12 +47,12 @@ export default function ChatCard({
     <Card
       sx={{
         borderRadius: borderRadiuos,
-        borderLeft: 4,
+        borderTop: 0,
         borderColor: borderColor(),
       }}
     >
       <Grid container>
-        <Grid item xxs={2} xs={2} sm={1}>
+        <Grid item xxs={2} xs={2} sm={1} sx={{borderRight: 3, borderColor: borderColor()}}>
           <Box
             p={2}
             height='100%'
@@ -70,7 +70,10 @@ export default function ChatCard({
             sx={{ display: { xs: "block", sm: "none" } }}
           >
             <Center>
-              <Avatar src={profileImage != null ? profileImage : ""} sx={{width:'35px',height:'35px'}} />
+              <Avatar
+                src={profileImage != null ? profileImage : ""}
+                sx={{ width: "35px", height: "35px" }}
+              />
             </Center>
           </Box>
         </Grid>

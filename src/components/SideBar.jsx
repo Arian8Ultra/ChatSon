@@ -11,13 +11,21 @@ import useSideBarStore from "../stores/SideBarStore";
 import DrawerItem, { DrawerItemBig, DrawerItemRight } from "./DrawerItem";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import HistoryToggleOffRoundedIcon from "@mui/icons-material/HistoryToggleOffRounded";
-import { primary, primaryLight } from "../../theme/Colors";
+import { GlassBackground, GlassBackgroundLight, primary, primaryLight } from "../../theme/Colors";
 import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import { ClickAwayListener, SwipeableDrawer, Typography } from "@mui/material";
+import { ClickAwayListener, Grid, Stack, SwipeableDrawer, Typography } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { grey } from "@mui/material/colors";
+import TextInputNormal from "./TextInputNormal";
+import LinkButton from "./LinkButton";
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import ImageRoundedIcon from '@mui/icons-material/ImageRounded';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import useNewChatModalStore from "../stores/NewChatModalStore";
+import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
+
 
 /* 
 
@@ -28,9 +36,9 @@ Space For Me
 function SideBarMain() {
   const drawerWidth = "13vmax";
   let open = useSideBarStore((state) => state.open);
+  let openChatDrawer = useNewChatDrawerStore((state) => state.open);
+  let changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
   let changeSideBar = useSideBarStore((state) => state.changeSideBar);
-
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,7 +52,7 @@ function SideBarMain() {
             height: "85vmin",
             top: "11vmin",
             boxSizing: "border-box",
-            backdropFilter:'blur(8px)',
+            backdropFilter: "blur(8px)",
             display: { xs: "none", sm: "block" },
           },
         }}
@@ -57,8 +65,13 @@ function SideBarMain() {
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
             borderLeft: 6,
-            ml:2,
+            ml: 2,
             borderColor: primary,
+          },
+        }}
+        BackdropProps={{
+          sx: {
+            display: { xs: "block", lg: "none" },
           },
         }}
         variant='persistent'
@@ -81,48 +94,76 @@ function SideBarMain() {
           "flexShrink": 0,
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: "25vmax",
-            display: { xs: "block", sm: "none" },
+            width: "90%",
+            display: { xs: "block", sm: "block" },
           },
         }}
         PaperProps={{
           sx: {
-            backgroundColor: "rgba(45,45,45)",
+            backgroundColor: GlassBackground,
+            backdropFilter: "blur(8px)",
             border: 0,
+            height: "85%",
+            bottom: "10%",
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
-            borderLeft: 6,
+            borderBottomLeftRadius: 20,
+            borderTopLeftRadius: 20,
+            borderLeft: 0,
             borderColor: primary,
+            ml: "5%",
+            mr: "5%",
+            px: 5,
           },
         }}
         BackdropProps={{
           sx: {
-            display: { xs: "block", lg: "none" },
+            display: { xs: "block", lg: "block" },
+            width:0,
+            height:0
           },
         }}
         ModalProps={{
           sx: {
-            display: { xs: "block", lg: "none" },
+            display: { xs: "block", lg: "block" },
+            width:0,
+            height:0
           },
         }}
-        variant='persistent'
-        anchor='left'
-        open={open}
-        onClose={changeSideBar}
+        variant='temporary'
+        anchor='bottom'
+        open={openChatDrawer}
+        onClose={changeChatDrawer}
       >
-
         <Toolbar />
-        <List sx={{ mt: 0, mx: 0, px: 1 }}>
-          <DrawerItemBig text='Home' icon={<HomeRoundedIcon />} link='Home' />
-          <DrawerItemBig text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
-          <DrawerItemBig
-            text='Trendings'
-            icon={<LocalFireDepartmentRoundedIcon />}
-            link='Trendings'
-          />
-          <DrawerItemBig text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
-          <DrawerItemBig text='People' icon={<PeopleAltRoundedIcon />} link='' />
-        </List>
+        <Stack direction='column' container>
+          <Box>
+            <TextInputNormal
+              borderRadius={3}
+              multiline={true}
+              label={"body of the chat"}
+              rows={15}
+            />
+          </Box>
+
+          <Box mt={2} mb={2}>
+            <LinkButton
+              text='Add Image'
+              borderRadius={borderRadiuos}
+              icon={<ImageRoundedIcon />}
+              backgroundColor='white'
+            />
+          </Box>
+
+          <Box width={"90%"} position='fixed' left={0} bottom={20} ml='5%'>
+            <LinkButton
+              text='Send'
+              borderRadius={borderRadiuos}
+              icon={<SendRoundedIcon />}
+              fullWidth={true}
+            />
+          </Box>
+        </Stack>
       </Drawer>
     </ThemeProvider>
   );

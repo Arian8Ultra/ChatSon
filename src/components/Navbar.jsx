@@ -1,4 +1,11 @@
 import { Center } from "@chakra-ui/react";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
@@ -8,27 +15,33 @@ import {
   Menu,
   Stack,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
-import React, { useCallback } from "react";
-import { GlassBackground, primary, primaryDark, primaryLight } from "../../theme/Colors";
-import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu, theme } from "../../theme/Themes";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { GlassBackground, primary, primaryLight } from "../../theme/Colors";
+import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
+import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
+import useNewChatModalStore from "../stores/NewChatModalStore";
+import usePageStore from "../stores/PageStore";
+import useSideBarStore from "../stores/SideBarStore";
 import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
-import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import MenuIcon from "@mui/icons-material/Menu";
-import useSideBarStore from "../stores/SideBarStore";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
-import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
-import useNewChatModalStore from "../stores/NewChatModalStore";
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState();
   const [anchorElUserB, setAnchorElUserB] = React.useState();
   const changeModal = useNewChatModalStore((state) => state.changeModal);
+  const navigate = useNavigate();
+  let changePageName = usePageStore((state) => state.changePageName);
+
+  const handleClick = (link,text) => {
+    if (text != null) {
+      document.title = text;
+      changePageName(text);
+    }
+    navigate(`${link}`);
+  };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -45,6 +58,8 @@ export default function Navbar() {
 
   let open = useSideBarStore((state) => state.open);
   const changeDrawer = useSideBarStore((state) => state.changeSideBar);
+  let openChatDrawer = useNewChatDrawerStore((state) => state.open);
+  const changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
 
   return (
     <Box>
@@ -144,7 +159,7 @@ export default function Navbar() {
             left: (window.innerWidth * 1) / 20,
             borderRadius: borderRadiuos,
             backgroundColor: GlassBackground,
-            backdropFilter: "blur(8px)",
+            backdropFilter: "blur(6px)",
             top: "auto",
             bottom: 10,
             zIndex: (theme) => theme.zIndex.drawer + 1,
@@ -154,15 +169,15 @@ export default function Navbar() {
               <Grid container my={0} mx={0} >
                 <Grid item xs={2.25}>
                   <Center height={"100%"}>
-                    <IconButton onClick={changeDrawer}>
-                      <HomeRoundedIcon sx={{ color: primary, width:  "90%", height: "35px" }} />
+                    <IconButton onClick={()=>handleClick('Home','Home')}>
+                      <HomeRoundedIcon sx={{ color: 'white', width:  "90%", height: "35px" }} />
                     </IconButton>
                   </Center>
                 </Grid>
                 <Grid item xs={2.25}>
                   <Center height={"100%"}>
-                    <IconButton onClick={changeDrawer}>
-                      <ChatRoundedIcon sx={{ color: primary, width: "90%", height: "35px" }} />
+                    <IconButton onClick={()=>handleClick('MyChats','My Chats')}>
+                      <ChatRoundedIcon sx={{ color: 'white', width: "90%", height: "35px" }} />
                     </IconButton>
                   </Center>
                 </Grid>
@@ -173,16 +188,16 @@ export default function Navbar() {
                   <Center height={"100%"}>
                     <IconButton onClick={changeDrawer}>
                       <LocalFireDepartmentRoundedIcon
-                        sx={{ color: primary, width:  "90%", height: "35px" }}
+                        sx={{ color: 'white', width:  "90%", height: "35px" }}
                       />
                     </IconButton>
                   </Center>
                 </Grid>
                 <Grid item xs={2.25}>
                   <Center height={"100%"}>
-                    <IconButton onClick={handleOpenUserMenuB}>
+                    <IconButton onClick={(handleOpenUserMenuB)} >
                       <AccountCircleRoundedIcon
-                        sx={{ color: primary, width: "90%", height: "35px" }}
+                        sx={{ color: 'white', width: "90%", height: "35px" }}
                       />
                     </IconButton>
                   </Center>
@@ -190,7 +205,7 @@ export default function Navbar() {
               </Grid>
 
               <Center position={'fixed'} width={'100%'} left={0}height={0}>
-                <IconButton onClick={changeModal}>
+                <IconButton onClick={changeChatDrawer}>
                   <AddCircleRoundedIcon
                     sx={{ color: primary , width: "100%",height:'90px'
                     }}
