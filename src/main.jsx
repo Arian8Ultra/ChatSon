@@ -4,7 +4,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { theme } from "../theme/Themes";
-import App from "./App";
 import "./index.css";
 import LoginPage from "./pages/Login/LoginPage";
 import MyRouter from "./routes/MyRouter"

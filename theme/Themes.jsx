@@ -10,7 +10,7 @@ import {
 } from "./Colors";
 
 
-const theme1 = createTheme({
+export const theme= createTheme({
   typography:{
     fontFamily:'Comfortaa,cursive',
     '@media (min-width:600px)': {
@@ -31,7 +31,6 @@ const theme1 = createTheme({
   direction: "ltr",
 });
 
-export const theme = responsiveFontSizes(theme1)
 
 export const borderRadiuos = 4; /* 4 */
 export const borderRadiuosMenu = 4; /* 4 */

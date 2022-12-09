@@ -2,7 +2,13 @@ import { Center, ChakraProvider } from "@chakra-ui/react";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { GlassBackground, GlassBackgroundLight, primary, primaryDark, primaryLight } from "../../theme/Colors";
+import {
+  GlassBackground,
+  GlassBackgroundLight,
+  primary,
+  primaryDark,
+  primaryLight,
+} from "../../theme/Colors";
 import { borderRadiuos, theme } from "../../theme/Themes";
 import Navbar from "../components/Navbar";
 import PagesMainBox from "../components/PagesMainBox";
@@ -31,7 +37,8 @@ export default function MainFrame() {
             borderRadius: borderRadiuos,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
-            bgcolor: "rgba(255,255,255,0.2)",
+            bgcolor: GlassBackgroundLight,
+            backdropFilter: "blur(8px)",
             borderTop: 4,
             borderColor: primary,
             fontSize: "3vmin",
@@ -49,7 +56,8 @@ export default function MainFrame() {
             borderRadius: borderRadiuos,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
-            bgcolor: "rgba(255,255,255,0.2)",
+            bgcolor: GlassBackgroundLight,
+            backdropFilter: "blur(8px)",
             display: { xs: "none", sm: "block" },
           }}
         >
@@ -68,7 +76,7 @@ export default function MainFrame() {
           borderBottomRightRadius: 0,
           bgcolor: primaryLight,
           bgcolor: GlassBackgroundLight,
-          backdropFilter:'blur(5px)',
+          backdropFilter: "blur(5px)",
           borderTop: 0,
           borderColor: primary,
           fontSize: "1.6em",
@@ -88,7 +96,7 @@ export default function MainFrame() {
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
           bgcolor: GlassBackgroundLight,
-          backdropFilter:'blur(5px)',
+          backdropFilter: "blur(5px)",
           display: { xs: "block", sm: "none" },
         }}
       >
