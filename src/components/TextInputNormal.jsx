@@ -54,9 +54,11 @@ function TextInputNormal({
       sx={{
         boxShadow: 0,
         borderRadius: borderRadius != null ? borderRadius : borderRadiuosTextField,
+        height:height
       }}
       InputProps={{
         sx: { borderRadius: borderRadius != null ? borderRadius : borderRadiuosTextField },
+        height:height
       }}
       {...rest}
       InputLabelProps={{

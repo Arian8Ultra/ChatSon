@@ -5,6 +5,7 @@ import { Center } from "@chakra-ui/react";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import { borderRadiuosTextField, theme } from "../../theme/Themes";
 import { display } from "@mui/system";
+import { LoadingButton } from "@mui/lab";
 
 export default function LinkButton(props) {
   const text = props.text != null ? props.text : "LinkButton";
@@ -35,6 +36,7 @@ export default function LinkButton(props) {
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosTextField;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const display = props.display != null ? props.display : {};
+  const loading = props.loading != null ? props.loading : false;
 
   function fn() {
     return props.fun();
@@ -56,7 +58,7 @@ export default function LinkButton(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Button
+      <LoadingButton
         variant='contained'
         type={props.type}
         startIcon={icon}
@@ -90,9 +92,10 @@ export default function LinkButton(props) {
         onClick={handleClick}
         disabled={disabled}
         fullWidth={fullWidth}
+        loading={loading}
       >
         <Center height={"100%"}>{text}</Center>
-      </Button>
+      </LoadingButton>
     </ThemeProvider>
   );
 }

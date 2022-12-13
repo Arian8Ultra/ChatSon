@@ -18,4 +18,4 @@ export const CardHeaderBackGround = "#606060";
 export const secondaryYellow = "#fdd835";
 export const secondaryYellowLight = "#ffff6b";
 export const secondaryYellowDark = "#c6a700";
-export const secondaryRed = "#ff3f6c";
+export const secondaryRed = "#ff3f6c"
