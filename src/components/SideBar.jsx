@@ -65,7 +65,7 @@ function SideBarMain() {
             borderBottomRightRadius: 20,
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
-            borderLeft: 6,
+            borderLeft: 0,
             ml: 2,
             borderColor: primary,
           },

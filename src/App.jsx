@@ -17,39 +17,50 @@ function App() {
   const changeModal = useNewChatModalStore((state) => state.changeModal);
   return (
     <ChakraProvider>
-        <MainFrame />
-        <LinkButton
-          height={50}
-          fontSize={"1.7vmin"}
-          position={"fixed"}
-          text={"NEW CHAT"}
-          bottom={0}
-          padding={2}
-          right={0}
-          margin={2}
-          textColor={"black"}
-          backgroundColor={primary}
-          hoverColor={primaryLight}
-          fun={() => changeModal()}
-          icon={<AddCircleRoundedIcon />}
-          display={{ xs: "none", sm: "flex" }}
-        />
-        <MyModal
-          height={""}
-          bgColor={backgroundC}
-          color={primary}
-          isOpen={openModal}
-          onClose={changeModal}
-          header={
-            <Container my={1}>
-              <Heading color={primary} fontWeight={"normal"} textAlign={"center"} fontSize={"30"}>
-                New Chat
-              </Heading>
-            </Container>
-          }
-          content={<TextInputNormal borderRadius={3} multiline={true} label={"body of the chat"} />}
-          footer={<LinkButton text='Send' />}
-        />
+      <Box
+        position={"fixed"}
+        height={window.innerHeight}
+        width={"100vmax"}
+        sx={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      ></Box>
+      <MainFrame />
+      <LinkButton
+        height={50}
+        fontSize={"1.7vmin"}
+        position={"fixed"}
+        text={"NEW CHAT"}
+        bottom={0}
+        padding={2}
+        right={0}
+        margin={2}
+        textColor={"black"}
+        backgroundColor={primary}
+        hoverColor={primaryLight}
+        fun={() => changeModal()}
+        icon={<AddCircleRoundedIcon />}
+        display={{ xs: "none", sm: "flex" }}
+      />
+      <MyModal
+        height={""}
+        bgColor={backgroundC}
+        color={primary}
+        isOpen={openModal}
+        onClose={changeModal}
+        header={
+          <Container my={1}>
+            <Heading color={primary} fontWeight={"normal"} textAlign={"center"} fontSize={"30"}>
+              New Chat
+            </Heading>
+          </Container>
+        }
+        content={<TextInputNormal borderRadius={3} multiline={true} label={"body of the chat"} />}
+        footer={<LinkButton text='Send' />}
+      />
     </ChakraProvider>
   );
 }
