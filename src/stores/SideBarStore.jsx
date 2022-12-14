@@ -5,7 +5,9 @@ const useSideBarStore = create(
   persist(
     (set, get) => ({
       open: false,
+      drawerWidth: 20 ,
       changeSideBar: () => set({ open: !get().open }),
+      changeDrawerWidth: (newSize) => set({ drawerWidth: newSize }),
     }),
     {
       name: 'siderBard-store', // unique name
