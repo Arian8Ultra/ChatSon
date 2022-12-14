@@ -25,6 +25,7 @@ function NavbarMenuButton(props,{...rest}) {
       }
       else{
         navigate(`${link}`);
+        changePageName(name)
       }
     } else {
       props.fun();
