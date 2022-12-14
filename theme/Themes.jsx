@@ -35,4 +35,4 @@ export const theme= createTheme({
 export const borderRadiuos = 4; /* 4 */
 export const borderRadiuosMenu = 4; /* 4 */
 export const borderRadiuosTextField = 50; /* 50 */
-export const borderRadiuosButton = 100; /* 180 */
+export const borderRadiuosButton = 4; /* 180 */

@@ -25,6 +25,7 @@ import ImageRoundedIcon from '@mui/icons-material/ImageRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import useNewChatModalStore from "../stores/NewChatModalStore";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
+import UploadButton from "./UploadButton";
 
 
 /* 
@@ -147,7 +148,7 @@ function SideBarMain() {
           </Box>
 
           <Box mt={2} mb={2}>
-            <LinkButton
+            <UploadButton
               text='Add Image'
               borderRadius={borderRadiuos}
               icon={<ImageRoundedIcon />}
