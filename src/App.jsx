@@ -9,7 +9,12 @@ import TextInputNormal from "./components/TextInputNormal";
 import MainFrame from "./pages/MainFrame";
 import useNewChatModalStore from "./stores/NewChatModalStore";
 import backgroundImage from "../Images/background.png";
+import backgroundAnimation from "../theme/backgroundAnimation.svg";
 import { Box } from "@mui/system";
+import { Grid, ThemeProvider } from "@mui/material";
+import UploadButton from "./components/UploadButton";
+import { borderRadiuos, theme } from "../theme/Themes";
+import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,7 +27,7 @@ function App() {
         height={window.innerHeight}
         width={"100vmax"}
         sx={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `url(${backgroundAnimation})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
@@ -59,7 +64,30 @@ function App() {
           </Container>
         }
         content={<TextInputNormal borderRadius={3} multiline={true} label={"body of the chat"} />}
-        footer={<LinkButton text='Send' />}
+        footer={
+          <ThemeProvider theme={theme}>
+            <Grid container>
+              <Grid item xs={6} lg={6}>
+                <UploadButton
+                  text='Add Image'
+                  borderRadius={borderRadiuos}
+                  icon={<ImageRoundedIcon />}
+                  backgroundColor='white'
+                />
+              </Grid>
+              <Grid item xs={6} lg={6} justifyContent={"left"}>
+                <Center>
+                  <LinkButton
+                    text='Send'
+                    borderRadius={borderRadiuos}
+                    icon={<AddCircleRoundedIcon />}
+                    fullWidth
+                  />
+                </Center>
+              </Grid>
+            </Grid>
+          </ThemeProvider>
+        }
       />
     </ChakraProvider>
   );
