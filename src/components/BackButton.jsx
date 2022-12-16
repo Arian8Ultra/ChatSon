@@ -10,7 +10,7 @@ import { borderRadiuosButton } from "../../theme/Themes";
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
 export default function BackButton(props) {
-  const text = props.text != null ? props.text : "text";
+  const text = props.text != null ? props.text : "";
   const link = props.link != null ? props.link : "";
   const disabled = props.disabled != null ? props.disabled : false;
   const fontSize = props.fontSize != null ? props.fontSize : 16;
@@ -58,7 +58,7 @@ export default function BackButton(props) {
       fullWidth={fullWidth}
       disabled={disabled}
     >
-      بازگشت
+        {text + " "} back
       {/* <input type="file" hidden /> */}
     </Button>
   );

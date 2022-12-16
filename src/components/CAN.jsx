@@ -1,8 +1,8 @@
 import { Box } from '@mui/system';
 import React from 'react'
-import useAbilityStore from '../ZuStore/AbilityStore';
+import useAbilityStore from '../stores/AbilityStore';
 
-export default function CAN({component, permissionNeeded,display}) {
+export default function CAN({permissionNeeded,children}) {
     const zuAbilities = useAbilityStore((state) => state.abilities);
     const abilities = zuAbilities != null ? zuAbilities : [];
 
@@ -27,8 +27,8 @@ export default function CAN({component, permissionNeeded,display}) {
     }
 
   return (
-    <Box component="div" visibility={handlePermissionVisibility()}   margin={0} sx={{ width:handlePermissionSize(),height:handlePermissionSize(), minWidth:handlePermissionSize(),minHeight:handlePermissionSize(),fontSize:handlePermissionSize(),display: { xs: handlePermissionDisplay()}}}>
-        {component}
+    <Box visibility={handlePermissionVisibility()}   margin={0} sx={{ width:handlePermissionSize(),height:handlePermissionSize(), minWidth:handlePermissionSize(),minHeight:handlePermissionSize(),fontSize:handlePermissionSize(),display: { xs: handlePermissionDisplay()}}}>
+        {children}
     </Box>
   )
 }
