@@ -1,9 +1,12 @@
 export const primary = "#88ffff";/* #ff8f00 */
+export const GlassPrimary = "rgba(136,255,255,0.7)";
+export const GlassPrimaryLight = "rgba(178,235,242,0.7)";
+export const GlassBackground = "rgba(25,25,25,0.8)";
+export const GlassBackgroundLight = "rgba(90,100,110,0.7)";
+export const GlassBackgroundDark = "rgba(15,15,15,0.9)";
 export const primaryLight = "#b2ebf2";/* #ffc046 */
 export const primaryDark = "#009faf";/* #c56000 */
 export const backgroundC = "#424242";
-export const GlassBackground = "rgba(25,25,25,0.8)";
-export const GlassBackgroundLight = "rgba(100,120,120,0.7)";
 export const Green = "#00C853";
 export const GreenLight = "#B9F6CA";
 export const Red = "#D50000";

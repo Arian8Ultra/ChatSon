@@ -36,7 +36,7 @@ export default function NotificationA(props) {
       setType("error");
     } else if (SnackCodeRedux == 500) {
       setType("error");
-    } else if (String(SnackCodeRedux).includes("سلام")) {
+    } else if (String(SnackCodeRedux).includes("Hello")) {
       setType("info");
     } else if (String(SnackCodeRedux).includes("failed")) {
       setType("error");
@@ -49,20 +49,20 @@ export default function NotificationA(props) {
 
   const SnackText = () => {
     if (SnackCodeRedux == 200) {
-      setText(" عملیات با موفقیت انجام شد");
+      setText("Success");
     } else if (SnackCodeRedux == 201) {
-      setText(" با موفقیت ثبت شد");
+      setText("Success");
     } else if (SnackCodeRedux == 204) {
-      setText(" محتوایی برای نمایش وجود ندارد");
+      setText("Nothing Found");
     } else if (SnackCodeRedux == 400) {
-      setText(" درخواست نادرست");
+      setText("Bad Request");
     } else if (SnackCodeRedux == 403) {
       setText(" Forbidden");
     } else if (SnackCodeRedux == 404) {
-      setText(" نتیجه ای یافت نشد");
+      setText("404");
     } else if (SnackCodeRedux == 500) {
-      setText("عملیات با شکست مواجه شد");
-    } else if (SnackCodeRedux == "سلام") {
+      setText("Failed");
+    } else if (SnackCodeRedux == "Hello") {
       setText("");
     } else if (String(SnackCodeRedux).includes("failed")) {
       setText(SnackCodeRedux);

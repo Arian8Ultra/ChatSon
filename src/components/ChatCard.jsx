@@ -7,15 +7,18 @@ import {
   CardHeader,
   Divider,
   Grid,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
 import { borderColor } from "@mui/system";
 import React from "react";
-import { primary, Red, Yellow } from "../../theme/Colors";
+import { GlassBackgroundDark, primary, Red, Yellow } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
 import Logo from "../../Images/ChatSonLogo.svg";
 import DBtable from "../../Images/DBtable.png";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 
 export default function ChatCard({
   name,
@@ -27,7 +30,7 @@ export default function ChatCard({
   color,
   ChatImage,
   official,
-
+  liked,
   ...rest
 }) {
   const borderColor = () => {
@@ -43,37 +46,80 @@ export default function ChatCard({
     }
   };
 
+  const [Like, SetLike] = React.useState(liked != null ? liked : false);
+
   return (
     <Card
       sx={{
         borderRadius: borderRadiuos,
         borderTop: 0,
         borderColor: borderColor(),
+        backgroundColor: GlassBackgroundDark,
+        backdropFilter: "blur(10px)",
       }}
     >
       <Grid container>
-        <Grid item xxs={2} xs={2} sm={1} sx={{borderRight: 3, borderColor: borderColor()}}>
+        <Grid item xxs={2} xs={2} sm={1} sx={{ borderRight: 3, borderColor: borderColor() }}>
           <Box
             p={2}
             height='100%'
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            <Center>
-              <Avatar src={profileImage != null ? profileImage : ""} />
-            </Center>
+            <Box height={"80%"} sx={{mb:'50px'}}>
+              <Center>
+                <Avatar src={profileImage != null ? profileImage : ""} />
+              </Center>
+            </Box>
+            <Box sx={{position:'absolute', bottom:10,mt:'50px'}}>
+              <IconButton onClick={() => SetLike(!Like)}>
+                <Center>
+                  {Like ? (
+                    <FavoriteRoundedIcon
+                      src={profileImage != null ? profileImage : ""}
+                      sx={{ width: "35px", height: "35px", color: primary }}
+                    />
+                  ) : (
+                    <FavoriteBorderRoundedIcon
+                      src={profileImage != null ? profileImage : ""}
+                      sx={{ width: "35px", height: "35px" }}
+                    />
+                  )}
+                </Center>
+              </IconButton>{" "}
+            </Box>
           </Box>
+
           <Box
             p={2}
             height='100%'
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "block", sm: "none" } }}
           >
-            <Center>
-              <Avatar
-                src={profileImage != null ? profileImage : ""}
-                sx={{ width: "35px", height: "35px" }}
-              />
+            <Box height={"80%"}>
+              <Center>
+                <Avatar
+                  src={profileImage != null ? profileImage : ""}
+                  sx={{ width: "35px", height: "35px" }}
+                />
+              </Center>
+            </Box>
+            <Center height={"20%"}>
+              <IconButton onClick={() => SetLike(!Like)}>
+                <Center>
+                  {Like ? (
+                    <FavoriteRoundedIcon
+                      src={profileImage != null ? profileImage : ""}
+                      sx={{ width: "35px", height: "35px", color: primary }}
+                    />
+                  ) : (
+                    <FavoriteBorderRoundedIcon
+                      src={profileImage != null ? profileImage : ""}
+                      sx={{ width: "35px", height: "35px" }}
+                    />
+                  )}
+                </Center>
+              </IconButton>
             </Center>
           </Box>
         </Grid>

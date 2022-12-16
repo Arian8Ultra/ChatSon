@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { GlassBackground, primary, primaryLight } from "../../theme/Colors";
+import { GlassBackground, GlassBackgroundLight, GlassPrimary, GlassPrimaryLight, primary, primaryLight } from "../../theme/Colors";
 import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import useNewChatModalStore from "../stores/NewChatModalStore";
@@ -71,6 +71,13 @@ export default function Navbar() {
             height: "70px",
             maxHeight: "70px",
             minHeight: "70px",
+            top: "10px",
+            left: "2vmax",
+            width: "95vmax",
+            borderRadius: borderRadiuos,
+            backgroundColor: GlassBackgroundLight,
+            backdropFilter: "blur(6px)",
+
           }}
         >
           <Container maxWidth=''>
@@ -120,7 +127,7 @@ export default function Navbar() {
                 </Center>
 
                 <Menu
-                  sx={{ mt: "50px", ml: "10px" }}
+                  sx={{ mt: "60px" }}
                   id='menu-appbar'
                   anchorEl={anchorElUser}
                   anchorOrigin={{
@@ -136,8 +143,10 @@ export default function Navbar() {
                   onClose={handleCloseUserMenu}
                   PaperProps={{
                     sx: {
-                      backgroundColor: primaryLight,
+                      backgroundColor: GlassPrimaryLight,
                       borderRadius: borderRadiuosMenu,
+                      backdropFilter: "blur(6px)",
+
                     },
                   }}
                 >

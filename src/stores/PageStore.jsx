@@ -3,13 +3,13 @@ import { persist } from 'zustand/middleware'
 
 const usePageStore = create(
   persist(
-    (set, get) => ({
-      pageName: 'Home',
+    (set) => ({
+      pageName: 'My Chats',
       changePageName: (newName) => set({ pageName: newName }),
     }),
     {
       name: 'siderBard-store', // unique name
-      getStorage: () => sessionStorage, // (optional) by default, 'localStorage' is used
+      getStorage: () => localStorage, // (optional) by default, 'localStorage' is used
     }
   )
 )

@@ -10,16 +10,16 @@ export default function DrawerItem(props) {
   const icon = props.icon;
   const link = props.link;
   const pageTitle = props.pageTitle != null ? props.pageTitle : "";
-  let open = useSideBarStore((state) => state.open);
-  let changePageName = usePageStore((state) => state.changePageName);
+  const open = useSideBarStore((state) => state.open);
+  const changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
 
   const navigate = useNavigate();
+
   const handleClick = () => {
-    if (props.text != null) {
-      document.title = text;
-      changePageName(text);
-    }
+    document.title = text;
+    changePageName(text);
+    console.log(text);
     navigate(`${link}`);
   };
 
@@ -108,6 +108,7 @@ export function DrawerItemRight(props) {
   const handleClick = () => {
     sessionStorage.setItem("pageName", text);
     if (props.text != null) {
+      
       document.title = text;
       changePageName(text);
     }

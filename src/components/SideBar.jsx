@@ -84,7 +84,6 @@ function SideBarMain() {
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
           <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
           <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
-          <DrawerItem text='History' icon={<HistoryToggleOffRoundedIcon />} link='' />
           <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
       </Drawer>

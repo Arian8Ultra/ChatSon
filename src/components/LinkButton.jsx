@@ -3,7 +3,7 @@ import { Button, ThemeProvider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Center } from "@chakra-ui/react";
 import { primary, primaryDark, primaryLight } from "../../theme/Colors";
-import { borderRadiuosTextField, theme } from "../../theme/Themes";
+import { borderRadiuosButton, borderRadiuosTextField, theme } from "../../theme/Themes";
 import { display } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 
@@ -33,7 +33,7 @@ export default function LinkButton(props) {
   const fullWidth = props.fullWidth != null ? props.fullWidth : false;
   const icon = props.icon != null ? props.icon : "";
   const Endicon = props.Endicon != null ? props.Endicon : "";
-  const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosTextField;
+  const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const display = props.display != null ? props.display : {};
   const loading = props.loading != null ? props.loading : false;

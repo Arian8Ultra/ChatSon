@@ -38,14 +38,14 @@ function App() {
         height={50}
         fontSize={"1.7vmin"}
         position={"fixed"}
-        text={"NEW CHAT"}
+        text={"New Chat"}
         bottom={0}
         padding={2}
         right={0}
         margin={2}
-        textColor={"black"}
-        backgroundColor={primary}
-        hoverColor={primaryLight}
+        textColor={primary}
+        backgroundColor={'black'}
+        hoverColor={primaryDark}
         fun={() => changeModal()}
         icon={<AddCircleRoundedIcon />}
         display={{ xs: "none", sm: "flex" }}
