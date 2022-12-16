@@ -9,7 +9,6 @@ import { primary, primaryDark, primaryLight } from "../../../theme/Colors";
 import useSideBarStore from "../../stores/SideBarStore";
 
 export default function MyChatsPage() {
-  const changeModal = useNewChatModalStore((state) => state.changeModal);
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
 
   useEffect(()=>{

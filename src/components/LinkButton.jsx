@@ -37,6 +37,7 @@ export default function LinkButton(props) {
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const display = props.display != null ? props.display : {};
   const loading = props.loading != null ? props.loading : false;
+  const variant = props.variant != null ? props.variant : "contained";
 
   function fn() {
     return props.fun();
@@ -59,7 +60,7 @@ export default function LinkButton(props) {
   return (
     <ThemeProvider theme={theme}>
       <LoadingButton
-        variant='contained'
+        variant={variant}
         type={props.type}
         startIcon={icon}
         endIcon={Endicon}
@@ -68,7 +69,7 @@ export default function LinkButton(props) {
           "height": height,
           "borderRadius": borderRadius,
           "color": textColor,
-          "backgroundColor": backgroundColor,
+          "backgroundColor": variant == "text" || variant == "outlined" ? "" : backgroundColor,
           "fontSize": fontSize,
           "position": position,
           "bottom": bottom,

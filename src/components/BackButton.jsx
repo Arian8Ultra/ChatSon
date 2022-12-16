@@ -5,8 +5,8 @@ import {
   primary,
   primaryDark,
   primaryLight
-} from "../theme/Colors";
-import { borderRadiuosButton } from "../theme/Themes";
+} from "../../theme/Colors";
+import { borderRadiuosButton } from "../../theme/Themes";
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
 export default function BackButton(props) {
