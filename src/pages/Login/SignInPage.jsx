@@ -3,7 +3,7 @@ import { Stack, ThemeProvider } from "@mui/system";
 import React from "react";
 import TextInputNormal from "../../components/TextInputNormal";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { primary } from "../../../theme/Colors";
+import { GlassBackground, GlassBackgroundDark, primary } from "../../../theme/Colors";
 import { Center, Spacer } from "@chakra-ui/react";
 import LinkButton from "../../components/LinkButton";
 import { theme } from "../../../theme/Themes";
@@ -108,6 +108,8 @@ export default function SignInPage() {
               text={"Sign Up"}
               width={"100%"}
               link={'SignUp'}
+              textColor={primary}
+              hoverColor={GlassBackground}
               variant={'text'}
             />
           </Center>
