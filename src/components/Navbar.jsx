@@ -15,16 +15,24 @@ import {
   Menu,
   Stack,
   Toolbar,
-  Typography
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { GlassBackground, GlassBackgroundLight, GlassPrimary, GlassPrimaryLight, primary, primaryLight } from "../../theme/Colors";
+import {
+  GlassBackground,
+  GlassBackgroundLight,
+  GlassPrimary,
+  GlassPrimaryLight,
+  primary,
+  primaryLight,
+} from "../../theme/Colors";
 import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import useNewChatModalStore from "../stores/NewChatModalStore";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
+import BottomNavButton from "./BottomNavButton";
 import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
 
@@ -35,7 +43,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   let changePageName = usePageStore((state) => state.changePageName);
 
-  const handleClick = (link,text) => {
+  const handleClick = (link, text) => {
     if (text != null) {
       document.title = text;
       changePageName(text);
@@ -77,7 +85,6 @@ export default function Navbar() {
             borderRadius: borderRadiuos,
             backgroundColor: GlassBackgroundLight,
             backdropFilter: "blur(6px)",
-
           }}
         >
           <Container maxWidth=''>
@@ -146,7 +153,6 @@ export default function Navbar() {
                       backgroundColor: GlassPrimaryLight,
                       borderRadius: borderRadiuosMenu,
                       backdropFilter: "blur(6px)",
-
                     },
                   }}
                 >
@@ -164,7 +170,7 @@ export default function Navbar() {
           position='fixed'
           color='primary'
           sx={{
-            width: '90%',
+            width: "90%",
             left: (window.innerWidth * 1) / 20,
             borderRadius: borderRadiuos,
             backgroundColor: GlassBackground,
@@ -174,78 +180,86 @@ export default function Navbar() {
             zIndex: (theme) => theme.zIndex.drawer + 1,
           }}
         >
-            <Toolbar disableGutters>
-              <Grid container my={0} mx={0} >
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={()=>handleClick('Home','Home')}>
-                      <HomeRoundedIcon sx={{ color: 'white', width:  "90%", height: "35px" }} />
-                    </IconButton>
-                  </Center>
-                </Grid>
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={()=>handleClick('MyChats','My Chats')}>
-                      <ChatRoundedIcon sx={{ color: 'white', width: "90%", height: "35px" }} />
-                    </IconButton>
-                  </Center>
-                </Grid>
+          <Toolbar disableGutters>
+            <Grid container my={0} mx={0}>
+              <Grid item xs={2.25}>
+                <Center height={"100%"}>
 
-                <Grid item xs={3} ></Grid>
-
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={changeDrawer}>
-                      <LocalFireDepartmentRoundedIcon
-                        sx={{ color: 'white', width:  "90%", height: "35px" }}
-                      />
-                    </IconButton>
-                  </Center>
-                </Grid>
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={(handleOpenUserMenuB)} >
-                      <AccountCircleRoundedIcon
-                        sx={{ color: 'white', width: "90%", height: "35px" }}
-                      />
-                    </IconButton>
-                  </Center>
-                </Grid>
+                  <BottomNavButton
+                    name={'Home'}
+                    link={'Home'}
+                    icon={<HomeRoundedIcon
+                        sx={{width: "90%", height: "35px" }}/>
+                    }
+                  />
+                </Center>
+              </Grid>
+              <Grid item xs={2.25}>
+                <Center height={"100%"}>
+                  <BottomNavButton
+                    name={'My Chats'}
+                    link={'MyChats'}
+                    icon={<ChatRoundedIcon
+                        sx={{width: "90%", height: "35px" }}/>
+                    }
+                  />
+                </Center>
               </Grid>
 
-              <Center position={'fixed'} width={'100%'} left={0}height={0}>
-                <IconButton onClick={changeChatDrawer}>
-                  <AddCircleRoundedIcon
-                    sx={{ color: primary , width: "100%",height:'90px'
-                    }}
-                  />
-                </IconButton>
-              </Center>
+              <Grid item xs={3}></Grid>
 
-              <Menu
-                anchorEl={anchorElUserB}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                open={Boolean(anchorElUserB)}
-                onClose={handleCloseUserMenuB}
-                PaperProps={{
-                  sx: {
-                    backgroundColor: primaryLight,
-                    borderRadius: borderRadiuosMenu,
-                  },
-                }}
-              >
-                <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
-                <NavbarMenuButton name='Sign Out' link='/' />
-              </Menu>
-            </Toolbar>
+              <Grid item xs={2.25}>
+                <Center height={"100%"}>
+                  <BottomNavButton
+                    name={'Trendings'}
+                    link={'Trendings'}
+                    icon={<LocalFireDepartmentRoundedIcon
+                        sx={{width: "90%", height: "35px" }}/>
+                    }
+                  />
+                </Center>
+              </Grid>
+              <Grid item xs={2.25}>
+                <Center height={"100%"}>
+                  <IconButton onClick={handleOpenUserMenuB}>
+                    <AccountCircleRoundedIcon
+                      sx={{ color: "white", width: "90%", height: "35px" }}
+                    />
+                  </IconButton>
+                </Center>
+              </Grid>
+            </Grid>
+
+            <Center position={"fixed"} width={"100%"} left={0} height={0} rounded>
+              <IconButton onClick={changeChatDrawer}>
+                <AddCircleRoundedIcon sx={{ color: primary, width: "100%", height: "90px" }} />
+              </IconButton>
+            </Center>
+
+            <Menu
+              anchorEl={anchorElUserB}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              open={Boolean(anchorElUserB)}
+              onClose={handleCloseUserMenuB}
+              PaperProps={{
+                sx: {
+                  backgroundColor: primaryLight,
+                  borderRadius: borderRadiuosMenu,
+                },
+              }}
+            >
+              <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
+              <NavbarMenuButton name='Sign Out' link='/' />
+            </Menu>
+          </Toolbar>
         </AppBar>
       </Box>
     </Box>
