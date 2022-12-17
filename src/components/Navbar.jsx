@@ -25,6 +25,7 @@ import {
   GlassPrimary,
   GlassPrimaryLight,
   primary,
+  primaryDark,
   primaryLight,
 } from "../../theme/Colors";
 import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
@@ -176,7 +177,7 @@ export default function Navbar() {
             backgroundColor: GlassBackground,
             backdropFilter: "blur(6px)",
             top: "auto",
-            bottom: 10,
+            bottom: 20,
             zIndex: (theme) => theme.zIndex.drawer + 1,
           }}
         >
@@ -221,7 +222,7 @@ export default function Navbar() {
               </Grid>
               <Grid item xs={2.25}>
                 <Center height={"100%"}>
-                  <IconButton onClick={handleOpenUserMenuB}>
+                  <IconButton onClick={handleOpenUserMenuB} >
                     <AccountCircleRoundedIcon
                       sx={{ color: "white", width: "90%", height: "35px" }}
                     />
@@ -231,7 +232,7 @@ export default function Navbar() {
             </Grid>
 
             <Center position={"fixed"} width={"100%"} left={0} height={0} rounded>
-              <IconButton onClick={changeChatDrawer}>
+              <IconButton onClick={changeChatDrawer} sx={{backgroundColor:'rgba(0,0,0,0.01)', padding:0,backdropFilter:'blur(9px)'}} >
                 <AddCircleRoundedIcon sx={{ color: primary, width: "100%", height: "90px" }} />
               </IconButton>
             </Center>

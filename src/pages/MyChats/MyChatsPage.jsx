@@ -1,5 +1,5 @@
 import { Center } from "@chakra-ui/react";
-import { Avatar, Box, Card, Grid, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Card, Container, Divider, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import ChatCard from "../../components/ChatCard";
 import LinkButton from "../../components/LinkButton";
@@ -16,6 +16,7 @@ import useSideBarStore from "../../stores/SideBarStore";
 import { borderRadiuos } from "../../../theme/Themes";
 import testImage from "../../../Images/testImage.jpg";
 import Logo from "../../../Images/ChatSonLogo.svg";
+import MyChatCard from "../../components/MyChatCard";
 
 export default function MyChatsPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
@@ -31,7 +32,6 @@ export default function MyChatsPage() {
             <Card
               sx={{
                 width: "100%",
-                height: "20vmin",
                 borderRadius: borderRadiuos,
                 p: 2,
                 backgroundColor: GlassBackgroundDark,
@@ -40,25 +40,49 @@ export default function MyChatsPage() {
                 display: "flex",
               }}
             >
-              <Center height={"100%"} width={"min-content"} p={2}>
-                <Avatar sx={{ width: "100px", height: "100px" }} />
-              </Center>
-              <Center height={"100%"} p={2} ml={"10%"}>
-                <Stack spacing={2}>
-                  <Typography variant='h5' textAlign={"left"}>
-                    UserName
-                  </Typography>
-                  <Typography variant='subtitle1' textAlign={"left"}>
-                    UserName
-                  </Typography>
-                </Stack>
-              </Center>
+              <Stack width={"100%"}>
+                <Container  sx={{display:'flex',p:2}} >
+                  <Center height={"100%"} width={"min-content"} p={2}>
+                    <Avatar sx={{ width: "100px", height: "100px" }} />
+                  </Center>
+
+                  <Center height={"100%"} p={2} ml={"10%"}>
+                    <Stack spacing={2}>
+                      <Typography variant='h5' textAlign={"left"}>
+                        UserName
+                      </Typography>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        UserName
+                      </Typography>
+                    </Stack>
+                  </Center>
+                </Container>
+
+                <Divider sx={{width:'100%', borderColor:primary}}/>
+                
+                <Center p={5}>
+                  <Center height={"100%"} p={2} >
+                    <Stack width={'100%'} spacing={4} direction={"row"}>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        Posts : #
+                      </Typography>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        Likes : #
+                      </Typography>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        Followers : #
+                      </Typography>
+                    </Stack>
+                  </Center>
+                </Center>
+
+              </Stack>
             </Card>
           </Stack>
         </Grid>
         <Grid item lg={9}>
           <Stack spacing={2}>
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -67,7 +91,7 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -76,7 +100,7 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -85,7 +109,7 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -94,18 +118,17 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard official='news' />
-            <ChatCard official='danger' />
+            <MyChatCard official='news' />
+            <MyChatCard official='danger' />
           </Stack>
         </Grid>
       </Grid>
       <Grid container sx={{ display: { xs: "flex", md: "none" } }} spacing={2}>
         <Grid item xs={12}>
           <Stack spacing={2}>
-            <Card
+          <Card
               sx={{
                 width: "100%",
-                height: "20vmin",
                 borderRadius: borderRadiuos,
                 p: 2,
                 backgroundColor: GlassBackgroundDark,
@@ -114,25 +137,49 @@ export default function MyChatsPage() {
                 display: "flex",
               }}
             >
-              <Center height={"100%"} width={"min-content"} p={2}>
-                <Avatar sx={{ width: "80px", height: "80px" }} />
-              </Center>
-              <Center height={"100%"} p={2} ml={"10%"}>
-                <Stack spacing={2}>
-                  <Typography variant='h5' textAlign={"left"}>
-                    UserName
-                  </Typography>
-                  <Typography variant='subtitle1' textAlign={"left"}>
-                    UserName
-                  </Typography>
-                </Stack>
-              </Center>
+              <Stack width={"100%"}>
+                <Container  sx={{display:'flex',p:2}} >
+                  <Center height={"100%"} width={"min-content"} p={2}>
+                    <Avatar sx={{ width: "100px", height: "100px" }} />
+                  </Center>
+
+                  <Center height={"100%"} p={2} ml={"10%"}>
+                    <Stack spacing={2}>
+                      <Typography variant='h5' textAlign={"left"}>
+                        UserName
+                      </Typography>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        UserName
+                      </Typography>
+                    </Stack>
+                  </Center>
+                </Container>
+
+                <Divider sx={{width:'100%',borderColor:primary}}/>
+                
+                <Center p={5}>
+                  <Center height={"100%"} p={2} >
+                    <Stack width={'100%'} spacing={4} direction={"row"}>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        Posts : #
+                      </Typography>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        Likes : #
+                      </Typography>
+                      <Typography variant='subtitle1' textAlign={"left"}>
+                        Followers : #
+                      </Typography>
+                    </Stack>
+                  </Center>
+                </Center>
+
+              </Stack>
             </Card>
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={2}>
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -141,7 +188,7 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -150,7 +197,7 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -159,7 +206,7 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard
+            <MyChatCard
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
@@ -168,8 +215,8 @@ export default function MyChatsPage() {
               profileImage={Logo}
               official='chatSon'
             />
-            <ChatCard official='news' />
-            <ChatCard official='danger' />
+            <MyChatCard official='news' />
+            <MyChatCard official='danger' />
           </Stack>
         </Grid>
       </Grid>
