@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 const usePageStore = create(
   persist(
     (set) => ({
-      pageName: 'My Chats',
+      pageName: 'Home',
       changePageName: (newName) => set({ pageName: newName }),
     }),
     {
