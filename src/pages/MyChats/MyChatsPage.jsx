@@ -17,6 +17,8 @@ import { borderRadiuos } from "../../../theme/Themes";
 import testImage from "../../../Images/testImage.jpg";
 import Logo from "../../../Images/ChatSonLogo.svg";
 import MyChatCard from "../../components/MyChatCard";
+import IButton from "../../components/IButton";
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 export default function MyChatsPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
@@ -77,6 +79,7 @@ export default function MyChatsPage() {
                 </Center>
 
               </Stack>
+              <IButton icon={<SettingsRoundedIcon/>} height={'100%'} pageTitle={'Profile'} link={'/App/Profile'}/>
             </Card>
           </Stack>
         </Grid>
@@ -174,6 +177,8 @@ export default function MyChatsPage() {
                 </Center>
 
               </Stack>
+              <IButton icon={<SettingsRoundedIcon/>} height={'100%'} pageTitle={'Profile'} link={'/App/Profile'}/>
+
             </Card>
           </Stack>
         </Grid>

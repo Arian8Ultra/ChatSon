@@ -178,18 +178,6 @@ export default function SignUpPage() {
             getText={setUsername}
           />
           <TextInputNormalBig
-            id='usernameTextInput'
-            label='UserName'
-            type='text'
-            idNum='1'
-            value={""}
-            error={UsernameError}
-            helperText={UsernameErrorHelperText}
-            autoComplete='username'
-            fullWidth
-            getText={setUsername}
-          />
-          <TextInputNormalBig
             id='FnameTextInput'
             label='First Name'
             type='text'
