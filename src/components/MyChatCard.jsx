@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Dialog,
   Divider,
   Grid,
   IconButton,
@@ -19,6 +20,7 @@ import Logo from "../../Images/ChatSonLogo.svg";
 import DBtable from "../../Images/DBtable.png";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import AutoDirectionProvider from "react-with-direction/dist/AutoDirectionProvider";
 
 export default function MyChatCard({
   name,
@@ -67,18 +69,16 @@ export default function MyChatCard({
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            <Box sx={{mb:'50px'}}>
+            <Box sx={{ mb: "50px" }}>
               <Center>
                 <Avatar src={profileImage != null ? profileImage : ""} />
               </Center>
             </Box>
-            <Box sx={{mt:'50px'}}>
-                <Center>
-                  <Typography textAlign={'center'}>
-                  {likeNum!=null ? likeNum : 0}
-                  </Typography>
-                  <FavoriteRoundedIcon/>
-                  </Center>
+            <Box sx={{ mt: "50px" }}>
+              <Center>
+                <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                <FavoriteRoundedIcon />
+              </Center>
             </Box>
           </Box>
 
@@ -88,7 +88,7 @@ export default function MyChatCard({
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "block", sm: "none" } }}
           >
-            <Box >
+            <Box>
               <Center>
                 <Avatar
                   src={profileImage != null ? profileImage : ""}
@@ -96,15 +96,13 @@ export default function MyChatCard({
                 />
               </Center>
             </Box>
-            <Center >
-            <Box sx={{mt:'50px'}}>
+            <Center>
+              <Box sx={{ mt: "50px" }}>
                 <Center>
-                  <Typography textAlign={'center'}>
-                  {likeNum!=null ? likeNum : 0}
-                  </Typography>
-                  <FavoriteRoundedIcon/>
-                  </Center>
-            </Box>
+                  <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                  <FavoriteRoundedIcon />
+                </Center>
+              </Box>
             </Center>
           </Box>
         </Grid>
@@ -176,10 +174,10 @@ export default function MyChatCard({
                 </Grid>
               </Grid>
             </Box>
+              <Typography textAlign={"left"} px={5}>
+                {message != null ? message : "Text"}
+              </Typography>
 
-            <Typography textAlign={"left"} px={5}>
-              {message != null ? message : "Text"}
-            </Typography>
             <Box p={5} display={ChatImage == null ? "none" : {}}>
               <Center>
                 <Image

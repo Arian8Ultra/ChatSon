@@ -114,7 +114,7 @@ export default function ProfilePage() {
               name={"Arian Rezaei"}
               date='1/1/1401'
               time={"7:30"}
-              message='this is a test for this shit'
+              message='تست تست تست'
               ChatImage={testImage}
               profileImage={Logo}
               official='chatSon'
