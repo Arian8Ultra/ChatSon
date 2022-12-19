@@ -80,6 +80,15 @@ export default function ProfilePage() {
                     </Stack>
                   </Center>
                 </Center>
+                <Center width={"100%"} my={5}>
+                  <LinkButton
+                    text='follow'
+                    fullWidth
+                    variant={"outlined"}
+                    textColor={primary}
+                    hoverColor={GlassBackground}
+                  />
+                </Center>
               </Stack>
               <IButton
                 icon={<SettingsRoundedIcon />}
