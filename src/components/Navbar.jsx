@@ -157,7 +157,7 @@ export default function Navbar() {
                     },
                   }}
                 >
-                  <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
+                  <NavbarMenuButton name='Profile Settings' link='Profile Settings' width='8.5vmax' />
                   <NavbarMenuButton name='Sign Out' link='/' />
                 </Menu>
               </Box>
@@ -198,8 +198,8 @@ export default function Navbar() {
               <Grid item xs={2.25}>
                 <Center height={"100%"}>
                   <BottomNavButton
-                    name={'My Chats'}
-                    link={'MyChats'}
+                    name={'My ChatSon'}
+                    link={'MyChatSon'}
                     icon={<ChatRoundedIcon
                         sx={{width: "90%", height: "35px" }}/>
                     }

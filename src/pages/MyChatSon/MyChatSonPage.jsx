@@ -18,13 +18,14 @@ import testImage from "../../../Images/testImage.jpg";
 import Logo from "../../../Images/ChatSonLogo.svg";
 import MyChatCard from "../../components/MyChatCard";
 import IButton from "../../components/IButton";
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import ProfileCard from "../../components/ProfileCard";
 
-export default function MyChatsPage() {
+export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
 
   useEffect(() => {
-    changeDrawerWidth(10);
+    changeDrawerWidth(2);
   }, []);
   return (
     <Box width={"100%"}>
@@ -43,7 +44,7 @@ export default function MyChatsPage() {
               }}
             >
               <Stack width={"100%"}>
-                <Container  sx={{display:'flex',p:2}} >
+                <Container sx={{ display: "flex", p: 2 }}>
                   <Center height={"100%"} width={"min-content"} p={2}>
                     <Avatar sx={{ width: "100px", height: "100px" }} />
                   </Center>
@@ -54,17 +55,17 @@ export default function MyChatsPage() {
                         UserName
                       </Typography>
                       <Typography variant='subtitle1' textAlign={"left"}>
-                        UserName
+                        FirstName LastName
                       </Typography>
                     </Stack>
                   </Center>
                 </Container>
 
-                <Divider sx={{width:'100%', borderColor:primary}}/>
-                
+                <Divider sx={{ width: "100%", borderColor: primary }} />
+
                 <Center p={5}>
-                  <Center height={"100%"} p={2} >
-                    <Stack width={'100%'} spacing={4} direction={"row"}>
+                  <Center height={"100%"} p={2}>
+                    <Stack width={"100%"} spacing={4} direction={"row"}>
                       <Typography variant='subtitle1' textAlign={"left"}>
                         Posts : #
                       </Typography>
@@ -77,9 +78,34 @@ export default function MyChatsPage() {
                     </Stack>
                   </Center>
                 </Center>
-
               </Stack>
-              <IButton icon={<SettingsRoundedIcon/>} height={'100%'} pageTitle={'Profile'} link={'/App/Profile'}/>
+              <IButton
+                icon={<SettingsRoundedIcon />}
+                height={"100%"}
+                pageTitle={"Profile Settings"}
+                link={"/App/ProfileSettings"}
+              />
+            </Card>
+            <Card
+              sx={{
+                width: "100%",
+                borderRadius: borderRadiuos,
+                p: 2,
+                backgroundColor: GlassBackgroundDark,
+                backdropFilter: "blur(5px)",
+                border: 0,
+              }}
+            >
+              <Typography variant='h5'>People</Typography>
+              <Divider sx={{ width: "100%", borderColor: primary, my: 1 }} />
+
+              <Stack width={"100%"} spacing={1}>
+                <ProfileCard username={"Arian"} />
+                <ProfileCard username={"Hanieh"} />
+                <ProfileCard username={"Parinaz"} />
+                <ProfileCard username={"Nilofar"} />
+                <ProfileCard username={"Erfan"} />
+              </Stack>
             </Card>
           </Stack>
         </Grid>
@@ -129,7 +155,7 @@ export default function MyChatsPage() {
       <Grid container sx={{ display: { xs: "flex", md: "none" } }} spacing={2}>
         <Grid item xs={12}>
           <Stack spacing={2}>
-          <Card
+            <Card
               sx={{
                 width: "100%",
                 borderRadius: borderRadiuos,
@@ -141,7 +167,7 @@ export default function MyChatsPage() {
               }}
             >
               <Stack width={"100%"}>
-                <Container  sx={{display:'flex',p:2}} >
+                <Container sx={{ display: "flex", p: 2 }}>
                   <Center height={"100%"} width={"min-content"} p={2}>
                     <Avatar sx={{ width: "100px", height: "100px" }} />
                   </Center>
@@ -149,7 +175,7 @@ export default function MyChatsPage() {
                   <Center height={"100%"} p={2} ml={"10%"}>
                     <Stack spacing={2}>
                       <Typography variant='h5' textAlign={"left"}>
-                        UserName
+                        UserName(mobile)
                       </Typography>
                       <Typography variant='subtitle1' textAlign={"left"}>
                         UserName
@@ -158,11 +184,11 @@ export default function MyChatsPage() {
                   </Center>
                 </Container>
 
-                <Divider sx={{width:'100%',borderColor:primary}}/>
-                
+                <Divider sx={{ width: "100%", borderColor: primary }} />
+
                 <Center p={5}>
-                  <Center height={"100%"} p={2} >
-                    <Stack width={'100%'} spacing={4} direction={"row"}>
+                  <Center height={"100%"} p={2}>
+                    <Stack width={"100%"} spacing={4} direction={"row"}>
                       <Typography variant='subtitle1' textAlign={"left"}>
                         Posts : #
                       </Typography>
@@ -175,10 +201,13 @@ export default function MyChatsPage() {
                     </Stack>
                   </Center>
                 </Center>
-
               </Stack>
-              <IButton icon={<SettingsRoundedIcon/>} height={'100%'} pageTitle={'Profile'} link={'/App/Profile'}/>
-
+              <IButton
+                icon={<SettingsRoundedIcon />}
+                height={"100%"}
+                pageTitle={"Profile Settings"}
+                link={"/App/ProfileSettings"}
+              />
             </Card>
           </Stack>
         </Grid>

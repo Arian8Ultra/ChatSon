@@ -18,6 +18,7 @@ import useAlertStore from "../../stores/AlertStore";
 import useUserSotre from "../../stores/UserStore";
 import { primary } from "../../../theme/Colors";
 import { Stack } from "@mui/system";
+import { Center } from "@chakra-ui/react";
 
 export default function SignUpPage() {
   const handleSubmit = (event) => {
@@ -160,9 +161,11 @@ export default function SignUpPage() {
         }}
       >
         <Stack spacing={3} width='100%' justifyContent={"center"} justifyItems={"center"}>
-          <BackButton width={'40%'} />
+          <Center width={'30%'}>
+            <BackButton fullWidth={false} />
+          </Center>
 
-          <Typography component='h1' variant='h5' sx={{ textShadow: 1 }}>
+          <Typography textAlign={"center"} variant='h5' sx={{ textShadow: 1 }}>
             Creating new Account
           </Typography>
           <TextInputNormalBig
@@ -213,12 +216,9 @@ export default function SignUpPage() {
             fullWidth
             getText={setPassword}
           />
-          <LinkButton
-            text='Creat Account'
-            fullWidth={true}
-            fun={() => handleClick()}
-            fontSize={20}
-          />
+          <Center>
+            <LinkButton text='Creat Account' fun={() => handleClick()} />
+          </Center>
         </Stack>
       </Box>
     </ThemeProvider>

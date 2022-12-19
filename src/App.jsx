@@ -1,6 +1,6 @@
 import { Center, ChakraProvider, Container, Heading } from "@chakra-ui/react";
 import { useState } from "react";
-import { backgroundC, primary, primaryDark, primaryLight } from "../theme/Colors";
+import { backgroundC, GlassBackground, primary, primaryDark, primaryLight } from "../theme/Colors";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import "./App.css";
 import LinkButton from "./components/LinkButton";
@@ -52,7 +52,7 @@ function App() {
       />
       <MyModal
         height={""}
-        bgColor={backgroundC}
+        bgColor={GlassBackground}
         color={primary}
         isOpen={openModal}
         onClose={changeModal}

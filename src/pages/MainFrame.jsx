@@ -26,7 +26,7 @@ export default function MainFrame() {
 
   useEffect(() => {
     document.title = pageName;
-    if (pageName == "My Chats") {
+    if (pageName == "My ChatSon" || pageName =="Profile") {
       changeDrawerWidth(2);
     } else {
       changeDrawerWidth(20);

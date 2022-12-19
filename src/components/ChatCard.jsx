@@ -19,6 +19,7 @@ import Logo from "../../Images/ChatSonLogo.svg";
 import DBtable from "../../Images/DBtable.png";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import { useNavigate } from "react-router-dom";
 
 export default function ChatCard({
   name,
@@ -31,6 +32,7 @@ export default function ChatCard({
   ChatImage,
   official,
   liked,
+  likeNum,
   ...rest
 }) {
   const borderColor = () => {
@@ -45,6 +47,7 @@ export default function ChatCard({
         return "rgba(255,255,255,0.03)";
     }
   };
+  const navigate = useNavigate()
 
   const [Like, SetLike] = React.useState(liked != null ? liked : false);
 
@@ -60,18 +63,26 @@ export default function ChatCard({
     >
       <Grid container>
         <Grid item xxs={2} xs={2} sm={1} sx={{ borderRight: 3, borderColor: borderColor() }}>
+          <Card sx={{width:'100%',height:'100%',backgroundColor:'transparent'}} onClick={()=>navigate(`/App/Profile/${name}`)}>
+
           <Box
             p={2}
             height='100%'
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            <Box height={"80%"} sx={{mb:'50px'}}>
+            <Box sx={{ mb: "30px" }}>
               <Center>
                 <Avatar src={profileImage != null ? profileImage : ""} />
               </Center>
             </Box>
-            <Box sx={{position:'absolute', bottom:10,mt:'50px'}}>
+            <Box sx={{ mb: "60px" }}>
+              <Center>
+                <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                <FavoriteRoundedIcon />
+              </Center>
+            </Box>
+            <Box sx={{ position: "absolute", bottom: 10,left:17.5, mt: "50px" }}>
               <IconButton onClick={() => SetLike(!Like)}>
                 <Center>
                   {Like ? (
@@ -96,7 +107,7 @@ export default function ChatCard({
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "block", sm: "none" } }}
           >
-            <Box height={"80%"}>
+            <Box>
               <Center>
                 <Avatar
                   src={profileImage != null ? profileImage : ""}
@@ -104,24 +115,35 @@ export default function ChatCard({
                 />
               </Center>
             </Box>
-            <Center height={"20%"}>
-              <IconButton onClick={() => SetLike(!Like)}>
+            <Center>
+              <Box sx={{ mb: "50px",mt:'20px' }}>
                 <Center>
-                  {Like ? (
-                    <FavoriteRoundedIcon
-                      src={profileImage != null ? profileImage : ""}
-                      sx={{ width: "35px", height: "35px", color: primary }}
-                    />
-                  ) : (
-                    <FavoriteBorderRoundedIcon
-                      src={profileImage != null ? profileImage : ""}
-                      sx={{ width: "35px", height: "35px" }}
-                    />
-                  )}
+                  <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                  <FavoriteRoundedIcon />
                 </Center>
-              </IconButton>
+              </Box>
             </Center>
+            <Box sx={{ position: "absolute", bottom: 10, mt: "50px", left:10 }}>
+              <Center>
+                <IconButton onClick={() => SetLike(!Like)}>
+                  <Center>
+                    {Like ? (
+                      <FavoriteRoundedIcon
+                        src={profileImage != null ? profileImage : ""}
+                        sx={{ width: "35px", height: "35px", color: primary }}
+                      />
+                    ) : (
+                      <FavoriteBorderRoundedIcon
+                        src={profileImage != null ? profileImage : ""}
+                        sx={{ width: "35px", height: "35px" }}
+                      />
+                    )}
+                  </Center>
+                </IconButton>
+              </Center>
+            </Box>
           </Box>
+          </Card>
         </Grid>
         <Grid item xxs={10} xs={10} sm={11}>
           <Stack py={0}>
@@ -130,7 +152,7 @@ export default function ChatCard({
                 <Grid item xs={6} sm={6} md={6} lg={4} sx={{ display: "flex" }}>
                   <Box height={"100%"}>
                     <Center height={"100%"} pl={15}>
-                      <Typography textAlign={"left"} sx={{ display: { xs: "none", sm: "flex" } }}>
+                      <Typography textAlign={"left"} variant={'h5'} sx={{ display: { xs: "none", sm: "flex" } }}>
                         {name != null ? name : "Name"}
                       </Typography>
                       <Typography

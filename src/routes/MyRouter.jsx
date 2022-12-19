@@ -2,12 +2,13 @@ import React, { Suspense } from "react";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import LoadingPage from "../pages/Loading";
+import ProfileSettings from "../pages/Profile/ProfileSettings";
 // import App from "../App";
 // import HomePage from "../pages/Home/HomePage";
 // import LoginPage from "../pages/Login/LoginPage";
 // import SignInPage from "../pages/Login/SignInPage";
 // import SignUpPage from "../pages/Login/SignUpPage";
-// import MyChatsPage from "../pages/MyChats/MyChatsPage";
+// import MyChatSonPage from "../pages/MyChatSon/MyChatSonPage";
 // import ProfilePage from "../pages/Profile/ProfilePage";
 // import TrendingsPage from "../pages/Trendings/TrendingsPage";
 
@@ -17,7 +18,7 @@ export default function MyRouter() {
   const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
   const SignInPage = lazy(() => import("../pages/Login/SignInPage"));
   const SignUpPage = lazy(() => import("../pages/Login/SignUpPage"));
-  const MyChatsPage = lazy(() => import("../pages/MyChats/MyChatsPage"));
+  const MyChatSonPage = lazy(() => import("../pages/MyChatSon/MyChatSonPage"));
   const ProfilePage = lazy(() => import("../pages/Profile/ProfilePage"));
   const TrendingsPage = lazy(() => import("../pages/Trendings/TrendingsPage"));
 
@@ -33,8 +34,9 @@ export default function MyRouter() {
         <Route path='App' element={<App />}>
           <Route path='Home' element={<HomePage />} />
           <Route path='Trendings' element={<TrendingsPage />} />
-          <Route path='MyChats' element={<MyChatsPage />} />
-          <Route path='Profile' element={<ProfilePage />} />
+          <Route path='MyChatSon' element={<MyChatSonPage />} />
+          <Route path='Profile/:Username' element={<ProfilePage />} />
+          <Route path='ProfileSettings' element={<ProfileSettings />} />
         </Route>
       </Routes>
     </Suspense>

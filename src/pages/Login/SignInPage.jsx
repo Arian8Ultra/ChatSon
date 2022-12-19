@@ -74,7 +74,9 @@ export default function SignInPage() {
               src={ChatSonLogo}
             ></Avatar>
           </Center>
-          <Typography>Sign In</Typography>
+          <Typography textAlign={'center'} variant='h5' sx={{ textShadow: 1 }}>
+            Sign In
+          </Typography>
 
           <TextInputNormal
             label={"Username"}
@@ -93,7 +95,7 @@ export default function SignInPage() {
           />
           <Divider />
           <Center>
-            <LinkButton text={"Sign In"}  fun={handleSignIn}/>
+            <LinkButton text={"Sign In"} fun={handleSignIn} />
           </Center>
           <Center>
             <LinkButton
@@ -105,10 +107,10 @@ export default function SignInPage() {
           <Center>
             <LinkButton
               text={"Sign Up"}
-              link={'SignUp'}
+              link={"SignUp"}
               textColor={primary}
               hoverColor={GlassBackground}
-              variant={'outlined'}
+              variant={"outlined"}
             />
           </Center>
         </Stack>

@@ -1,7 +1,7 @@
 export const primary = "#88ffff";/* #ff8f00 */
 export const GlassPrimary = "rgba(136,255,255,0.7)";
 export const GlassPrimaryLight = "rgba(178,235,242,0.7)";
-export const GlassBackground = "rgba(25,25,25,0.8)";
+export const GlassBackground = "rgba(40,40,40,0.8)";
 export const GlassBackgroundLight = "rgba(90,100,110,0.7)";
 export const GlassBackgroundDark = "rgba(15,15,15,0.9)";
 export const primaryLight = "#b2ebf2";/* #ffc046 */

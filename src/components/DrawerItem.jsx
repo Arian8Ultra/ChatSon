@@ -5,12 +5,8 @@ import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 
-export default function DrawerItem(props) {
-  const text = props.text;
-  const icon = props.icon;
-  const link = props.link;
-  const pageTitle = props.pageTitle != null ? props.pageTitle : "";
-  const open = useSideBarStore((state) => state.open);
+export default function DrawerItem({text,icon,link,...rest}) {
+
   const changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
 

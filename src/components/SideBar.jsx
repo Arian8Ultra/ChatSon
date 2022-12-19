@@ -82,9 +82,8 @@ function SideBarMain() {
         <Toolbar />
         <List sx={{ mt: "-60px", mx: 0, px: 1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
-          <DrawerItem text='My Chats' icon={<ChatRoundedIcon />} link='MyChats' />
+          <DrawerItem text='My ChatSon' icon={<ChatRoundedIcon />} link='MyChatSon' />
           <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
-          <DrawerItem text='People' icon={<PeopleAltRoundedIcon />} link='' />
         </List>
       </Drawer>
 
