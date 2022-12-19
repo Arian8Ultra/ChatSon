@@ -82,7 +82,7 @@ export default function ChatCard({
                 <FavoriteRoundedIcon />
               </Center>
             </Box>
-            <Box sx={{ position: "absolute", bottom: 10,left:17.5, mt: "50px" }}>
+            <Box sx={{ position: "absolute", bottom: 10,left:20, mt: "50px" }}>
               <IconButton onClick={() => SetLike(!Like)}>
                 <Center>
                   {Like ? (
