@@ -6,10 +6,19 @@ import LinkButton from "../../components/LinkButton";
 import useNewChatModalStore from "../../stores/NewChatModalStore";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import { primary, primaryDark, primaryLight } from "../../../theme/Colors";
+import usePageStore from "../../stores/PageStore";
+import { useEffect } from "react";
 
 export default function TrendingsPage() {
   const openModal = useNewChatModalStore((state) => state.open);
   const changeModal = useNewChatModalStore((state) => state.changeModal);
+
+  const changePageName = usePageStore((state) => state.changePageName);
+
+  useEffect(()=>{
+    changePageName('Trendings')
+  },[])
+
   return (
     <Box width={"100%"}>
       <Stack spacing={2}>

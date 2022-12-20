@@ -20,11 +20,15 @@ import MyChatCard from "../../components/MyChatCard";
 import IButton from "../../components/IButton";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import ProfileCard from "../../components/ProfileCard";
+import usePageStore from "../../stores/PageStore";
 
 export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
 
+  const changePageName = usePageStore((state) => state.changePageName);
+
   useEffect(() => {
+    changePageName('My ChatSon')
     changeDrawerWidth(2);
   }, []);
   return (

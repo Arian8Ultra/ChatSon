@@ -36,7 +36,7 @@ export default function MyRouter() {
           <Route path='Trendings' element={<TrendingsPage />} />
           <Route path='MyChatSon' element={<MyChatSonPage />} />
           <Route path='Profile/:Username' element={<ProfilePage />} />
-          <Route path='ProfileSettings' element={<ProfileSettings />} />
+          <Route path='Profile Settings' element={<ProfileSettings />} />
         </Route>
       </Routes>
     </Suspense>

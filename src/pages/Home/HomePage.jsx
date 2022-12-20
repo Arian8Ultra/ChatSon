@@ -8,10 +8,17 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import { primary, primaryDark, primaryLight } from "../../../theme/Colors";
 import testImage from "../../../Images/testImage.jpg";
 import Logo from "../../../Images/ChatSonLogo.svg";
+import { useEffect } from "react";
+import usePageStore from "../../stores/PageStore";
 
 export default function HomePage() {
   const openModal = useNewChatModalStore((state) => state.open);
   const changeModal = useNewChatModalStore((state) => state.changeModal);
+  const changePageName = usePageStore((state) => state.changePageName);
+
+  useEffect(()=>{
+    changePageName('Home')
+  },[])
   return (
     <Box width={"100%"}>
       <Stack spacing={2}>
