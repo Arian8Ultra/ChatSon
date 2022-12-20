@@ -1,6 +1,6 @@
 import { Center, ChakraProvider, Container, Heading } from "@chakra-ui/react";
 import { useState } from "react";
-import { backgroundC, GlassBackground, primary, primaryDark, primaryLight } from "../theme/Colors";
+import { backgroundC, GlassBackground, GlassBackgroundDark, primary, primaryDark, primaryLight } from "../theme/Colors";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import "./App.css";
 import LinkButton from "./components/LinkButton";
@@ -44,8 +44,8 @@ function App() {
         right={0}
         margin={2}
         textColor={primary}
-        backgroundColor={'black'}
-        hoverColor={primaryDark}
+        backgroundColor={GlassBackground}
+        hoverColor={GlassBackgroundDark}
         fun={() => changeModal()}
         icon={<AddCircleRoundedIcon />}
         display={{ xs: "none", sm: "flex" }}

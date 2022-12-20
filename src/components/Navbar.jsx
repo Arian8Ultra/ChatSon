@@ -151,7 +151,7 @@ export default function Navbar() {
                   onClose={handleCloseUserMenu}
                   PaperProps={{
                     sx: {
-                      backgroundColor: GlassPrimaryLight,
+                      backgroundColor: GlassBackgroundLight,
                       borderRadius: borderRadiuosMenu,
                       backdropFilter: "blur(6px)",
                     },
@@ -252,7 +252,7 @@ export default function Navbar() {
               onClose={handleCloseUserMenuB}
               PaperProps={{
                 sx: {
-                  backgroundColor: primaryLight,
+                  backgroundColor: GlassBackgroundLight,
                   borderRadius: borderRadiuosMenu,
                 },
               }}
