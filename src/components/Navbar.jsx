@@ -157,7 +157,7 @@ export default function Navbar() {
                     },
                   }}
                 >
-                  <NavbarMenuButton name='Profile Settings' link='Profile Settings' width='8.5vmax' />
+                  <NavbarMenuButton name='Profile Settings' link='Profile Settings' />
                   <NavbarMenuButton name='Sign Out' link='/' />
                 </Menu>
               </Box>
@@ -185,24 +185,19 @@ export default function Navbar() {
             <Grid container my={0} mx={0}>
               <Grid item xs={2.25}>
                 <Center height={"100%"}>
-
                   <BottomNavButton
-                    name={'Home'}
-                    link={'Home'}
-                    icon={<HomeRoundedIcon
-                        sx={{width: "90%", height: "35px" }}/>
-                    }
+                    name={"Home"}
+                    link={"Home"}
+                    icon={<HomeRoundedIcon sx={{ width: "90%", height: "35px" }} />}
                   />
                 </Center>
               </Grid>
               <Grid item xs={2.25}>
                 <Center height={"100%"}>
                   <BottomNavButton
-                    name={'My ChatSon'}
-                    link={'MyChatSon'}
-                    icon={<ChatRoundedIcon
-                        sx={{width: "90%", height: "35px" }}/>
-                    }
+                    name={"My ChatSon"}
+                    link={"MyChatSon"}
+                    icon={<ChatRoundedIcon sx={{ width: "90%", height: "35px" }} />}
                   />
                 </Center>
               </Grid>
@@ -212,17 +207,15 @@ export default function Navbar() {
               <Grid item xs={2.25}>
                 <Center height={"100%"}>
                   <BottomNavButton
-                    name={'Trendings'}
-                    link={'Trendings'}
-                    icon={<LocalFireDepartmentRoundedIcon
-                        sx={{width: "90%", height: "35px" }}/>
-                    }
+                    name={"Trendings"}
+                    link={"Trendings"}
+                    icon={<LocalFireDepartmentRoundedIcon sx={{ width: "90%", height: "35px" }} />}
                   />
                 </Center>
               </Grid>
               <Grid item xs={2.25}>
                 <Center height={"100%"}>
-                  <IconButton onClick={handleOpenUserMenuB} >
+                  <IconButton onClick={handleOpenUserMenuB}>
                     <AccountCircleRoundedIcon
                       sx={{ color: "white", width: "90%", height: "35px" }}
                     />
@@ -232,7 +225,14 @@ export default function Navbar() {
             </Grid>
 
             <Center position={"fixed"} width={"100%"} left={0} height={0} rounded>
-              <IconButton onClick={changeChatDrawer} sx={{backgroundColor:'rgba(0,0,0,0.01)', padding:0,backdropFilter:'blur(9px)'}} >
+              <IconButton
+                onClick={changeChatDrawer}
+                sx={{
+                  backgroundColor: "rgba(0,0,0,0.01)",
+                  padding: 0,
+                  backdropFilter: "blur(9px)",
+                }}
+              >
                 <AddCircleRoundedIcon sx={{ color: primary, width: "100%", height: "90px" }} />
               </IconButton>
             </Center>
@@ -257,7 +257,7 @@ export default function Navbar() {
                 },
               }}
             >
-              <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
+              <NavbarMenuButton name='Profile Settings' link='Profile Settings' />
               <NavbarMenuButton name='Sign Out' link='/' />
             </Menu>
           </Toolbar>
