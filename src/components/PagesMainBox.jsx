@@ -20,7 +20,7 @@ const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: dw!=null? `${dw}vmax` : drawerWidth,
+      marginLeft:drawerWidth,
       // marginRight: drawerWidth,
     }),
   }),
