@@ -63,7 +63,7 @@ export default function ChatCard({
     >
       <Grid container>
         <Grid item xxs={2} xs={2} sm={1} sx={{ borderRight: 3, borderColor: borderColor() }}>
-          <Card sx={{width:'100%',height:'100%',backgroundColor:'transparent'}} onClick={()=>navigate(`/App/Profile/${name}`)}>
+
 
           <Box
             p={2}
@@ -72,7 +72,7 @@ export default function ChatCard({
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Box sx={{ mb: "30px" }}>
-              <Center>
+              <Center onClick={()=>navigate(`/App/Profile/${name}`)}>
                 <Avatar src={profileImage != null ? profileImage : ""} />
               </Center>
             </Box>
@@ -108,7 +108,7 @@ export default function ChatCard({
             sx={{ display: { xs: "block", sm: "none" } }}
           >
             <Box>
-              <Center>
+              <Center onClick={()=>navigate(`/App/Profile/${name}`)}>
                 <Avatar
                   src={profileImage != null ? profileImage : ""}
                   sx={{ width: "35px", height: "35px" }}
@@ -143,7 +143,6 @@ export default function ChatCard({
               </Center>
             </Box>
           </Box>
-          </Card>
         </Grid>
         <Grid item xxs={10} xs={10} sm={11}>
           <Stack py={0}>
@@ -151,7 +150,7 @@ export default function ChatCard({
               <Grid container px={1}>
                 <Grid item xs={6} sm={6} md={6} lg={4} sx={{ display: "flex" }}>
                   <Box height={"100%"}>
-                    <Center height={"100%"} pl={15}>
+                    <Center height={"100%"} pl={15} onClick={()=>navigate(`/App/Profile/${name}`)}>
                       <Typography textAlign={"left"} variant={'h5'} sx={{ display: { xs: "none", sm: "flex" } }}>
                         {name != null ? name : "Name"}
                       </Typography>
