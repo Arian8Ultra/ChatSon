@@ -6,27 +6,22 @@ import { primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton } from "../../theme/Themes";
 import usePageStore from "../stores/PageStore";
 
-function NavbarMenuButton(props,{...rest}) {
+function NavbarMenuButton(props, { ...rest }) {
   const name = props.name;
   const link = props.link;
   const navigate = useNavigate();
-  const handleOnClick = useCallback(
-    () => navigate(`${link}`, { replace: true }),
-    [navigate]
-  );
+  const handleOnClick = useCallback(() => navigate(`${link}`, { replace: true }), [navigate]);
   let changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
-
 
   const handleClick = () => {
     if (!link == "") {
       if (link == "/") {
-        handleOnClick()
-        console.warn('signOut');
-      }
-      else{
+        handleOnClick();
+        console.warn("signOut");
+      } else {
         navigate(`${link}`);
-        changePageName(name)
+        changePageName(name);
       }
     } else {
       props.fun();
@@ -41,13 +36,13 @@ function NavbarMenuButton(props,{...rest}) {
         fullWidth
         {...rest}
         sx={{
-          color: primaryLight,
-          width:props.width,
-          height:props.height,
-          borderRadius: borderRadiuosButton,
-          fontWeight:'bold',
+          "color": primaryLight,
+          "width": props.width,
+          "height": props.height,
+          "borderRadius": borderRadiuosButton,
+          "fontWeight": "bold",
           "&:hover": {
-            backgroundColor: "rgba(255,255,255,0.2)",
+            backgroundColor: "transparent",
           },
         }}
       >
@@ -56,4 +51,4 @@ function NavbarMenuButton(props,{...rest}) {
     </MenuItem>
   );
 }
- export default NavbarMenuButton
+export default NavbarMenuButton;

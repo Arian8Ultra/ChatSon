@@ -40,15 +40,6 @@ export default function HomePage() {
           ChatImage={testImage}
           official='news'
         />
-        <ChatCard
-          name={"Arian Rezaei"}
-          date='1/1/1401'
-          time={"7:30"}
-          message='this is a test for this shit'
-          ChatImage={testImage}
-          profileImage={Logo}
-          official='chatSon'
-        />
         <ChatCard official='news' />
         <ChatCard official='danger' />
       </Stack>

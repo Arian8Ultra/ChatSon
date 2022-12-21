@@ -27,7 +27,7 @@ export default function DrawerItem({text,icon,link,...rest}) {
   };
   const textColor = () => {
     if (pageName == text) {
-      return primaryDark;
+      return 'black';
     }
     return primaryLight;
   };
@@ -84,7 +84,7 @@ export default function DrawerItem({text,icon,link,...rest}) {
         </ListItemIcon>
         <ListItemText sx={{ color: textColor, textAlign: "center" }}>
           <Center height={"100%"}>
-            <Typography>{text}</Typography>
+            <Typography fontWeight={700} >{text}</Typography>
           </Center>
         </ListItemText>
       </ListItemButton>

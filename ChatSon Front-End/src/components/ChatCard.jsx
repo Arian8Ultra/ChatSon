@@ -33,6 +33,7 @@ export default function ChatCard({
   official,
   liked,
   likeNum,
+  id,
   ...rest
 }) {
   const borderColor = () => {
