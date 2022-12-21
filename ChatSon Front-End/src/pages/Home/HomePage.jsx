@@ -22,32 +22,23 @@ export default function HomePage() {
   return (
     <Box width={"100%"}>
       <Stack spacing={2}>
+
         <ChatCard
           name={"Arian Rezaei"}
           date='1/1/1401'
           time={"7:30"}
-          message='this is a test for this shit'
+          message='this is a test'
           ChatImage={testImage}
           profileImage={Logo}
           official='chatSon'
         />
         <ChatCard
-          name={"Arian Rezaei"}
-          date='1/1/1401'
-          time={"7:30"}
-          message='this is a test for this shit'
+          name={"Hanieh Rezaei"}
+          date='3/5/1401'
+          time={"8:30"}
+          message='this is a test'
           ChatImage={testImage}
-          profileImage={Logo}
-          official='chatSon'
-        />
-        <ChatCard
-          name={"Arian Rezaei"}
-          date='1/1/1401'
-          time={"7:30"}
-          message='this is a test for this shit'
-          ChatImage={testImage}
-          profileImage={Logo}
-          official='chatSon'
+          official='news'
         />
         <ChatCard
           name={"Arian Rezaei"}
