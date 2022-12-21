@@ -1,2 +1,2 @@
-django
-django-rest-framework
+fastapi
+uvicorn[standard]
