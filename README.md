@@ -1,3 +1,5 @@
+![ChatSonLogo](https://user-images.githubusercontent.com/87231161/208843609-d1919d5b-3c4d-429c-8b48-fd02223d4d67.png)
+
 # ChatSon
 let's make something secure for everybody
 with use of RSA we ensure your privacy and security throughout the whole way of messaging and "Twitting"
