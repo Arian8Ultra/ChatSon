@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { GlassBackgroundDark, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
 
-function ProfileCard({ username, profileImage, onClick, backgroundColor }) {
+function ProfileCard({ username, profileImage, onClick, backgroundColor,color }) {
   const navigate = useNavigate();
 
   return (
@@ -28,7 +28,7 @@ function ProfileCard({ username, profileImage, onClick, backgroundColor }) {
         </Grid>
         <Grid item xs={0.5}>
           <Center height={"100%"} width={"max-content"}>
-            <Divider orientation="vertical" sx={{ height: "100%", borderColor: primary }} />
+            <Divider orientation="vertical" sx={{ height: "100%", borderColor: color!=null ? color : primary }} />
           </Center>
         </Grid>
         <Grid item xs={9}>

@@ -19,3 +19,21 @@
 text{
   color:#ffc046 ;
 }
+
+/* width */
+::-webkit-scrollbar {
+  border-radius: 20px;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: paleturquoise;
+  border-radius: 20px;
+}
