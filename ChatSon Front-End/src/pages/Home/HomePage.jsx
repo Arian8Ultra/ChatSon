@@ -33,7 +33,7 @@ export default function HomePage() {
           official='chatSon'
         />
         <ChatCard
-          name={"Hanieh Rezaei"}
+          name={"Hanieh"}
           date='3/5/1401'
           time={"8:30"}
           message='this is a test'
