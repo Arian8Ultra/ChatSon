@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { GlassBackgroundDark, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
 
-function ProfileCard({ username, profileImage }) {
+function ProfileCard({ username, profileImage, onClick, backgroundColor }) {
   const navigate = useNavigate();
 
   return (
@@ -14,11 +14,11 @@ function ProfileCard({ username, profileImage }) {
         width: "100%",
         borderRadius: borderRadiuos,
         p: 2,
-        backgroundColor: GlassBackgroundDark,
+        backgroundColor: backgroundColor!=null ? backgroundColor : GlassBackgroundDark,
         backdropFilter: "blur(5px)",
         border: 0,
       }}
-      onClick={() => navigate(`/App/Profile/${username}`)}
+      onClick={onClick}
     >
       <Grid container width={"100%"}>
         <Grid item xs={2.5}>

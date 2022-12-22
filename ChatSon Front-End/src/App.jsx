@@ -15,11 +15,16 @@ import { Grid, ThemeProvider } from "@mui/material";
 import UploadButton from "./components/UploadButton";
 import { borderRadiuos, theme } from "../theme/Themes";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+import useModalStore from "./stores/ModalStore";
+import QRCode from "react-qr-code";
 
 function App() {
   const [count, setCount] = useState(0);
   const openModal = useNewChatModalStore((state) => state.open);
   const changeModal = useNewChatModalStore((state) => state.changeModal);
+  const openQRModal = useModalStore((state) => state.openQRmodal);
+  const QRid = useModalStore((state) => state.QRid);
+  const changeQRModal = useModalStore((state) => state.changeQRmodal);
   return (
     <ChakraProvider>
       <Box
@@ -87,6 +92,25 @@ function App() {
               </Grid>
             </Grid>
           </ThemeProvider>
+        }
+      />
+      <MyModal
+        height={""}
+        bgColor={GlassBackground}
+        color={primary}
+        isOpen={openQRModal}
+        onClose={changeQRModal}
+        header={
+          <Container my={1}>
+            <Heading color={primary} fontWeight={"normal"} textAlign={"center"} fontSize={"30"}>
+              Public ID QR
+            </Heading>
+          </Container>
+        }
+        content={
+          <Center width={'100%'} height={'100%'}>
+            <QRCode value={QRid}/>
+          </Center>
         }
       />
     </ChakraProvider>

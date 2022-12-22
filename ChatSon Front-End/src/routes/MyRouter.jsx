@@ -7,6 +7,7 @@ import ProfileSettings from "../pages/Profile/ProfileSettings";
 // import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
 import SignInPage from "../pages/Login/SignInPage";
+import HeadToHeadPage from "../pages/HeadToHead/HeadToHeadPage";
 // import SignUpPage from "../pages/Login/SignUpPage";
 // import MyChatSonPage from "../pages/MyChatSon/MyChatSonPage";
 // import ProfilePage from "../pages/Profile/ProfilePage";
@@ -33,6 +34,7 @@ export default function MyRouter() {
 
         <Route path='App' element={<App />}>
           <Route path='Home' element={<HomePage />} />
+          <Route path='HeadToHead' element={<HeadToHeadPage />} />
           <Route path='Trendings' element={<TrendingsPage />} />
           <Route path='MyChatSon' element={<MyChatSonPage />} />
           <Route path='Profile/:Username' element={<ProfilePage />} />

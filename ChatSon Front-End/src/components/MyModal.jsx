@@ -23,7 +23,7 @@ export default function MyModal({
   onClose,
   bgColor,
   bgGradient,
-  color,
+  color,children,
   ...rest
 }) {
   return (
@@ -44,7 +44,7 @@ export default function MyModal({
             {header}
           </ModalHeader>
           <ModalCloseButton color={color} />
-          <ModalBody bgColor={bgGradient == null ? bgColor : "black"}>{content}</ModalBody>
+          <ModalBody bgColor={bgGradient == null ? bgColor : "black"}>{content}{children}</ModalBody>
           <ModalFooter
             bgColor={bgGradient == null ? bgColor : "transparent"}
             borderBottomRadius={20}

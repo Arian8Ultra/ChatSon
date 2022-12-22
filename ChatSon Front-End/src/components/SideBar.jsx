@@ -26,7 +26,7 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import useNewChatModalStore from "../stores/NewChatModalStore";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import UploadButton from "./UploadButton";
-
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 
 /* 
 
@@ -82,6 +82,7 @@ function SideBarMain() {
         <Toolbar />
         <List sx={{ mt: "-60px", mx: 0, px: 1 }}>
           <DrawerItem text='Home' icon={<HomeRoundedIcon />} link='Home' />
+          <DrawerItem text='Head To Head' icon={<PeopleAltRoundedIcon />} link='HeadToHead' />
           <DrawerItem text='My ChatSon' icon={<ChatRoundedIcon />} link='MyChatSon' />
           <DrawerItem text='Trendings' icon={<LocalFireDepartmentRoundedIcon />} link='Trendings' />
         </List>

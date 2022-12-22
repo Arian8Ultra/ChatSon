@@ -22,6 +22,7 @@
     "framer-motion": ">=4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.11",
     "react-router-dom": "6",
     "react-with-direction": "^1.4.0",
     "serve": "^14.1.2",

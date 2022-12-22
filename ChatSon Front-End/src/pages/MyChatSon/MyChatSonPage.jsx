@@ -21,11 +21,13 @@ import IButton from "../../components/IButton";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import ProfileCard from "../../components/ProfileCard";
 import usePageStore from "../../stores/PageStore";
+import { useNavigate } from "react-router-dom";
 
 export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
 
   const changePageName = usePageStore((state) => state.changePageName);
+  const navigate = useNavigate();
 
   useEffect(() => {
     changePageName('My ChatSon')
@@ -104,11 +106,10 @@ export default function MyChatSonPage() {
               <Divider sx={{ width: "100%", borderColor: primary, my: 1 }} />
 
               <Stack width={"100%"} spacing={1}>
-                <ProfileCard username={"Arian"} />
-                <ProfileCard username={"Hanieh"} />
-                <ProfileCard username={"Parinaz"} />
-                <ProfileCard username={"Nilofar"} />
-                <ProfileCard username={"Erfan"} />
+                <ProfileCard username={"Arian"} onClick={() => navigate(`/App/Profile/${'Arian'}`)} />
+                <ProfileCard username={"Hanieh"} onClick={() => navigate(`/App/Profile/${'Hanieh'}`)}/>
+                <ProfileCard username={"Parinaz"} onClick={() => navigate(`/App/Profile/${'Parinaz'}`)}/>
+                <ProfileCard username={"Nilofar"} onClick={() => navigate(`/App/Profile/${'Nilofar'}`)}/>
               </Stack>
             </Card>
           </Stack>

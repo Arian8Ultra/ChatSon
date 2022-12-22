@@ -36,6 +36,7 @@ import useSideBarStore from "../stores/SideBarStore";
 import BottomNavButton from "./BottomNavButton";
 import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState();
