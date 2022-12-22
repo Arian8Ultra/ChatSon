@@ -37,3 +37,8 @@ text{
   background: paleturquoise;
   border-radius: 20px;
 }
+
+::selection {
+  color: black;
+  background: #88ffff;
+}

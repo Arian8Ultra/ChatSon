@@ -17,6 +17,7 @@ function ProfileCard({ username, profileImage, onClick, backgroundColor,color })
         backgroundColor: backgroundColor!=null ? backgroundColor : GlassBackgroundDark,
         backdropFilter: "blur(5px)",
         border: 0,
+        cursor:'pointer'
       }}
       onClick={onClick}
     >
