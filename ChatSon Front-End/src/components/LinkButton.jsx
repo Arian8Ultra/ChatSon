@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Button, ThemeProvider } from "@mui/material";
+import { Button, ThemeProvider, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Center } from "@chakra-ui/react";
-import { primary, primaryDark, primaryLight } from "../../theme/Colors";
+import { primary, primaryDark, primaryGradient, primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton, borderRadiuosTextField, theme } from "../../theme/Themes";
 import { display } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
@@ -16,9 +16,9 @@ export default function LinkButton(props) {
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : {};
   const minWidth = props.minWidth != null ? props.minWidth : {};
-  const textColor = props.textColor != null ? props.textColor : "black";
+  const textColor = props.textColor != null ? props.textColor : "white";
   const backgroundColor = props.backgroundColor != null ? props.backgroundColor : primary;
-  const hoverColor = props.hoverColor != null ? props.hoverColor : primaryLight;
+  const hoverColor = props.hoverColor != null ? props.hoverColor : primary;
   const position = props.position != null ? props.position : {};
   const bottom = props.bottom != null ? props.bottom : {};
   const right = props.right != null ? props.right : {};
@@ -38,6 +38,7 @@ export default function LinkButton(props) {
   const display = props.display != null ? props.display : {};
   const loading = props.loading != null ? props.loading : false;
   const variant = props.variant != null ? props.variant : "contained";
+  const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
   function fn() {
     return props.fun();
@@ -70,6 +71,7 @@ export default function LinkButton(props) {
           "borderRadius": borderRadius,
           "color": textColor,
           "backgroundColor": variant == "text" || variant == "outlined" ? "" : backgroundColor,
+          "background": variant == "text" || variant == "outlined" ? "" : gradient,
           "fontSize": fontSize,
           "position": position,
           "bottom": bottom,
@@ -85,8 +87,10 @@ export default function LinkButton(props) {
           "padding": padding,
           "boxShadow": boxShadow,
           "display": display,
+          "fontWeight": 800,
           "&:hover": {
-            backgroundColor: hoverColor,
+            backgroundColor: variant == "text" || variant == "outlined" ? "" : hoverColor,
+            background: variant == "text" || variant == "outlined" ? "" : hoverColor,
             boxShadow: boxShadow,
           },
         }}
@@ -95,7 +99,17 @@ export default function LinkButton(props) {
         fullWidth={fullWidth}
         loading={loading}
       >
-        <Center height={"100%"}>{text}</Center>
+        <Center height={"100%"}>
+          <Typography
+            fontWeight={800}
+            sx={{
+              background: variant == "text" || variant == "outlined" ? gradient : '',
+              backgroundClip: variant == "text" || variant == "outlined" ? 'text' : ''
+            }}
+          >
+            {text}
+          </Typography>
+        </Center>
       </LoadingButton>
     </ThemeProvider>
   );

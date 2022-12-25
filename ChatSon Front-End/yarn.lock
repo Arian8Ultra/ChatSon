@@ -2742,7 +2742,7 @@ prop-types-exact@^1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2785,6 +2785,13 @@ rc@^1.0.1, rc@^1.1.6:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-chat-ui@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-chat-ui/-/react-chat-ui-0.4.0.tgz#4bdde4d7945ed3af04bd50e6c22b621fc246b7b5"
+  integrity sha512-bh6drhrV+rRpKXYlbF/aeBY3dtc9ZnbxRdLXFxUh+Q+6i6MbZ3SjDZAi/UmaOFkzaZ5xLzbTdAVkRSjA2r4JtA==
+  dependencies:
+    prop-types "^15.5.10"
 
 react-clientside-effect@^1.2.6:
   version "1.2.6"

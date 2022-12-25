@@ -9,7 +9,7 @@ import TextInputNormal from "./components/TextInputNormal";
 import MainFrame from "./pages/MainFrame";
 import useNewChatModalStore from "./stores/NewChatModalStore";
 import backgroundImage from "../Images/background.png";
-import backgroundAnimation from "../theme/backgroundAnimation.svg";
+import backgroundAnimation from "../theme/backgroundAnimationBP.svg";
 import { Box } from "@mui/system";
 import { Grid, ThemeProvider } from "@mui/material";
 import UploadButton from "./components/UploadButton";
@@ -48,9 +48,8 @@ function App() {
         padding={2}
         right={0}
         margin={2}
-        textColor={primary}
+        textColor={'white'}
         backgroundColor={GlassBackground}
-        hoverColor={GlassBackgroundDark}
         fun={() => changeModal()}
         icon={<AddCircleRoundedIcon />}
         display={{ xs: "none", sm: "flex" }}
@@ -109,7 +108,7 @@ function App() {
         }
         content={
           <Center width={'100%'} height={'100%'}>
-            <QRCode value={QRid}/>
+          <QRCode value={QRid} fgColor={primary} bgColor={GlassBackground}/>
           </Center>
         }
       />

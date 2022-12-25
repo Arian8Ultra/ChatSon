@@ -3,12 +3,17 @@ import { Stack, ThemeProvider } from "@mui/system";
 import React from "react";
 import TextInputNormal from "../../components/TextInputNormal";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { GlassBackground, GlassBackgroundDark, primary } from "../../../theme/Colors";
+import {
+  GlassBackground,
+  GlassBackgroundDark,
+  primary,
+  primaryGradient,
+} from "../../../theme/Colors";
 import { Center, Spacer } from "@chakra-ui/react";
 import LinkButton from "../../components/LinkButton";
 import { theme } from "../../../theme/Themes";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
-import ChatSonLogo from "../../../Images/ChatSonLogo.svg";
+import ChatSonLogo from "../../../Images/ChatSonLogoYP.svg";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 export default function SignInPage() {
@@ -67,14 +72,15 @@ export default function SignInPage() {
           <Center>
             <Avatar
               sx={{
-                background: primary,
+                background: "transparent",
                 width: "60px",
                 height: "60px",
+                border: 0,
               }}
               src={ChatSonLogo}
             ></Avatar>
           </Center>
-          <Typography textAlign={'center'} variant='h5' sx={{ textShadow: 1 }}>
+          <Typography textAlign={"center"} variant='h5' sx={{ textShadow: 1 }}>
             Sign In
           </Typography>
 
@@ -95,22 +101,22 @@ export default function SignInPage() {
           />
           <Divider />
           <Center>
-            <LinkButton text={"Sign In"} fun={handleSignIn} />
+            <LinkButton text={"Sign In"} fun={handleSignIn} gradient={primaryGradient} />
           </Center>
           <Center>
             <LinkButton
               text={"Anonymouse Sign In"}
               icon={<PersonOutlineRoundedIcon />}
               fun={handleAnonSignIn}
+              gradient={primaryGradient}
             />
           </Center>
           <Center>
             <LinkButton
               text={"Sign Up"}
               link={"SignUp"}
-              textColor={primary}
               hoverColor={GlassBackground}
-              variant={"outlined"}
+              variant={"text"}
             />
           </Center>
         </Stack>

@@ -158,6 +158,7 @@ export default function SignUpPage() {
           flexDirection: "column",
           alignItems: "center",
           my: 2,
+          px:4,
         }}
       >
         <Stack spacing={3} width='100%' justifyContent={"center"} justifyItems={"center"}>

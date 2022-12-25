@@ -26,6 +26,7 @@ import {
   GlassPrimaryLight,
   primary,
   primaryDark,
+  primaryGradient,
   primaryLight,
 } from "../../theme/Colors";
 import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
@@ -36,7 +37,7 @@ import useSideBarStore from "../stores/SideBarStore";
 import BottomNavButton from "./BottomNavButton";
 import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState();
@@ -105,7 +106,16 @@ export default function Navbar() {
 
               <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}>
                 <Center height={"100%"}>
-                  <Typography color={primaryLight} fontSize={"4vmin"} fontWeight={700}>
+                  <Typography
+                    color={primaryLight}
+                    fontSize={"4vmin"}
+                    fontWeight={700}
+                    sx={{
+                      background: primaryGradient,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     ChatSon
                   </Typography>
                 </Center>
@@ -116,7 +126,7 @@ export default function Navbar() {
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: -3 }}>
                     <LabelChipFill
                       text={"Arian" + " " + "Rezaei"}
-                      textColor='#242424'
+                      textColor='white'
                       backgroundColor={primaryLight}
                       minWidth='10vmax'
                       maxWidth='20vmax'
@@ -125,7 +135,7 @@ export default function Navbar() {
                     />
                     <LabelChipFillBig
                       text={"Arian" + " " + "Rezaei"}
-                      textColor='#242424'
+                      textColor='white'
                       backgroundColor={primaryLight}
                       minWidth='10vmax'
                       maxWidth='20vmax'

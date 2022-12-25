@@ -33,7 +33,7 @@ function TextInputNormal({
   borderRadius,
   ...rest
 }) {
-  const [sample,setSample]= React.useState()
+  const [sample,setSample]= React.useState('')
   const changeData = (data) => {
     setSample(... data)
     getText(data);

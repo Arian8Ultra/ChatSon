@@ -8,6 +8,7 @@ import {
   GlassBackgroundLight,
   primary,
   primaryDark,
+  primaryGradient,
   primaryLight,
 } from "../../theme/Colors";
 import { borderRadiuos, theme } from "../../theme/Themes";
@@ -61,7 +62,8 @@ export default function MainFrame() {
           <Stack>
             <Box
               sx={{
-                fontSize: "3vmin",
+                fontSize: "4vmin",
+                fontWeight:800,
                 color: primary,
                 my:1
               }}

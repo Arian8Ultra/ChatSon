@@ -107,9 +107,9 @@ export default function MyChatSonPage() {
 
               <Stack width={"100%"} spacing={1}>
                 <ProfileCard username={"Arian"} onClick={() => navigate(`/App/Profile/${'Arian'}`)} />
-                <ProfileCard username={"Hanieh"} onClick={() => navigate(`/App/Profile/${'Hanieh'}`)}/>
-                <ProfileCard username={"Parinaz"} onClick={() => navigate(`/App/Profile/${'Parinaz'}`)}/>
-                <ProfileCard username={"Nilofar"} onClick={() => navigate(`/App/Profile/${'Nilofar'}`)}/>
+                {/* <ProfileCard username={"Hanieh"} onClick={() => navigate(`/App/Profile/${'Hanieh'}`)}/> */}
+                {/* <ProfileCard username={"Parinaz"} onClick={() => navigate(`/App/Profile/${'Parinaz'}`)}/>
+                <ProfileCard username={"Nilofar"} onClick={() => navigate(`/App/Profile/${'Nilofar'}`)}/> */}
               </Stack>
             </Card>
           </Stack>

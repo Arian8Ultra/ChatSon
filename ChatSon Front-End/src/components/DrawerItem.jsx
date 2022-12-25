@@ -1,12 +1,11 @@
 import { Center } from "@chakra-ui/react";
 import { ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { primary, primaryDark, primaryLight } from "../../theme/Colors";
+import { primary, primaryDark, primaryGradient, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 
-export default function DrawerItem({text,icon,link,...rest}) {
-
+export default function DrawerItem({ text, icon, link, ...rest }) {
   const changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
 
@@ -19,17 +18,29 @@ export default function DrawerItem({text,icon,link,...rest}) {
     navigate(`${link}`);
   };
 
-  const backGround = () => {
+  const backgroundColor = () => {
     if (pageName == text) {
-      return primaryLight;
+      return primary;
+    }
+    return "";
+  };
+  const background = () => {
+    if (pageName == text) {
+      return primaryGradient;
     }
     return "";
   };
   const textColor = () => {
     if (pageName == text) {
-      return 'black';
+      return "white";
     }
     return primaryLight;
+  };
+  const textGradient = () => {
+    if (pageName == text) {
+      return "white";
+    }
+    return primaryGradient;
   };
 
   const hoverBackGround = () => {
@@ -61,11 +72,12 @@ export default function DrawerItem({text,icon,link,...rest}) {
           "borderTopLeftRadius": borderRadius,
           "borderBottomLeftRadius": borderRadius,
           "borderBottomRightRadius": borderRadius,
-          "backgroundColor": backGround,
+          "backgroundColor": backgroundColor,
           "borderLeft": borderLine,
           "borderBottom": borderLine,
           "borderTop": borderLine,
           "borderColor": primary,
+          "background": background,
           "&:hover": {
             backgroundColor: hoverBackGround,
           },
@@ -73,6 +85,7 @@ export default function DrawerItem({text,icon,link,...rest}) {
         onClick={handleClick}
       >
         <ListItemIcon
+        color={textGradient}
           sx={{
             color: textColor,
             minWidth: 0,
@@ -84,7 +97,16 @@ export default function DrawerItem({text,icon,link,...rest}) {
         </ListItemIcon>
         <ListItemText sx={{ color: textColor, textAlign: "center" }}>
           <Center height={"100%"}>
-            <Typography fontWeight={700} >{text}</Typography>
+            <Typography
+              fontWeight={800}
+              sx={{
+                background: textGradient,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              {text}
+            </Typography>
           </Center>
         </ListItemText>
       </ListItemButton>
@@ -104,7 +126,6 @@ export function DrawerItemRight(props) {
   const handleClick = () => {
     sessionStorage.setItem("pageName", text);
     if (props.text != null) {
-      
       document.title = text;
       changePageName(text);
     }
@@ -112,12 +133,13 @@ export function DrawerItemRight(props) {
     navigate(`${link}`);
   };
 
-  const backGround = () => {
+  const backgroundColor = () => {
     if (pageName == text) {
       return primaryLight;
     }
     return "";
   };
+
   const textColor = () => {
     if (pageName == text) {
       return primaryDark;
@@ -154,7 +176,7 @@ export function DrawerItemRight(props) {
           "borderTopLeftRadius": borderRadius,
           "borderBottomLeftRadius": borderRadius,
           "borderBottomRightRadius": borderRadius,
-          "backgroundColor": backGround,
+          "backgroundColor": backgroundColor,
           "borderLeft": borderLine,
           "borderBottom": borderLine,
           "borderTop": borderLine,

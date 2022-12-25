@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import { backgroundC, GlassBackgroundLight, primary, primaryDark } from "../../../theme/Colors";
 import { borderRadiuos, theme } from "../../../theme/Themes";
 import backgroundImage from "../../../Images/background.svg";
+import backgroundBPImage from "../../../theme/backgroundBluePink.svg";
 export default function LoginPage() {
   return (
     <ThemeProvider theme={theme}>
@@ -14,7 +15,7 @@ export default function LoginPage() {
           w={"100vmax"}
           h={"100vmin"}
           justifyItems={"center"}
-          backgroundImage={backgroundImage}
+          backgroundImage={backgroundBPImage}
           backgroundRepeat='no-repeat'
           backgroundSize={"cover"}
         >
