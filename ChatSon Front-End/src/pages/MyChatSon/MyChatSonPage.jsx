@@ -89,7 +89,7 @@ export default function MyChatSonPage() {
                 icon={<SettingsRoundedIcon />}
                 height={"100%"}
                 pageTitle={"Profile Settings"}
-                link={"/App/ProfileSettings"}
+                link={"/App/Profile Settings"}
               />
             </Card>
             <Card
@@ -211,7 +211,7 @@ export default function MyChatSonPage() {
                 icon={<SettingsRoundedIcon />}
                 height={"100%"}
                 pageTitle={"Profile Settings"}
-                link={"/App/ProfileSettings"}
+                link={"/App/Profile Settings"}
               />
             </Card>
           </Stack>

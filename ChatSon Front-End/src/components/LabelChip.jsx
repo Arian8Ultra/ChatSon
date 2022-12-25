@@ -2,7 +2,7 @@ import { Center } from "@chakra-ui/react";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
-import { Green, primary, primaryDark, primaryLight, Red } from "../../theme/Colors";
+import { Green, primary, primaryDark, primaryGradient, primaryLight, Red } from "../../theme/Colors";
 
 export function LabelChip(props) {
   const text = props.text != null ? props.text : "text";
@@ -24,6 +24,7 @@ export function LabelChip(props) {
   const value = props.value != null ? props.value : 0;
   const color = props.color != null ? props.color : "";
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
+  const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
   const handleProgressColor = () => {
     if (value == 100) {
@@ -43,7 +44,7 @@ export function LabelChip(props) {
         width: width,
         height: height,
         borderRadius: borderRadius,
-        backgroundColor: backgroundColor,
+        background: gradient,
         fontSize: fontSize,
         position: position,
         bottom: bottom,
@@ -88,6 +89,7 @@ export function LabelChipFill(props) {
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const icon = props.icon != null ? props.icon : "";
+  const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
   function fn() {
     return props.fun();
@@ -113,7 +115,7 @@ export function LabelChipFill(props) {
         height: height,
         borderRadius: borderRadius,
         color: textColor,
-        backgroundColor: backgroundColor,
+        background: gradient,
         fontSize: fontSize,
         position: position,
         bottom: bottom,

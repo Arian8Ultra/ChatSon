@@ -1,8 +1,11 @@
 import React from 'react'
+import CustomCard from '../../components/CustomCard'
 
 function ProfileSettings() {
   return (
-    <div>ProfileSettings</div>
+    <CustomCard>
+
+    </CustomCard>
   )
 }
 

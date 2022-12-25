@@ -83,7 +83,7 @@ export default function Navbar() {
             maxHeight: "70px",
             minHeight: "70px",
             top: "10px",
-            left: "2vmax",
+            left: "2.25vmax",
             width: "95vmax",
             borderRadius: borderRadiuos,
             backgroundColor: GlassBackgroundLight,

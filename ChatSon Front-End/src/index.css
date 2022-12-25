@@ -34,11 +34,11 @@ text{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: paleturquoise;
+  background: linear-gradient(to bottom, #fa3757,#fc842d);
   border-radius: 20px;
 }
 
 ::selection {
-  color: black;
-  background: #88ffff;
+  color: #fa3757;
+  background: #fc842d;
 }

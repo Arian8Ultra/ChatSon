@@ -4,7 +4,13 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { Box, Grid, IconButton, ThemeProvider, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
-import { GlassBackground, GlassPrimaryLight, primary, primaryDark } from "../../../theme/Colors.js";
+import {
+  GlassBackground,
+  GlassPrimary,
+  GlassPrimaryLight,
+  primary,
+  primaryDark,
+} from "../../../theme/Colors.js";
 import { borderRadiuos, borderRadiuosButton, theme } from "../../../theme/Themes.jsx";
 import { Message } from "../../Classes/Message.js";
 import CustomCard from "../../components/CustomCard.jsx";
@@ -17,10 +23,25 @@ import useModalStore from "../../stores/ModalStore.jsx";
 import ChatFeed from "../../components/ChatFeed.jsx";
 export default function HeadToHeadPage() {
   const [QRmodalOpen, setQRmodalOpen] = React.useState(false);
+  const [UserName, setUserName] = React.useState("");
   const openQRModal = useModalStore((state) => state.openQRmodal);
   const changeQRModal = useModalStore((state) => state.changeQRmodal);
-  const m1= new Message("Hello this is a test for head to head chat that we have added to this messenger","Arian","10:50","","My","")
-  const m2= new Message("Hello this is a test for head to head chat that we have added to this messenger","Arian","10:50","","","")
+  const m1 = new Message(
+    "Hello this is a test for head to head chat that we have added to this messenger",
+    "Arian",
+    "10:50",
+    "12/25/2022",
+    "My",
+    "",
+  );
+  const m2 = new Message(
+    "Hello this is a test for head to head chat that we have added to this messenger",
+    "Arian",
+    "10:50",
+    "12/25/2022",
+    "",
+    "",
+  );
   return (
     <ThemeProvider theme={theme}>
       <Stack>
@@ -46,21 +67,30 @@ export default function HeadToHeadPage() {
                 </Center>
                 <Box height={"61vmin"} sx={{ scrollBehavior: "inside", overflow: "auto" }}>
                   <Stack spacing={1} sx={{ borderRadius: borderRadiuos }}>
-                    <ProfileCard username={"Arian"} backgroundColor={GlassBackground} />
+                    <ProfileCard
+                      username={"Arian"}
+                      backgroundColor={GlassBackground}
+                      onClick={() => setUserName("Arian")}
+                    />
                     <ProfileCard
                       username={"Mohammad"}
                       color='red'
                       backgroundColor={GlassBackground}
+                      onClick={() => setUserName("Mohammad")}
                     />
                     <ProfileCard
                       username={"Ali"}
                       color='yellow'
                       backgroundColor={GlassBackground}
+                      onClick={()=>setUserName('Ali')}
+
                     />
                     <ProfileCard
                       username={"Reza"}
                       color='green'
                       backgroundColor={GlassBackground}
+                      onClick={()=>setUserName('Reza')}
+
                     />
                   </Stack>
                 </Box>
@@ -69,30 +99,15 @@ export default function HeadToHeadPage() {
           </Grid>
           <Grid item xs={"none"} lg={7} display={{ xs: "none", md: "flex" }}>
             <CustomCard>
-              {/* <Stack
-                spacing={1}
-                width={"100%"}
-                height={"59vmin"}
-                px={1}
-                sx={{ scrollBehavior: "inside", overflow: "auto" }}
-              >
-                <ChatBubble
-                  Text={
-                    "Hello this is a test for head to head chat that we have added to this messenger"
-                  }
-                  SenderName={"Arian"}
-                />
-              </Stack> */}
-
-              <ChatFeed Messages={[m1,m2,m2]}/>
+              {UserName!='' ? <ChatFeed Messages={[m1, m2, m2,m1,m1,m2,m1,m2]} Username={UserName} height='59vmin' /> : ''}
 
               <Box
                 width={"100%"}
                 sx={{
                   position: "absolute",
                   bottom: 0,
-                  px:2,
-                  py:1,
+                  px: 2,
+                  py: 1,
                   backgroundColor: GlassBackground,
                   right: 0,
                 }}
@@ -110,7 +125,7 @@ export default function HeadToHeadPage() {
                   <Center height={"100%"}>
                     <IButton
                       color={primary}
-                      backgroundColor={GlassPrimaryLight}
+                      backgroundColor={GlassBackground}
                       height='50px'
                       width={"50px"}
                       icon={<SendRoundedIcon sx={{ color: primaryDark }} />}
