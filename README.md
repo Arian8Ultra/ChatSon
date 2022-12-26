@@ -1,4 +1,5 @@
-![ChatSonLogo](https://user-images.githubusercontent.com/87231161/208843609-d1919d5b-3c4d-429c-8b48-fd02223d4d67.png)
+![ChatSonLogoYP](https://user-images.githubusercontent.com/87231161/209514095-ce6db553-98dd-4eb0-aae6-773104d18836.png)
+
 
 # ChatSon
 let's make something secure for everybody
