@@ -17,10 +17,8 @@ export function RSA_Key_Gen(privateKey, publicKey) {
   ).then((keyPair) => {
     console.log(keyPair.privateKey);
     console.log(keyPair.publicKey);
-    const exportedPrivateKey = crypto.subtle.exportKey('jwk',keyPair.privateKey)
-    const exportedPublicKey = crypto.subtle.exportKey('jwk',keyPair.privateKey)
-    privateKey(exportedPrivateKey);
-    publicKey(exportedPublicKey);
+    privateKey(crypto.subtle.exportKey('jwk',keyPair.privateKey));
+    publicKey(crypto.subtle.exportKey('jwk',keyPair.privateKey));
     return (keyPair.privateKey)
   }).catch((error) => {
     console.error(error);
