@@ -5,26 +5,22 @@ import { Box, Grid, IconButton, ThemeProvider, Typography } from "@mui/material"
 import { Stack } from "@mui/system";
 import React from "react";
 import {
-  GlassBackground,
-  GlassPrimary,
-  GlassPrimaryLight,
-  primary,
-  primaryDark,
+  GlassBackground, primary,
+  primaryDark
 } from "../../../theme/Colors.js";
 import { borderRadiuos, borderRadiuosButton, theme } from "../../../theme/Themes.jsx";
 import { Message } from "../../Classes/Message.js";
+import ChatFeed from "../../components/ChatFeed.jsx";
 import CustomCard from "../../components/CustomCard.jsx";
-import ChatBubble from "../../components/ChatBubble.jsx";
 import IButton from "../../components/IButton.jsx";
 import MyModal from "../../components/MyModal.jsx";
 import ProfileCard from "../../components/ProfileCard.jsx";
 import TextInputNormal from "../../components/TextInputNormal.jsx";
 import useModalStore from "../../stores/ModalStore.jsx";
-import ChatFeed from "../../components/ChatFeed.jsx";
+
 export default function HeadToHeadPage() {
   const [QRmodalOpen, setQRmodalOpen] = React.useState(false);
   const [UserName, setUserName] = React.useState("");
-  const openQRModal = useModalStore((state) => state.openQRmodal);
   const changeQRModal = useModalStore((state) => state.changeQRmodal);
   const m1 = new Message(
     "Hello this is a test for head to head chat that we have added to this messenger",

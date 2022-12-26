@@ -21,7 +21,6 @@ const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft:drawerWidth,
-      // marginRight: drawerWidth,
     }),
   }),
 );

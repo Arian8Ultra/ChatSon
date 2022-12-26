@@ -5,7 +5,7 @@ import { primary, primaryDark, primaryGradient, primaryLight } from "../../theme
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 
-export default function DrawerItem({ text, icon, link, ...rest }) {
+export default function DrawerItem({ text, icon, link }) {
   const changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
 
@@ -85,7 +85,7 @@ export default function DrawerItem({ text, icon, link, ...rest }) {
         onClick={handleClick}
       >
         <ListItemIcon
-        color={textGradient}
+          color={textGradient}
           sx={{
             color: textColor,
             minWidth: 0,

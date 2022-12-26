@@ -69,7 +69,6 @@ export default function Navbar() {
 
   let open = useSideBarStore((state) => state.open);
   const changeDrawer = useSideBarStore((state) => state.changeSideBar);
-  let openChatDrawer = useNewChatDrawerStore((state) => state.open);
   const changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
 
   return (

@@ -14,7 +14,7 @@ export default function ChatFeed({ Messages, height, Username, PersonColor }) {
       sx={{ scrollBehavior: "inside", overflow: "auto" }}
     >
       <Box width={"100%"}>
-        <ProfileCard username={Username} backgroundColor={GlassBackground} />
+        <ProfileCard username={Username} backgroundColor={GlassBackground} color={PersonColor} />
       </Box>
       {Messages.map((Message) => (
         <ChatBubble

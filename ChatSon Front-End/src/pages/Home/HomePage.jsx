@@ -12,11 +12,10 @@ import { useEffect } from "react";
 import usePageStore from "../../stores/PageStore";
 
 export default function HomePage() {
-  const openModal = useNewChatModalStore((state) => state.open);
-  const changeModal = useNewChatModalStore((state) => state.changeModal);
   const changePageName = usePageStore((state) => state.changePageName);
 
   useEffect(()=>{
+    // changing page name to Home
     changePageName('Home')
   },[])
   return (
@@ -32,14 +31,7 @@ export default function HomePage() {
           profileImage={Logo}
           official='chatSon'
         />
-        {/* <ChatCard
-          name={"Hanieh"}
-          date='3/5/1401'
-          time={"8:30"}
-          message='this is a test'
-          ChatImage={testImage}
-          official='news'
-        /> */}
+
         <ChatCard official='news' />
         <ChatCard official='danger' />
       </Stack>

@@ -1,45 +1,30 @@
-import FolderCopyRoundedIcon from "@mui/icons-material/FolderCopyRounded";
+import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import TableChartIcon from "@mui/icons-material/TableChart";
+import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
+import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
+import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import { Stack } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import { ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
+import { Box } from "@mui/system";
 import * as React from "react";
-import { borderRadiuos, borderRadiuosButton, theme } from "../../theme/Themes";
-import useSideBarStore from "../stores/SideBarStore";
-import DrawerItem, { DrawerItemBig, DrawerItemRight } from "./DrawerItem";
-import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
-import HistoryToggleOffRoundedIcon from "@mui/icons-material/HistoryToggleOffRounded";
-import { GlassBackground, GlassBackgroundLight, primary, primaryLight } from "../../theme/Colors";
-import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
-import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
-import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import { ClickAwayListener, Grid, Stack, SwipeableDrawer, Typography } from "@mui/material";
-import { Box, styled } from "@mui/system";
-import { grey } from "@mui/material/colors";
-import TextInputNormal from "./TextInputNormal";
-import LinkButton from "./LinkButton";
-import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
-import ImageRoundedIcon from '@mui/icons-material/ImageRounded';
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
-import useNewChatModalStore from "../stores/NewChatModalStore";
+import { GlassBackground, GlassBackgroundLight, primary } from "../../theme/Colors";
+import { borderRadiuos, theme } from "../../theme/Themes";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
+import useSideBarStore from "../stores/SideBarStore";
+import DrawerItem from "./DrawerItem";
+import LinkButton from "./LinkButton";
+import TextInputNormal from "./TextInputNormal";
 import UploadButton from "./UploadButton";
-import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-
-/* 
-
-Space For Me
-
- */
 
 function SideBarMain() {
   const drawerWidth = "13vmax";
   let open = useSideBarStore((state) => state.open);
   let openChatDrawer = useNewChatDrawerStore((state) => state.open);
   let changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
-  let changeSideBar = useSideBarStore((state) => state.changeSideBar);
 
   return (
     <ThemeProvider theme={theme}>
@@ -119,15 +104,15 @@ function SideBarMain() {
         BackdropProps={{
           sx: {
             display: { xs: "block", lg: "block" },
-            width:0,
-            height:0
+            width: 0,
+            height: 0,
           },
         }}
         ModalProps={{
           sx: {
             display: { xs: "block", lg: "block" },
-            width:0,
-            height:0
+            width: 0,
+            height: 0,
           },
         }}
         variant='temporary'

@@ -1,25 +1,18 @@
 import { Center, Image } from "@chakra-ui/react";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
+  Card, Grid,
   IconButton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
-import { borderColor } from "@mui/system";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { GlassBackgroundDark, primary, Red, Yellow } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
-import Logo from "../../Images/ChatSonLogo.svg";
-import DBtable from "../../Images/DBtable.png";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import { useNavigate } from "react-router-dom";
 
 export default function ChatCard({
   name,

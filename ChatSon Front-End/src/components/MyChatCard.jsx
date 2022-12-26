@@ -34,7 +34,6 @@ export default function MyChatCard({
   official,
   liked,
   likeNum,
-  ...rest
 }) {
   const borderColor = () => {
     switch (official) {

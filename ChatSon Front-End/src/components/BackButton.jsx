@@ -64,7 +64,6 @@ export default function BackButton(props) {
       disabled={disabled}
     >
         {text + " "} back
-      {/* <input type="file" hidden /> */}
     </Button>
   );
 }

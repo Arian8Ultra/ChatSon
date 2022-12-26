@@ -44,15 +44,10 @@ export default function ChatBubble({ Type, Text, Image, SenderName, Time, Date, 
         </Typography>
 
         <Box display={"flex"}>
-          <Typography
-            fontSize={"12px"}
-            textAlign={"start"}
-            mx={1}
-            sx={{ color: primaryLight }}
-          >
+          <Typography fontSize={"12px"} textAlign={"start"} mx={1} sx={{ color: primaryLight }}>
             {Date}
           </Typography>
-          <Typography fontSize={"12px"} textAlign={"start"} >
+          <Typography fontSize={"12px"} textAlign={"start"}>
             {Time}
           </Typography>
         </Box>
@@ -78,12 +73,7 @@ export default function ChatBubble({ Type, Text, Image, SenderName, Time, Date, 
         </Typography>
 
         <Box display={"flex"}>
-          <Typography
-            fontSize={"12px"}
-            textAlign={"start"}
-            mx={1}
-            sx={{ color: primaryLight }}
-          >
+          <Typography fontSize={"12px"} textAlign={"start"} mx={1} sx={{ color: primaryLight }}>
             {Date}
           </Typography>
           <Typography fontSize={"12px"} textAlign={"start"}>
