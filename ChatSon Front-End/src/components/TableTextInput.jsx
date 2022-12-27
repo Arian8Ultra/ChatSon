@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 function TableTextInput({id, label, type,idNum,autoComplete,disabled,fontSize,textColor,backgroundColor,hoverColor,position,bottom,right,top,left,margin,text,value,helperText,error,size, width, height,getText, ...rest }) {
   
   const changeData = (data) => {
+    // setting and pushing the new input to higher levels
     getText(data);
   };
   return (

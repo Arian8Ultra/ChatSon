@@ -85,7 +85,6 @@ export default function DrawerItem({ text, icon, link }) {
         onClick={handleClick}
       >
         <ListItemIcon
-          color={textGradient}
           sx={{
             color: textColor,
             minWidth: 0,
