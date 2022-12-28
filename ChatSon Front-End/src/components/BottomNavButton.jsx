@@ -2,7 +2,7 @@ import { Center } from "@chakra-ui/react";
 import { IconButton } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { GlassBackground, GlassBackgroundLight, GlassPrimary, primary } from "../../theme/Colors";
+import { GlassBackground, GlassBackgroundLight, GlassPrimary, primary, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
 
 function BottomNavButton({ name, link, func, icon, activeIcon, height, width, ...rest }) {
@@ -25,7 +25,7 @@ function BottomNavButton({ name, link, func, icon, activeIcon, height, width, ..
 
   const IconColor = () => {
     if (pageName == text && name != null) {
-      return primary;
+      return primaryLight;
     }
     return "white";
   };
