@@ -38,6 +38,7 @@ import BottomNavButton from "./BottomNavButton";
 import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
 import NavbarMenuButton from "./NavbarMenuButton";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
+import { AddCircleOutlineRounded, ChatOutlined, HomeOutlined, LocalFireDepartmentOutlined } from "@mui/icons-material";
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState();
@@ -176,6 +177,7 @@ export default function Navbar() {
         </AppBar>
       </Box>
 
+{/* Bottom Navbar for mobile and small screens */}
       <Box sx={{ display: { xs: "flex", sm: "none" } }}>
         <AppBar
           position='fixed'
@@ -198,7 +200,9 @@ export default function Navbar() {
                   <BottomNavButton
                     name={"Home"}
                     link={"Home"}
-                    icon={<HomeRoundedIcon sx={{ width: "90%", height: "35px" }} />}
+                    icon={<HomeOutlined sx={{ width: "90%", height: "35px" }} />}
+                    activeIcon={<HomeRoundedIcon sx={{ width: "90%", height: "35px" }} />}
+
                   />
                 </Center>
               </Grid>
@@ -207,7 +211,8 @@ export default function Navbar() {
                   <BottomNavButton
                     name={"My ChatSon"}
                     link={"MyChatSon"}
-                    icon={<ChatRoundedIcon sx={{ width: "90%", height: "35px" }} />}
+                    icon={<ChatOutlined sx={{ width: "90%", height: "35px" }} />}
+                    activeIcon={<ChatRoundedIcon sx={{ width: "90%", height: "35px" }} />}
                   />
                 </Center>
               </Grid>
@@ -219,7 +224,8 @@ export default function Navbar() {
                   <BottomNavButton
                     name={"Trendings"}
                     link={"Trendings"}
-                    icon={<LocalFireDepartmentRoundedIcon sx={{ width: "90%", height: "35px" }} />}
+                    icon={<LocalFireDepartmentOutlined sx={{ width: "90%", height: "35px" }} />}
+                    activeIcon={<LocalFireDepartmentRoundedIcon sx={{ width: "90%", height: "35px" }} />}
                   />
                 </Center>
               </Grid>
@@ -243,7 +249,7 @@ export default function Navbar() {
                   backdropFilter: "blur(9px)",
                 }}
               >
-                <AddCircleRoundedIcon sx={{ color: primary, width: "100%", height: "90px" }} />
+                <AddCircleOutlineRounded sx={{ color: 'white', width: "100%", height: "90px",background:primaryGradient, borderRadius:'60px' }} />
               </IconButton>
             </Center>
 

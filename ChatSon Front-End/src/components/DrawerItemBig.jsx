@@ -1,45 +1,40 @@
 import { Center } from "@chakra-ui/react";
 import { ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { primary, primaryGradient, primaryLight } from "../../theme/Colors";
+import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
+import useSideBarStore from "../stores/SideBarStore";
 
-export default function DrawerItem({ text, icon, link,activeIcon }) {
-  const changePageName = usePageStore((state) => state.changePageName);
+
+export function DrawerItemBig(props) {
+  const text = props.text;
+  const icon = props.icon;
+  const link = props.link;
+  const pageTitle = props.pageTitle != null ? props.pageTitle : "";
+  let open = useSideBarStore((state) => state.open);
+  let changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
 
   const navigate = useNavigate();
-
   const handleClick = () => {
-    document.title = text;
-    changePageName(text);
-    console.log(text);
+    if (props.text != null) {
+      document.title = text;
+      changePageName(text);
+    }
     navigate(`${link}`);
   };
 
-  const backgroundColor = () => {
+  const backGround = () => {
     if (pageName == text) {
-      return primary;
-    }
-    return "";
-  };
-  const background = () => {
-    if (pageName == text) {
-      return primaryGradient;
+      return primaryLight;
     }
     return "";
   };
   const textColor = () => {
     if (pageName == text) {
-      return "white";
+      return primaryDark;
     }
     return primaryLight;
-  };
-  const textGradient = () => {
-    if (pageName == text) {
-      return "white";
-    }
-    return primaryGradient;
   };
 
   const hoverBackGround = () => {
@@ -62,25 +57,20 @@ export default function DrawerItem({ text, icon, link,activeIcon }) {
     return 50;
   };
 
-  const handleActiveIcon=()=>{
-    
-  }
-
   return (
-    <ListItem key={text} disablePadding sx={{ my: 2 }}>
+    <ListItem key={text} disablePadding sx={{ my: 3 }}>
       <ListItemButton
         sx={{
-          "height": "5vmin",
+          "height": "10vmin",
           "borderTopRightRadius": borderRadius,
           "borderTopLeftRadius": borderRadius,
           "borderBottomLeftRadius": borderRadius,
           "borderBottomRightRadius": borderRadius,
-          "backgroundColor": backgroundColor,
+          "backgroundColor": backGround,
           "borderLeft": borderLine,
           "borderBottom": borderLine,
           "borderTop": borderLine,
           "borderColor": primary,
-          "background": background,
           "&:hover": {
             backgroundColor: hoverBackGround,
           },
@@ -95,20 +85,11 @@ export default function DrawerItem({ text, icon, link,activeIcon }) {
             justifyContent: "center",
           }}
         >
-          {pageName == text? activeIcon : icon}
+          {icon}
         </ListItemIcon>
-        <ListItemText sx={{ color: textColor, textAlign: "center" }}>
+        <ListItemText sx={{ color: textColor, textAlign: "center", fontSize: "3vmin" }}>
           <Center height={"100%"}>
-            <Typography
-              fontWeight={800}
-              sx={{
-                background: textGradient,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {text}
-            </Typography>
+            <Typography>{text}</Typography>
           </Center>
         </ListItemText>
       </ListItemButton>

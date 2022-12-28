@@ -1,45 +1,41 @@
-import { Center } from "@chakra-ui/react";
-import { ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { primary, primaryGradient, primaryLight } from "../../theme/Colors";
+import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
+import useSideBarStore from "../stores/SideBarStore";
 
-export default function DrawerItem({ text, icon, link,activeIcon }) {
-  const changePageName = usePageStore((state) => state.changePageName);
-  const pageName = usePageStore((state) => state.pageName);
+export function DrawerItemRight(props) {
+  const text = props.text;
+  const icon = props.icon;
+  const link = props.link;
+  const pageTitle = props.pageTitle != null ? props.pageTitle : "";
+  let open = useSideBarStore((state) => state.open);
+  let pageName = usePageStore((state) => state.pageName);
+  let changePageName = usePageStore((state) => state.changePageName);
 
   const navigate = useNavigate();
-
   const handleClick = () => {
-    document.title = text;
-    changePageName(text);
-    console.log(text);
+    sessionStorage.setItem("pageName", text);
+    if (props.text != null) {
+      document.title = text;
+      changePageName(text);
+    }
+
     navigate(`${link}`);
   };
 
   const backgroundColor = () => {
     if (pageName == text) {
-      return primary;
+      return primaryLight;
     }
     return "";
   };
-  const background = () => {
-    if (pageName == text) {
-      return primaryGradient;
-    }
-    return "";
-  };
+
   const textColor = () => {
     if (pageName == text) {
-      return "white";
+      return primaryDark;
     }
     return primaryLight;
-  };
-  const textGradient = () => {
-    if (pageName == text) {
-      return "white";
-    }
-    return primaryGradient;
   };
 
   const hoverBackGround = () => {
@@ -62,10 +58,6 @@ export default function DrawerItem({ text, icon, link,activeIcon }) {
     return 50;
   };
 
-  const handleActiveIcon=()=>{
-    
-  }
-
   return (
     <ListItem key={text} disablePadding sx={{ my: 2 }}>
       <ListItemButton
@@ -80,37 +72,24 @@ export default function DrawerItem({ text, icon, link,activeIcon }) {
           "borderBottom": borderLine,
           "borderTop": borderLine,
           "borderColor": primary,
-          "background": background,
           "&:hover": {
             backgroundColor: hoverBackGround,
           },
         }}
         onClick={handleClick}
       >
+        <ListItemText sx={{ color: textColor, textAlign: "center" }}>{text}</ListItemText>
+
         <ListItemIcon
           sx={{
             color: textColor,
-            minWidth: 0,
             mr: 2,
+            minWidth: 0,
             justifyContent: "center",
           }}
         >
-          {pageName == text? activeIcon : icon}
+          {icon}
         </ListItemIcon>
-        <ListItemText sx={{ color: textColor, textAlign: "center" }}>
-          <Center height={"100%"}>
-            <Typography
-              fontWeight={800}
-              sx={{
-                background: textGradient,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {text}
-            </Typography>
-          </Center>
-        </ListItemText>
       </ListItemButton>
     </ListItem>
   );

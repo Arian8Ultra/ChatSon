@@ -13,6 +13,7 @@ import {
 } from "../../theme/Colors";
 import { borderRadiuos, theme } from "../../theme/Themes";
 import Navbar from "../components/Navbar";
+import { NewChatDrawer } from "../components/NewChatDrawer";
 import PagesMainBox from "../components/PagesMainBox";
 import SideBarMain from "../components/SideBar";
 import usePageStore from "../stores/PageStore";
@@ -113,6 +114,7 @@ export default function MainFrame() {
         <CssBaseline />
         <Outlet />
       </Box>
+      <NewChatDrawer/>
     </ThemeProvider>
   );
 }

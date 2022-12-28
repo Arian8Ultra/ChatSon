@@ -16,6 +16,7 @@ import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import ChatSonLogo from "../../../Images/ChatSonLogoYP.svg";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
 export default function SignInPage() {
   const [Username, setUserName] = React.useState();
   const [Password, setPassword] = React.useState();
@@ -23,6 +24,7 @@ export default function SignInPage() {
   const [UsernameErrorHelperText, setUsernameErrorHelperText] = React.useState("");
   const [PasswordError, setPasswordError] = React.useState(false);
   const [PasswordErrorHelperText, setPasswordErrorHelperText] = React.useState("");
+
   const navigate = useNavigate();
 
   const handleSignIn = () => {
@@ -55,8 +57,9 @@ export default function SignInPage() {
       handleNavigate();
     }, 500);
   };
-
+  
   const handleNavigate = useCallback(() => navigate("/App/Home", { replace: true }), [navigate]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

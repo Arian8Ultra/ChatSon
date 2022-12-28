@@ -22,7 +22,7 @@ export function SignInUser(
         .request(options)
         .then(function (response) {
             console.warn(response);
-            AlertChange("سلام " + response.data.result.firstName);
+            AlertChange("Hello " + response.data.result.firstName);
             onSuccess != null ? onSuccess() : {};
             signIn(
                 response.data.result.firstName,

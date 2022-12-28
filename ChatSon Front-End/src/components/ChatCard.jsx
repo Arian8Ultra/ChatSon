@@ -115,7 +115,7 @@ export default function ChatCard({
                 </Center>
               </Box>
             </Center>
-            <Box sx={{ position: "absolute", bottom: 10, mt: "50px", left:10 }}>
+            <Box sx={{ position: "absolute", bottom: 10, mt: "50px", left:5 }}>
               <Center>
                 <IconButton onClick={() => SetLike(!Like)}>
                   <Center>

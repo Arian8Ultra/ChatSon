@@ -5,12 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { GlassBackground, GlassBackgroundLight, GlassPrimary, primary } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
 
-function BottomNavButton({ name, link, func, icon, height, width, ...rest }) {
+function BottomNavButton({ name, link, func, icon, activeIcon, height, width, ...rest }) {
   const changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
   const text = name;
   const navigate = useNavigate();
-
 
   const handleClick = () => {
     changePageName(text);
@@ -18,30 +17,24 @@ function BottomNavButton({ name, link, func, icon, height, width, ...rest }) {
     if (link != null) {
       navigate(`${link}`);
     }
-    if(func!=null){
-        func()
+    if (func != null) {
+      func();
     }
   };
 
 
   const IconColor = () => {
-    if (pageName == text && name!=null) {
+    if (pageName == text && name != null) {
       return primary;
     }
     return "white";
-  };
-  const BackgroundColor = () => {
-    if (pageName == text && name!=null) {
-      return GlassBackgroundLight;
-    }
-    return "transparent";
   };
 
 
   return (
     <Center height={"100%"}>
-      <IconButton onClick={handleClick} sx={{ color: IconColor , backgroundColor:BackgroundColor}}>
-        {icon}
+      <IconButton onClick={handleClick} sx={{ color: IconColor}}>
+        {pageName == text && name != null ? activeIcon : icon}
       </IconButton>
     </Center>
   );

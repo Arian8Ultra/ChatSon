@@ -38,7 +38,7 @@ export default function LoginPage() {
 
         <Box
           sx={{
-            backgroundImage: `url(${backgroundImage})`,
+            backgroundImage: `url(${backgroundBPImage})`,
             backgroundSize:'cover',
             backgroundRepeat:'no-repeat',
             backgroundAttachment:'fixed',
