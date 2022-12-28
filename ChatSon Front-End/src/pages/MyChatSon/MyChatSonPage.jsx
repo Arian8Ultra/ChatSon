@@ -13,6 +13,7 @@ import ProfileCard from "../../components/ProfileCard";
 import usePageStore from "../../stores/PageStore";
 import { useNavigate } from "react-router-dom";
 import ProfileInfoCard from "../../components/ProfileInfoCard";
+import ProfileInfoCardMobile from "../../components/ProfileInfoCardMobile";
 
 export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
@@ -110,7 +111,7 @@ export default function MyChatSonPage() {
       <Grid container sx={{ display: { xs: "flex", md: "none" } }} spacing={2}>
         <Grid item xs={12}>
           <Stack spacing={2}>
-            <ProfileInfoCard />
+            <ProfileInfoCardMobile />
           </Stack>
         </Grid>
         <Grid item xs={12}>
