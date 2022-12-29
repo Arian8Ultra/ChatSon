@@ -1,3 +1,4 @@
+// Description: This is a button component that can be used in the application. It can be used to navigate to a specific page or to perform a function.
 import { IconButton } from "@mui/material";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
@@ -35,10 +36,14 @@ export default function IButton({
   textColor,
   ...rest
 }) {
+  // getting the navigate function from react-router-dom
   const navigate = useNavigate();
+  // getting the page name from the page store
+  // and the function to change the page name
   const pageName = usePageStore((state) => state.pageName);
   const changePageName = usePageStore((state) => state.changePageName);
 
+  // function to handle the click event
   const handleClick = () => {
     if (fun != null) {
       fun();
@@ -53,7 +58,9 @@ export default function IButton({
     }
   };
 
+  
   return (
+    // returning the button component
     <IconButton
       sx={{
         "backgroundColor": backgroundColor != null ? backgroundColor : {},

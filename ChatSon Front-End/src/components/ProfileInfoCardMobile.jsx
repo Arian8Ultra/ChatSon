@@ -1,3 +1,4 @@
+// Description: This component is used to show profile information in mobile version that use the accordion component to show the profile information in a collapsible way
 import { Center } from "@chakra-ui/react";
 import {
   Accordion,

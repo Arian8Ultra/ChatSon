@@ -1,3 +1,4 @@
+// Description: This is a modal component that can be used to display any content in a modal window with a glass effect and a close button
 import {
   Modal,
   ModalOverlay,

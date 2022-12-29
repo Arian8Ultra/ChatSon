@@ -1,3 +1,5 @@
+// Description: This component is used to display the chat card in the chat page
+// importing the necessary components and hooks from react and material-ui
 import { Center, Image } from "@chakra-ui/react";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
@@ -29,6 +31,8 @@ export default function ChatCard({
   id,
   ...rest
 }) {
+
+  // function to change the color of the border
   const borderColor = () => {
     switch (official) {
       case "chatSon":
@@ -41,10 +45,14 @@ export default function ChatCard({
         return "rgba(255,255,255,0.03)";
     }
   };
+
+  // getting the navigate function from react-router-dom
   const navigate = useNavigate()
 
+  // function to handle the click event of like button
   const [Like, SetLike] = React.useState(liked != null ? liked : false);
 
+  // returning the card component
   return (
     <Card
       sx={{

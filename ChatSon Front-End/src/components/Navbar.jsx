@@ -1,3 +1,4 @@
+// Description: This file contains the Navbar component. This component is used to create a navbar with a glass effect and a menu button that opens a menu with a glass effect. The menu contains a list of links to other pages. The navbar also contains a button that opens a modal with a glass effect. The navbar is used in the App.jsx file.
 import { Center } from "@chakra-ui/react";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
@@ -36,12 +37,18 @@ import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import { BottomNav } from "./BottomNav";
 
 export default function Navbar() {
+  // create a state for the menu button
   const [anchorElUser, setAnchorElUser] = React.useState();
   const [anchorElUserB, setAnchorElUserB] = React.useState();
+  // getting the function to change the modal state from the store
   const changeModal = useNewChatModalStore((state) => state.changeModal);
+  // getting the navigate function from react-router-dom
   const navigate = useNavigate();
+  // getting the function to change the page name from the store
   let changePageName = usePageStore((state) => state.changePageName);
 
+
+  // function to handle the click event
   const handleClick = (link, text) => {
     if (text != null) {
       document.title = text;
@@ -49,7 +56,7 @@ export default function Navbar() {
     }
     navigate(`${link}`);
   };
-
+ // functions to handle the open menu event
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -63,10 +70,12 @@ export default function Navbar() {
     setAnchorElUserB(null);
   };
 
+  // getting the state of the sidebar from the store
   let open = useSideBarStore((state) => state.open);
   const changeDrawer = useSideBarStore((state) => state.changeSideBar);
   const changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
 
+  // return the navbar component
   return (
     <Box>
       <Box sx={{ display: { xs: "none", sm: "flex" } }}>

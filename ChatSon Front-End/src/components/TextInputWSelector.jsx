@@ -1,3 +1,4 @@
+// Description: This is a text input component that shrinks the label when the user clicks on the input field
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import { MenuItem } from "@mui/material";

@@ -1,3 +1,5 @@
+// Description: This component is used to display a label chip with a text and a background color
+
 import { Center } from "@chakra-ui/react";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -5,6 +7,7 @@ import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
 import { Green, primary, primaryDark, primaryGradient, primaryLight, Red } from "../../theme/Colors";
 
 export function LabelChip(props) {
+  // getting props from the parent component
   const text = props.text != null ? props.text : "text";
   const link = props.link != null ? props.link : "";
   const disabled = props.disabled != null ? props.disabled : false;
@@ -26,6 +29,7 @@ export function LabelChip(props) {
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
+  // function to handle the progress color
   const handleProgressColor = () => {
     if (value == 100) {
       return Green;
@@ -66,6 +70,7 @@ export function LabelChip(props) {
 }
 
 export function LabelChipFill(props) {
+  // getting props from the parent component
   const text = props.text != null ? props.text : "text";
   const link = props.link != null ? props.link : "";
   const disabled = props.disabled != null ? props.disabled : false;
@@ -91,11 +96,14 @@ export function LabelChipFill(props) {
   const icon = props.icon != null ? props.icon : "";
   const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
+  // function to handle the prop function
   function fn() {
     return props.fun();
   }
+  //getting the navigate function from react router dom
   const navigate = useNavigate();
 
+  // function to handle the click event
   const handleClick = () => {
     if (props.fun != null) {
       fn();
@@ -105,7 +113,9 @@ export function LabelChipFill(props) {
     }
   };
 
+  // return the component
   return (
+    // box component
     <Box
       variant='contained'
       minWidth={minWidth}

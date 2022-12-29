@@ -1,3 +1,5 @@
+// Description: This component is used to display a profile card with a profile image and username
+// importing the necessary components and hooks from react and material-ui
 import { Center } from "@chakra-ui/react";
 import { Avatar, Card, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
@@ -6,8 +8,7 @@ import { GlassBackgroundDark, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
 
 function ProfileCard({ username, profileImage, onClick, backgroundColor,color }) {
-  const navigate = useNavigate();
-
+  // returning the card component
   return (
     <Card
       sx={{

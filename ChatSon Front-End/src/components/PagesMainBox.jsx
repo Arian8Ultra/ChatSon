@@ -1,3 +1,5 @@
+// This component is used to create the main box of the page
+// importing the necessary components and hooks from react and material-ui
 import { styled } from "@mui/material/styles";
 import { memo } from "react";
 import useSideBarStore from "../stores/SideBarStore";
@@ -5,6 +7,7 @@ import useSideBarStore from "../stores/SideBarStore";
 const drawerWidth = "15vmax";
 const halfDrawerWidth = "10vmax";
 
+// creating the main box component with the styles and the props
 const MainBox = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open, dw }) => ({
     flexGrow: 1,

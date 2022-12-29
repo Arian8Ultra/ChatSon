@@ -1,3 +1,4 @@
+// Description: This component is used to show the chat card in the chat page or the chat list
 import { Center, Image } from "@chakra-ui/react";
 import {
   Avatar,
@@ -35,6 +36,8 @@ export default function MyChatCard({
   liked,
   likeNum,
 }) {
+
+  // function to change the color of the border according to the official prop
   const borderColor = () => {
     switch (official) {
       case "chatSon":
@@ -48,8 +51,7 @@ export default function MyChatCard({
     }
   };
 
-  const [Like, SetLike] = React.useState(liked != null ? liked : false);
-
+  // returning the card component
   return (
     <Card
       sx={{

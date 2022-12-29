@@ -1,3 +1,4 @@
+// Description: Upload Button Component that can be used to upload files to the server
 import BackupRoundedIcon from '@mui/icons-material/BackupRounded';
 import { LoadingButton } from '@mui/lab';
 import { Button, CircularProgress, Typography } from "@mui/material";

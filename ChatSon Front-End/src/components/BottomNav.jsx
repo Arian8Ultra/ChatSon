@@ -1,3 +1,5 @@
+// Description: This component is the bottom navigation bar for mobile devices
+// importing the necessary components and hooks from react and material-ui
 import { Center } from "@chakra-ui/react";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
@@ -15,13 +17,14 @@ import {
   HomeOutlined,
   LocalFireDepartmentOutlined,
 } from "@mui/icons-material";
-
+// exporting the BottomNav component
 export function BottomNav(
   handleOpenUserMenuB,
   changeChatDrawer,
   anchorElUserB,
   handleCloseUserMenuB,
 ) {
+  // returning the JSX for the component
   return (
     <Box sx={{ display: { xs: "flex", sm: "none" } }}>
       <AppBar

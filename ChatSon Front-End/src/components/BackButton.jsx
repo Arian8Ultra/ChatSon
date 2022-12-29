@@ -1,14 +1,11 @@
+// Description: This component is used to create a back button that will navigate to the previous page
+// importing the necessary components and hooks from react and material-ui
 import * as React from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {
-  primary,
-  primaryDark,
-  primaryGradient,
-  primaryLight
-} from "../../theme/Colors";
+import { primary, primaryDark, primaryGradient, primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton } from "../../theme/Themes";
-import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 
 export default function BackButton(props) {
   const text = props.text != null ? props.text : "";
@@ -17,7 +14,7 @@ export default function BackButton(props) {
   const fontSize = props.fontSize != null ? props.fontSize : 16;
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : {};
-  const textColor = props.textColor != null ? props.textColor : 'white';
+  const textColor = props.textColor != null ? props.textColor : "white";
   const backgroundColor = props.backgroundColor != null ? props.backgroundColor : primaryLight;
   const hoverColor = props.hoverColor != null ? props.hoverColor : primary;
   const position = props.position != null ? props.position : {};
@@ -31,38 +28,39 @@ export default function BackButton(props) {
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const gradient = props.gradient != null ? props.gradient : primaryGradient;
+  // getting the navigate function from react-router-dom
   const navigate = useNavigate();
 
+  // returning the button component
   return (
     <Button
       variant='contained'
       startIcon={icon}
       sx={{
-        width: width,
-        height: height,
-        borderRadius: borderRadius,
-        color: textColor,
-        backgroundColor: backgroundColor,
-        fontSize: fontSize,
-        position: position,
-        bottom: bottom,
-        left: left,
-        right: right,
-        top: top,
-        m: margin,
-        boxShadow:boxShadow,
-        background: gradient,
+        "width": width,
+        "height": height,
+        "borderRadius": borderRadius,
+        "color": textColor,
+        "backgroundColor": backgroundColor,
+        "fontSize": fontSize,
+        "position": position,
+        "bottom": bottom,
+        "left": left,
+        "right": right,
+        "top": top,
+        "m": margin,
+        "boxShadow": boxShadow,
+        "background": gradient,
         "&:hover": {
           backgroundColor: hoverColor,
           background: hoverColor,
-
         },
       }}
       onClick={() => navigate(-1)}
       fullWidth={fullWidth}
       disabled={disabled}
     >
-        {text + " "} back
+      {text + " "} back
     </Button>
   );
 }

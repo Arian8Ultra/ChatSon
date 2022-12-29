@@ -1,3 +1,5 @@
+// Description: This component is the new chat drawer that will be used to create new chats
+// importing the necessary components and hooks from react and material-ui
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { Stack } from "@mui/material";
@@ -13,6 +15,7 @@ import TextInputNormal from "./TextInputNormal";
 import UploadButton from "./UploadButton";
 
 export function NewChatDrawer() {
+  // getting the state and the actions from the store
   let openChatDrawer = useNewChatDrawerStore((state) => state.open);
   let changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
   return <Drawer

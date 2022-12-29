@@ -1,3 +1,4 @@
+// Description: This component is a label chip with a fill background and a big size. It can be used as a button or a label.
 import { Center } from "@chakra-ui/react";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";

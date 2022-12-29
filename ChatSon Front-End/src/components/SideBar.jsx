@@ -1,3 +1,4 @@
+// Description: This is the main component of the side bar. It contains the drawer and the new chat drawer.
 import { ChatOutlined, HomeOutlined, LocalFireDepartmentOutlined, PeopleAltOutlined } from "@mui/icons-material";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
@@ -16,6 +17,8 @@ import DrawerItem from "./DrawerItem";
 import { NewChatDrawer } from "./NewChatDrawer";
 
 function SideBarMain() {
+  // getting the state and the actions from the store
+  // defining the width of the drawer
   const drawerWidth = "13vmax";
   let open = useSideBarStore((state) => state.open);
 

@@ -1,10 +1,16 @@
+// Description: This file contains all the functions related to security
+// including encryption and decryption
 
+
+// aes encryption
 export function AES_Encryption(key, message) {
   return CryptoJS.AES.encrypt(message, key);
 }
+//aes decryption
 export function AES_Decryption(key, ciphertext) {
   return CryptoJS.AES.decrypt(ciphertext, key)
 }
+// aes key generation
 export async function AES_Key_Gen(key) {
 
 
@@ -22,6 +28,8 @@ export async function AES_Key_Gen(key) {
     console.error(error);
   })
 }
+
+//rsa key generation
 export async function RSA_Key_Gen(privateKey, publicKey) {
   crypto.subtle.generateKey(
     {
@@ -64,6 +72,36 @@ export async function Exported_RSA_Key_Gen(privateKey, publicKey) {
       console.error(e);
     })
     return (keyPair)
+  }).catch((error) => {
+    console.error(error);
+  })
+}
+
+//rsa encryption
+export async function RSA_Encryption(publicKey, message) {
+  crypto.subtle.encrypt(
+    {
+      name: "RSA-OAEP"
+    },
+    publicKey,
+    new TextEncoder().encode(message)
+  ).then((encrypted) => {
+    return encrypted
+  }).catch((error) => {
+    console.error(error);
+  })
+}
+
+//rsa decryption
+export async function RSA_Decryption(privateKey, ciphertext) {
+  crypto.subtle.decrypt(
+    {
+      name: "RSA-OAEP"
+    },
+    privateKey,
+    ciphertext
+  ).then((decrypted) => {
+    return decrypted
   }).catch((error) => {
     console.error(error);
   })

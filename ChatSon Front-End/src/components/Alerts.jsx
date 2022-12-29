@@ -1,3 +1,5 @@
+// This is the component that is used to display the alert messages
+// importing the necessary components and hooks from react and material-ui
 import { Alert, Snackbar, ThemeProvider } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
@@ -6,20 +8,23 @@ import useAlertStore from "../stores/AlertStore";
 import { borderRadiuosButton } from "../../theme/Themes";
 
 export default function NotificationA(props) {
+  // getting the necessary props from the parent component
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : "100%";
 
-
+  // getting the necessary functions from the alert store
   const openAlert = useAlertStore((state) => state.open);
   const textAlert = useAlertStore((state) => state.text);
   const AlertChange = useAlertStore((state) => state.changeAlert);
 
+  // creating the necessary states
   const openSnackRedux = openAlert;
   const SnackCodeRedux = textAlert;
   const [Text, setText] = React.useState("");
   const [Type, setType] = React.useState("info");
 
   const [count, setCount] = React.useState(0);
+  // creating the necessary functions
   const SnackSeverityRedux = () => {
     if (SnackCodeRedux == 200) {
       setType("success");
@@ -71,7 +76,6 @@ export default function NotificationA(props) {
       setText("");
     }
   };
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -79,24 +83,20 @@ export default function NotificationA(props) {
 
     setOpen(false);
   };
-
+// calling the necessary functions
   useEffect(() => {
     SnackText();
     SnackSeverityRedux();
   });
 
-  // useEffect(() => {
+// returning the alert component
   return (
     <ThemeProvider theme={theme}>
-      <Snackbar
-        open={openSnackRedux}
-        autoHideDuration={5000}
-        onClose={() => AlertChange("")}
-      >
+      <Snackbar open={openSnackRedux} autoHideDuration={5000} onClose={() => AlertChange("")}>
         <Alert
           onClose={() => AlertChange("")}
           severity={Type}
-          variant="standard"
+          variant='standard'
           sx={{
             width: width,
             height: height,

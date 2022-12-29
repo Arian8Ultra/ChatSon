@@ -1,3 +1,5 @@
+// Purpose: To display the profile information of the user
+// Description: This component is used to display the profile information of the user in the profile page of the user and the profile page of other users as well
 import { Center } from "@chakra-ui/react";
 import {
   Accordion,

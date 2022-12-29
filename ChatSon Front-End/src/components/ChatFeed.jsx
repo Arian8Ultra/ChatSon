@@ -1,3 +1,5 @@
+// This component is used to display the chat feed of the chat window
+// importing the necessary components and hooks from react and material-ui
 import { Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
@@ -6,6 +8,7 @@ import ChatBubble from "./ChatBubble.jsx";
 import ProfileCard from "./ProfileCard.jsx";
 
 export default function ChatFeed({ Messages, height, Username, PersonColor }) {
+  // returning the component
   return (
     <Stack
       spacing={1}

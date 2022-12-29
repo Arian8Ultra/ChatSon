@@ -1,3 +1,4 @@
+// This is a component for search input with autocomplete
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import { Autocomplete } from "@mui/material";

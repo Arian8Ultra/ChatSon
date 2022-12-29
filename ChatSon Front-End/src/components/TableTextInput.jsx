@@ -1,3 +1,5 @@
+// Purpose: This component is used to create a text input field for the table component
+// importing the necessary components and hooks from react and material-ui 
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 

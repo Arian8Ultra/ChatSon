@@ -1,3 +1,4 @@
+// Description: This is a button that links to another page and can be used to navigate to another page in the app or to an external link (like a website) or it can use to do functions like opening a dialog or a modal
 import * as React from "react";
 import { Button, ThemeProvider, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +9,8 @@ import { display } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 
 export default function LinkButton(props) {
+  // getting the props from the parent component
+
   const text = props.text != null ? props.text : "LinkButton";
   const link = props.link != null ? props.link : "";
   const pageTitle = props.pageTitle != null ? props.pageTitle : "";
@@ -40,11 +43,15 @@ export default function LinkButton(props) {
   const variant = props.variant != null ? props.variant : "contained";
   const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
+  // function to do the action of the button
   function fn() {
     return props.fun();
   }
+
+  // using the react router dom to navigate to another page
   const navigate = useNavigate();
 
+  // function to handle the click event
   const handleClick = () => {
     if (props.fun != null) {
       fn();
