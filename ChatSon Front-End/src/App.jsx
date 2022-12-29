@@ -36,6 +36,8 @@ function App() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          
         }}
       ></Box>
       <MainFrame />

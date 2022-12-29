@@ -15,6 +15,7 @@ import {
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  GlassBackground,
   GlassBackgroundLight,
   GlassPrimary,
   GlassPrimaryLight,
@@ -80,8 +81,9 @@ export default function Navbar() {
             left: "2.25vmax",
             width: "95vmax",
             borderRadius: borderRadiuos,
-            backgroundColor: GlassBackgroundLight,
+            backgroundColor: GlassBackground,
             backdropFilter: "blur(6px)",
+            elevation: 0,
           }}
         >
           <Container maxWidth=''>
