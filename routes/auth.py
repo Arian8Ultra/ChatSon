@@ -59,7 +59,10 @@ def signup(user: CreateUser = Body(...)):
     user_dict['password'] = hash_password(user_dict['password'])
 
     try:
-        response = connection.execute(User.insert().values(**user_dict))
+        # User has no insert method, so we need to use the execute method.
+        response = connection.execute(
+            User.insert().values(**user_dict))
+        
     except IntegrityError as e:
         str_error = str(e)
         if 'Duplicate entry' in str_error and 'users.email' in str_error:

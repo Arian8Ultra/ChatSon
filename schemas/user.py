@@ -18,26 +18,51 @@ class PasswordMixin(BaseModel):
                           max_length=255,
                           example='password',)
 
-
 class BaseUser(BaseModel):
-    first_name: str = Field(...,
-                            title='First name',
-                            min_length=2,
-                            max_length=50,
-                            example='John',)
+    username: str = Field(...,
+                          min_length=3,
+                          max_length=255,
+                          example='username',)
+    lastLogin: Optional[date] = None
 
-    last_name: str = Field(...,
-                           title='Last name',
-                           min_length=2,
-                           max_length=50,
-                           example='Doe',)
+class UserOut(IDMixin, TimestampMixin, BaseUser):
+    pass
 
-    email: EmailStr = Field(...,)
+class User(PasswordMixin, UserOut):
+    pass
+# anonymous user
 
-    birth_date: Optional[date] = Field(default=None,
-                                       title='Birth date',
-                                       example='2021-01-01',)
+class AnonymouseUserOut(IDMixin, TimestampMixin, BaseUser):
+    pass
 
+class NormalUserOut(IDMixin, TimestampMixin, BaseUser):
+    name: str = Field(...,
+                      min_length=3,
+                      max_length=255,
+                      example='name',)
+    surname: str = Field(...,
+                         min_length=3,
+                         max_length=255,
+                         example='surname',)
+    email: EmailStr = Field(...,
+                            # min_length=3,
+                            # max_length=255,
+                            example='email',)
+    phone: Optional[str] = Field(None,
+                                 min_length=3,
+                                 max_length=255,
+                                 example='phone',)
+    address: Optional[str] = Field(None,
+                                   min_length=3,
+                                   max_length=255,
+                                   example='address',)
+    accessLevel: int = Field(...,
+                             ge=0,
+                             le=2,
+                             example=0,)
+
+class NormalUser(PasswordMixin, NormalUserOut):
+    pass
 
 class UserOut(IDMixin, TimestampMixin, BaseUser):
     pass
