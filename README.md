@@ -5,6 +5,9 @@
 - token
 - username
 - lastLogin
+- chats --> relation
+- likes --> relation
+- followers --> relation
   
 2- anonymoseUser
 - id
