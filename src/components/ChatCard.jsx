@@ -1,21 +1,20 @@
+// Description: This component is used to display the chat card in the chat page
+// importing the necessary components and hooks from react and material-ui
 import { Center, Image } from "@chakra-ui/react";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
+  Card, Grid,
+  IconButton,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
-import { borderColor } from "@mui/system";
 import React from "react";
-import { primary, Red, Yellow } from "../../theme/Colors";
+import { useNavigate } from "react-router-dom";
+import { GlassBackgroundDark, primary, Red, Yellow } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
-import Logo from "../../Images/ChatSonLogo.svg";
-import DBtable from "../../Images/DBtable.png";
 
 export default function ChatCard({
   name,
@@ -27,9 +26,13 @@ export default function ChatCard({
   color,
   ChatImage,
   official,
-
+  liked,
+  likeNum,
+  id,
   ...rest
 }) {
+
+  // function to change the color of the border
   const borderColor = () => {
     switch (official) {
       case "chatSon":
@@ -43,38 +46,100 @@ export default function ChatCard({
     }
   };
 
+  // getting the navigate function from react-router-dom
+  const navigate = useNavigate()
+
+  // function to handle the click event of like button
+  const [Like, SetLike] = React.useState(liked != null ? liked : false);
+
+  // returning the card component
   return (
     <Card
       sx={{
         borderRadius: borderRadiuos,
         borderTop: 0,
         borderColor: borderColor(),
+        backgroundColor: GlassBackgroundDark,
+        backdropFilter: "blur(10px)",
       }}
     >
       <Grid container>
-        <Grid item xxs={2} xs={2} sm={1} sx={{borderRight: 3, borderColor: borderColor()}}>
+        <Grid item xxs={2} xs={2} sm={1} sx={{ borderRight: 3, borderColor: borderColor() }}>
+
+
           <Box
             p={2}
             height='100%'
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            <Center>
-              <Avatar src={profileImage != null ? profileImage : ""} />
-            </Center>
+            <Box sx={{ mb: "30px" }}>
+              <Center cursor={'pointer'} onClick={()=>navigate(`/App/Profile/${name}`)}>
+                <Avatar src={profileImage != null ? profileImage : ""} />
+              </Center>
+            </Box>
+            <Box sx={{ mb: "60px" }}>
+              <Center>
+                <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                <FavoriteRoundedIcon />
+              </Center>
+            </Box>
+            <Box sx={{ position: "absolute", bottom: 10,left:20, mt: "50px" }}>
+              <IconButton onClick={() => SetLike(!Like)}>
+                <Center>
+                  {Like ? (
+                    <FavoriteRoundedIcon
+                      sx={{ width: "35px", height: "35px", color: primary }}
+                    />
+                  ) : (
+                    <FavoriteBorderRoundedIcon
+                      sx={{ width: "35px", height: "35px" }}
+                    />
+                  )}
+                </Center>
+              </IconButton>{" "}
+            </Box>
           </Box>
+
           <Box
             p={2}
             height='100%'
             bgcolor='rgba(255,255,255,0.03)'
             sx={{ display: { xs: "block", sm: "none" } }}
           >
+            <Box>
+              <Center cursor={'pointer'} onClick={()=>navigate(`/App/Profile/${name}`)}>
+                <Avatar
+                  src={profileImage != null ? profileImage : ""}
+                  sx={{ width: "35px", height: "35px" }}
+                />
+              </Center>
+            </Box>
             <Center>
-              <Avatar
-                src={profileImage != null ? profileImage : ""}
-                sx={{ width: "35px", height: "35px" }}
-              />
+              <Box sx={{ mb: "50px",mt:'20px' }}>
+                <Center>
+                  <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                  <FavoriteRoundedIcon />
+                </Center>
+              </Box>
             </Center>
+            <Box sx={{ position: "absolute", bottom: 10, mt: "50px", left:10 }}>
+              <Center>
+                <IconButton onClick={() => SetLike(!Like)}>
+                  <Center>
+                    {Like ? (
+                      <FavoriteRoundedIcon
+                        sx={{ width: "35px", height: "35px", color: primary }}
+                      />
+                    ) : (
+                      <FavoriteBorderRoundedIcon
+                        sx={{ width: "35px", height: "35px" }}
+                      />
+                    )}
+                  </Center>
+                </IconButton>
+              </Center>
+            </Box>
           </Box>
         </Grid>
         <Grid item xxs={10} xs={10} sm={11}>
@@ -83,8 +148,8 @@ export default function ChatCard({
               <Grid container px={1}>
                 <Grid item xs={6} sm={6} md={6} lg={4} sx={{ display: "flex" }}>
                   <Box height={"100%"}>
-                    <Center height={"100%"} pl={15}>
-                      <Typography textAlign={"left"} sx={{ display: { xs: "none", sm: "flex" } }}>
+                    <Center height={"100%"} pl={15} onClick={()=>navigate(`/App/Profile/${name}`)} cursor={'pointer'}>
+                      <Typography textAlign={"left"} variant={'h5'} sx={{ display: { xs: "none", sm: "flex" } }}>
                         {name != null ? name : "Name"}
                       </Typography>
                       <Typography

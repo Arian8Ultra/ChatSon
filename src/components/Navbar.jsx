@@ -1,48 +1,62 @@
+// Description: This file contains the Navbar component. This component is used to create a navbar with a glass effect and a menu button that opens a menu with a glass effect. The menu contains a list of links to other pages. The navbar also contains a button that opens a modal with a glass effect. The navbar is used in the App.jsx file.
 import { Center } from "@chakra-ui/react";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Box,
   Container,
-  Grid,
   IconButton,
   Menu,
   Stack,
   Toolbar,
-  Typography
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { GlassBackground, primary, primaryLight } from "../../theme/Colors";
+import {
+  GlassBackground,
+  GlassBackgroundLight,
+  GlassPrimary,
+  GlassPrimaryLight,
+  primary,
+  primaryDark,
+  primaryGradient,
+  primaryLight,
+} from "../../theme/Colors";
 import { borderRadiuos, borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import useNewChatModalStore from "../stores/NewChatModalStore";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
-import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
+import { LabelChipFill } from "./LabelChip";
+import { LabelChipFillBig } from "./LabelChipFillBig";
 import NavbarMenuButton from "./NavbarMenuButton";
+import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
+import { BottomNav } from "./BottomNav";
 
 export default function Navbar() {
+  // create a state for the menu button
   const [anchorElUser, setAnchorElUser] = React.useState();
   const [anchorElUserB, setAnchorElUserB] = React.useState();
+  // getting the function to change the modal state from the store
   const changeModal = useNewChatModalStore((state) => state.changeModal);
+  // getting the navigate function from react-router-dom
   const navigate = useNavigate();
+  // getting the function to change the page name from the store
   let changePageName = usePageStore((state) => state.changePageName);
 
-  const handleClick = (link,text) => {
+
+  // function to handle the click event
+  const handleClick = (link, text) => {
     if (text != null) {
       document.title = text;
       changePageName(text);
     }
     navigate(`${link}`);
   };
-
+ // functions to handle the open menu event
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -56,11 +70,12 @@ export default function Navbar() {
     setAnchorElUserB(null);
   };
 
+  // getting the state of the sidebar from the store
   let open = useSideBarStore((state) => state.open);
   const changeDrawer = useSideBarStore((state) => state.changeSideBar);
-  let openChatDrawer = useNewChatDrawerStore((state) => state.open);
   const changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
 
+  // return the navbar component
   return (
     <Box>
       <Box sx={{ display: { xs: "none", sm: "flex" } }}>
@@ -71,6 +86,13 @@ export default function Navbar() {
             height: "70px",
             maxHeight: "70px",
             minHeight: "70px",
+            top: "10px",
+            left: "2.25vmax",
+            width: "95vmax",
+            borderRadius: borderRadiuos,
+            backgroundColor: GlassBackgroundLight,
+            backdropFilter: "blur(6px)",
+            elevation: 0,
           }}
         >
           <Container maxWidth=''>
@@ -89,7 +111,16 @@ export default function Navbar() {
 
               <Stack width={"100%"} direction={"row"} sx={{ flexGrow: 1, mx: 5 }}>
                 <Center height={"100%"}>
-                  <Typography color={primaryLight} fontSize={"4vmin"} fontWeight={700}>
+                  <Typography
+                    color={primaryLight}
+                    fontSize={"4vmin"}
+                    fontWeight={700}
+                    sx={{
+                      background: primaryGradient,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     ChatSon
                   </Typography>
                 </Center>
@@ -100,16 +131,7 @@ export default function Navbar() {
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: -3 }}>
                     <LabelChipFill
                       text={"Arian" + " " + "Rezaei"}
-                      textColor='#242424'
-                      backgroundColor={primaryLight}
-                      minWidth='10vmax'
-                      maxWidth='20vmax'
-                      borderRadius={borderRadiuosButton}
-                      boxShadow={0}
-                    />
-                    <LabelChipFillBig
-                      text={"Arian" + " " + "Rezaei"}
-                      textColor='#242424'
+                      textColor='white'
                       backgroundColor={primaryLight}
                       minWidth='10vmax'
                       maxWidth='20vmax'
@@ -120,7 +142,7 @@ export default function Navbar() {
                 </Center>
 
                 <Menu
-                  sx={{ mt: "50px", ml: "10px" }}
+                  sx={{ mt: "60px" }}
                   id='menu-appbar'
                   anchorEl={anchorElUser}
                   anchorOrigin={{
@@ -136,12 +158,13 @@ export default function Navbar() {
                   onClose={handleCloseUserMenu}
                   PaperProps={{
                     sx: {
-                      backgroundColor: primaryLight,
+                      backgroundColor: GlassBackgroundLight,
                       borderRadius: borderRadiuosMenu,
+                      backdropFilter: "blur(6px)",
                     },
                   }}
                 >
-                  <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
+                  <NavbarMenuButton name='Profile Settings' link='Profile Settings' />
                   <NavbarMenuButton name='Sign Out' link='/' />
                 </Menu>
               </Box>
@@ -150,95 +173,9 @@ export default function Navbar() {
         </AppBar>
       </Box>
 
-      <Box sx={{ display: { xs: "flex", sm: "none" } }}>
-        <AppBar
-          position='fixed'
-          color='primary'
-          sx={{
-            width: '90%',
-            left: (window.innerWidth * 1) / 20,
-            borderRadius: borderRadiuos,
-            backgroundColor: GlassBackground,
-            backdropFilter: "blur(6px)",
-            top: "auto",
-            bottom: 10,
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-          }}
-        >
-            <Toolbar disableGutters>
-              <Grid container my={0} mx={0} >
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={()=>handleClick('Home','Home')}>
-                      <HomeRoundedIcon sx={{ color: 'white', width:  "90%", height: "35px" }} />
-                    </IconButton>
-                  </Center>
-                </Grid>
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={()=>handleClick('MyChats','My Chats')}>
-                      <ChatRoundedIcon sx={{ color: 'white', width: "90%", height: "35px" }} />
-                    </IconButton>
-                  </Center>
-                </Grid>
-
-                <Grid item xs={3} ></Grid>
-
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={changeDrawer}>
-                      <LocalFireDepartmentRoundedIcon
-                        sx={{ color: 'white', width:  "90%", height: "35px" }}
-                      />
-                    </IconButton>
-                  </Center>
-                </Grid>
-                <Grid item xs={2.25}>
-                  <Center height={"100%"}>
-                    <IconButton onClick={(handleOpenUserMenuB)} >
-                      <AccountCircleRoundedIcon
-                        sx={{ color: 'white', width: "90%", height: "35px" }}
-                      />
-                    </IconButton>
-                  </Center>
-                </Grid>
-              </Grid>
-
-              <Center position={'fixed'} width={'100%'} left={0}height={0}>
-                <IconButton onClick={changeChatDrawer}>
-                  <AddCircleRoundedIcon
-                    sx={{ color: primary , width: "100%",height:'90px'
-                    }}
-                  />
-                </IconButton>
-              </Center>
-
-              <Menu
-                anchorEl={anchorElUserB}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "center",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                open={Boolean(anchorElUserB)}
-                onClose={handleCloseUserMenuB}
-                PaperProps={{
-                  sx: {
-                    backgroundColor: primaryLight,
-                    borderRadius: borderRadiuosMenu,
-                  },
-                }}
-              >
-                <NavbarMenuButton name='Profile' link='Profile' width='8.5vmax' />
-                <NavbarMenuButton name='Sign Out' link='/' />
-              </Menu>
-            </Toolbar>
-        </AppBar>
-      </Box>
+      {/* Bottom Navbar for mobile and small screens */}
+      {BottomNav(handleOpenUserMenuB, changeChatDrawer, anchorElUserB, handleCloseUserMenuB)}
     </Box>
   );
 }
+

@@ -1,13 +1,16 @@
+// Description: This is a button that links to another page and can be used to navigate to another page in the app or to an external link (like a website) or it can use to do functions like opening a dialog or a modal
 import * as React from "react";
-import { Button, ThemeProvider } from "@mui/material";
+import { Button, ThemeProvider, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Center } from "@chakra-ui/react";
-import { primary, primaryDark, primaryLight } from "../../theme/Colors";
-import { borderRadiuosTextField, theme } from "../../theme/Themes";
+import { primary, primaryDark, primaryGradient, primaryLight } from "../../theme/Colors";
+import { borderRadiuosButton, borderRadiuosTextField, theme } from "../../theme/Themes";
 import { display } from "@mui/system";
 import { LoadingButton } from "@mui/lab";
 
 export default function LinkButton(props) {
+  // getting the props from the parent component
+
   const text = props.text != null ? props.text : "LinkButton";
   const link = props.link != null ? props.link : "";
   const pageTitle = props.pageTitle != null ? props.pageTitle : "";
@@ -16,9 +19,9 @@ export default function LinkButton(props) {
   const height = props.height != null ? props.height : {};
   const width = props.width != null ? props.width : {};
   const minWidth = props.minWidth != null ? props.minWidth : {};
-  const textColor = props.textColor != null ? props.textColor : "black";
+  const textColor = props.textColor != null ? props.textColor : "white";
   const backgroundColor = props.backgroundColor != null ? props.backgroundColor : primary;
-  const hoverColor = props.hoverColor != null ? props.hoverColor : primaryLight;
+  const hoverColor = props.hoverColor != null ? props.hoverColor : primary;
   const position = props.position != null ? props.position : {};
   const bottom = props.bottom != null ? props.bottom : {};
   const right = props.right != null ? props.right : {};
@@ -33,16 +36,22 @@ export default function LinkButton(props) {
   const fullWidth = props.fullWidth != null ? props.fullWidth : false;
   const icon = props.icon != null ? props.icon : "";
   const Endicon = props.Endicon != null ? props.Endicon : "";
-  const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosTextField;
+  const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const display = props.display != null ? props.display : {};
   const loading = props.loading != null ? props.loading : false;
+  const variant = props.variant != null ? props.variant : "contained";
+  const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
+  // function to do the action of the button
   function fn() {
     return props.fun();
   }
+
+  // using the react router dom to navigate to another page
   const navigate = useNavigate();
 
+  // function to handle the click event
   const handleClick = () => {
     if (props.fun != null) {
       fn();
@@ -59,7 +68,7 @@ export default function LinkButton(props) {
   return (
     <ThemeProvider theme={theme}>
       <LoadingButton
-        variant='contained'
+        variant={variant}
         type={props.type}
         startIcon={icon}
         endIcon={Endicon}
@@ -68,7 +77,8 @@ export default function LinkButton(props) {
           "height": height,
           "borderRadius": borderRadius,
           "color": textColor,
-          "backgroundColor": backgroundColor,
+          "backgroundColor": variant == "text" || variant == "outlined" ? "" : backgroundColor,
+          "background": variant == "text" || variant == "outlined" ? "" : gradient,
           "fontSize": fontSize,
           "position": position,
           "bottom": bottom,
@@ -84,8 +94,10 @@ export default function LinkButton(props) {
           "padding": padding,
           "boxShadow": boxShadow,
           "display": display,
+          "fontWeight": 800,
           "&:hover": {
-            backgroundColor: hoverColor,
+            backgroundColor: variant == "text" || variant == "outlined" ? "" : hoverColor,
+            background: variant == "text" || variant == "outlined" ? "" : hoverColor,
             boxShadow: boxShadow,
           },
         }}
@@ -94,7 +106,17 @@ export default function LinkButton(props) {
         fullWidth={fullWidth}
         loading={loading}
       >
-        <Center height={"100%"}>{text}</Center>
+        <Center height={"100%"}>
+          <Typography
+            fontWeight={800}
+            sx={{
+              background: variant == "text" || variant == "outlined" ? gradient : '',
+              backgroundClip: variant == "text" || variant == "outlined" ? 'text' : ''
+            }}
+          >
+            {text}
+          </Typography>
+        </Center>
       </LoadingButton>
     </ThemeProvider>
   );

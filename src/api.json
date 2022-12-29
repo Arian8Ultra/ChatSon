@@ -1,0 +1,628 @@
+{
+  "openapi": "3.0.2",
+  "info": { "title": "FastAPI", "version": "0.1.0" },
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["Auth", "Users"],
+        "summary": "Sign up",
+        "description": "Sign up route.\n\nThis path operation registers a new user in the app.\n\nParameters:\n- Request body parameters:\n    - user: **UserRegister**\n\nReturns a json object with the information of the registered user and its credentials.\n- user: **UserOut**\n- access_token: **str**\n- access_token_expiration: **int**\n- refresh_token: **str**\n- refresh_token_expiration: **int**",
+        "operationId": "signup_auth_signup_post",
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/CreateUser" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/LoginReponse" } }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth", "Users"],
+        "summary": "Login",
+        "description": "Login route.\n\nThis operation path allows a user to login in the app.\n\nParameters:\n- Request body parameters:    - user: **LoginRequest**\n\nReturns a json object with the information of the logged user.\n- user: **UserOut**\n- access_token: **str**\n- access_token_expiration: **int**\n- refresh_token: **str**\n- refresh_token_expiration: **int**",
+        "operationId": "login_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/LoginRequest" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/LoginReponse" } }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": ["Auth", "Users"],
+        "summary": "Refresh token",
+        "description": "Refresh token route.\n\nThis operation path allows a user to refresh the access token.\n\nParameters:\n- Request body parameters:\n    - refresh_token: **BaseJWTRefreshToken**\n\nReturns a json object with the new access token information.\n- access_token: **str**\n- access_token_expiration: **int**",
+        "operationId": "refresh_token_auth_refresh_post",
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/BaseJWTRefreshToken" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/JWTAccessToken" } }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/users/": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "description": "List all users.\n\nThis path operation shows all users in the app.\n\nReturns a json object with the information of all users.\n- id: **int**\n- first_name: **str**\n- last_name: **str**\n- email: **EmailStr**\n- created_at: **datetime**\n- updated_at: **datetime**",
+        "operationId": "list_users_users_users__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Users Users Users  Get",
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/UserOut" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/users/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get a user",
+        "description": "Retrieve user.\n\nThis path operation allows to get the information of a specific user.\n\nParameters:\n- Path parameters:\n    - id: **int**\n\nReturns a json object with the information of the user.\n- id: **int**\n- first_name: **str**\n- last_name: **str**\n- email: **EmailStr**\n- created_at: **datetime**\n- updated_at: **datetime**",
+        "operationId": "retrieve_user_users_users__id__get",
+        "parameters": [
+          {
+            "description": "ID of the user to retrieve",
+            "required": true,
+            "schema": {
+              "title": "User ID",
+              "exclusiveMinimum": 0.0,
+              "type": "integer",
+              "description": "ID of the user to retrieve"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/UserOut" } }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update user",
+        "description": "Update user.\n\nThis operation path updates the information of a specific user.\n\nUsers can only update their own information.\n\nParameters:\n- Path parameters:\n    - id: **str**\n\n- Body parameters:\n    - user: **CreateUser**\n\nReturns the information of the updated user.\n- id: **int**\n- first_name: **str**\n- last_name: **str**\n- email: **EmailStr**\n- created_at: **datetime**\n- updated_at: **datetime**",
+        "operationId": "update_user_users_users__id__put",
+        "parameters": [
+          {
+            "description": "ID of the user to update",
+            "required": true,
+            "schema": {
+              "title": "User ID",
+              "exclusiveMinimum": 0.0,
+              "type": "integer",
+              "description": "ID of the user to update"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/CreateUser" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/UserOut" } }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "JWTBearer": [] }]
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete user",
+        "description": "Delete user.\n\nThis path operation deletes a specific user in the app.\n\nUsers can only delete their own information.\n\nParameters:\n- Path parameters:\n    - id: **str**",
+        "operationId": "delete_user_users_users__id__delete",
+        "parameters": [
+          {
+            "description": "ID of the user to delete",
+            "required": true,
+            "schema": {
+              "title": "User ID",
+              "exclusiveMinimum": 0.0,
+              "type": "integer",
+              "description": "ID of the user to delete"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "JWTBearer": [] }]
+      }
+    },
+    "/tweets/": {
+      "get": {
+        "tags": ["Tweets"],
+        "summary": "Get all tweets",
+        "description": "List tweets.\n\nThis operation path shows all tweets in the app.\n\nReturns a json with the basic tweet information:\n- id: **int**\n- content: **str**\n- user: **UserOut**\n- created_at: **datetime**\n- updated_at: **datetime**",
+        "operationId": "list_tweets_tweets__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Response List Tweets Tweets  Get",
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/TweetWithRelations" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Tweets"],
+        "summary": "Create a new tweet",
+        "description": "Creates a tweet.\n\nThis path operation creates a new tweet in the app.\n\nParameters:\n- Request body parameters:\n    - tweet: **BaseTweet**\n\nReturns a json with the basic tweet information:\n- id: **int**\n- content: **str**\n- created_at: **datetime**\n- updated_at: **datetime**\n- user_id: **int**",
+        "operationId": "create_tweet_tweets__post",
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/BaseTweet" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Tweet" } }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "JWTBearer": [] }]
+      }
+    },
+    "/tweets/{id}": {
+      "get": {
+        "tags": ["Tweets"],
+        "summary": "Get a tweet",
+        "description": "Retreive tweet.\n\nParameters:\n- Path parameters:\n    - id: **str**\n\nReturns a json with the tweet information:\n- id: **int**\n- content: **str**\n- user: **UserOut**\n- created_at: **datetime**\n- updated_at: **datetime**",
+        "operationId": "retrieve_tweet_tweets__id__get",
+        "parameters": [
+          {
+            "description": "The ID of the tweet to retrieve",
+            "required": true,
+            "schema": {
+              "title": "Tweet ID",
+              "type": "integer",
+              "description": "The ID of the tweet to retrieve"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TweetWithRelations" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Tweets"],
+        "summary": "Update tweet",
+        "description": "Update tweet.\n\nThis path operation allows to update the content of a tweet.\n\nOnly the tweet owner can update the tweet.\n\nParameters:\n- Request body parameters:\n    - tweet: **BaseTweet**\n\nReturns a json with the updated tweet information:\n- id: **int**\n- content: **str**\n- created_at: **datetime**\n- updated_at: **Optional[datetime]**\n- user: **UserOut**",
+        "operationId": "update_tweet_tweets__id__put",
+        "parameters": [
+          {
+            "description": "The ID of the tweet to update",
+            "required": true,
+            "schema": {
+              "title": "Tweet ID",
+              "type": "string",
+              "description": "The ID of the tweet to update"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/BaseTweet" } }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TweetWithRelations" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "JWTBearer": [] }]
+      },
+      "delete": {
+        "tags": ["Tweets"],
+        "summary": "Delete tweet",
+        "description": "Delete tweet.\n\nThis path operation deletes a tweet in the app.\n\nOnly the tweet owner can delete the tweet.\n\nParameters:\n- Request body parameters:\n    - tweet: **BaseTweet**",
+        "operationId": "delete_tweet_tweets__id__delete",
+        "parameters": [
+          {
+            "description": "The ID of the tweet to delete",
+            "required": true,
+            "schema": {
+              "title": "Tweet ID",
+              "exclusiveMinimum": 0.0,
+              "type": "integer",
+              "description": "The ID of the tweet to delete"
+            },
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        },
+        "security": [{ "JWTBearer": [] }]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseJWTRefreshToken": {
+        "title": "BaseJWTRefreshToken",
+        "required": ["refresh_token"],
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "title": "Refresh Token",
+            "minLength": 8,
+            "type": "string",
+            "example": "refresh_token"
+          }
+        }
+      },
+      "BaseTweet": {
+        "title": "BaseTweet",
+        "required": ["content"],
+        "type": "object",
+        "properties": {
+          "content": { "title": "Content", "maxLength": 256, "minLength": 1, "type": "string" }
+        }
+      },
+      "CreateUser": {
+        "title": "CreateUser",
+        "required": ["username", "password"],
+        "type": "object",
+        "properties": {
+          "username": {
+            "title": "Username",
+            "maxLength": 255,
+            "minLength": 3,
+            "type": "string",
+            "example": "username"
+          },
+          "lastLogin": { "title": "Lastlogin", "type": "string", "format": "date" },
+          "password": {
+            "title": "Password",
+            "maxLength": 255,
+            "minLength": 8,
+            "type": "string",
+            "example": "password"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ValidationError" }
+          }
+        }
+      },
+      "JWTAccessToken": {
+        "title": "JWTAccessToken",
+        "required": ["access_token", "access_token_expiration"],
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "title": "Access Token",
+            "minLength": 8,
+            "type": "string",
+            "example": "access_token"
+          },
+          "access_token_expiration": {
+            "title": "Access Token Expiration",
+            "exclusiveMinimum": 0.0,
+            "type": "integer",
+            "description": "Access token expiration in seconds",
+            "example": 60
+          }
+        }
+      },
+      "LoginReponse": {
+        "title": "LoginReponse",
+        "required": [
+          "refresh_token",
+          "refresh_token_expiration",
+          "access_token",
+          "access_token_expiration",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "title": "Refresh Token",
+            "minLength": 8,
+            "type": "string",
+            "example": "refresh_token"
+          },
+          "refresh_token_expiration": {
+            "title": "Refresh Token Expiration",
+            "exclusiveMinimum": 0.0,
+            "type": "integer",
+            "description": "Refresh token expiration in seconds",
+            "example": 60
+          },
+          "access_token": {
+            "title": "Access Token",
+            "minLength": 8,
+            "type": "string",
+            "example": "access_token"
+          },
+          "access_token_expiration": {
+            "title": "Access Token Expiration",
+            "exclusiveMinimum": 0.0,
+            "type": "integer",
+            "description": "Access token expiration in seconds",
+            "example": 60
+          },
+          "user": { "$ref": "#/components/schemas/UserOut" }
+        }
+      },
+      "LoginRequest": {
+        "title": "LoginRequest",
+        "required": ["email", "password"],
+        "type": "object",
+        "properties": {
+          "email": { "title": "Email", "type": "string", "format": "email" },
+          "password": {
+            "title": "Password",
+            "maxLength": 255,
+            "minLength": 8,
+            "type": "string",
+            "example": "password"
+          }
+        }
+      },
+      "Tweet": {
+        "title": "Tweet",
+        "required": ["content", "id", "user_id"],
+        "type": "object",
+        "properties": {
+          "content": { "title": "Content", "maxLength": 256, "minLength": 1, "type": "string" },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "description": "The time the document was created.",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "description": "The time the document was last updated.",
+            "format": "date-time"
+          },
+          "id": { "title": "Id", "type": "integer", "description": "Unique ID of the document." },
+          "user_id": {
+            "title": "User who created the tweet",
+            "minimum": 1.0,
+            "type": "integer",
+            "example": 1
+          }
+        },
+        "description": "ID Model Mixin.\n\nThis mixin is used to add a unique ID field to a model."
+      },
+      "TweetWithRelations": {
+        "title": "TweetWithRelations",
+        "required": ["content", "id", "user"],
+        "type": "object",
+        "properties": {
+          "content": { "title": "Content", "maxLength": 256, "minLength": 1, "type": "string" },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "description": "The time the document was created.",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "description": "The time the document was last updated.",
+            "format": "date-time"
+          },
+          "id": { "title": "Id", "type": "integer", "description": "Unique ID of the document." },
+          "user": {
+            "title": "User who created the tweet",
+            "allOf": [{ "$ref": "#/components/schemas/UserOut" }]
+          }
+        },
+        "description": "ID Model Mixin.\n\nThis mixin is used to add a unique ID field to a model."
+      },
+      "UserOut": {
+        "title": "UserOut",
+        "required": ["username", "id"],
+        "type": "object",
+        "properties": {
+          "username": {
+            "title": "Username",
+            "maxLength": 255,
+            "minLength": 3,
+            "type": "string",
+            "example": "username"
+          },
+          "lastLogin": { "title": "Lastlogin", "type": "string", "format": "date" },
+          "created_at": {
+            "title": "Created At",
+            "type": "string",
+            "description": "The time the document was created.",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string",
+            "description": "The time the document was last updated.",
+            "format": "date-time"
+          },
+          "id": { "title": "Id", "type": "integer", "description": "Unique ID of the document." }
+        },
+        "description": "ID Model Mixin.\n\nThis mixin is used to add a unique ID field to a model."
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] }
+          },
+          "msg": { "title": "Message", "type": "string" },
+          "type": { "title": "Error Type", "type": "string" }
+        }
+      }
+    },
+    "securitySchemes": { "JWTBearer": { "type": "http", "scheme": "bearer" } }
+  }
+}

@@ -1,0 +1,14 @@
+<svg id="ChatSonLogoBP" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#5420e3"/>
+      <stop offset="1" stop-color="#ff193b"/>
+    </linearGradient>
+  </defs>
+  <circle id="backGround" cx="256" cy="256" r="256" fill="url(#linear-gradient)"/>
+  <path id="Subtraction_1" data-name="Subtraction 1" d="M125,402A121.039,121.039,0,0,1,7.024,308c17.84,53.534,67.681,91.249,124.026,93.848C129.032,401.951,127,402,125,402ZM4,231.435H4V121A121.893,121.893,0,0,1,6.458,96.614,120.339,120.339,0,0,1,24.665,53.348,121.354,121.354,0,0,1,77.9,9.509a120.392,120.392,0,0,1,22.713-7.05A121.9,121.9,0,0,1,125,0a120.4,120.4,0,0,1,64.1,18.354A121.211,121.211,0,0,1,245.412,109H194.986A71,71,0,0,0,54,121v34.249A138.01,138.01,0,0,0,4,231.435Z" transform="translate(135 57)" fill="#fff"/>
+  <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(139 217)" fill="none" stroke="#fff" stroke-width="50">
+    <rect width="242" height="242" rx="121" stroke="none"/>
+    <rect x="25" y="25" width="192" height="192" rx="96" fill="none"/>
+  </g>
+</svg>

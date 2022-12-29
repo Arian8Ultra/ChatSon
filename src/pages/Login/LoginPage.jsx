@@ -5,7 +5,8 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { backgroundC, GlassBackgroundLight, primary, primaryDark } from "../../../theme/Colors";
 import { borderRadiuos, theme } from "../../../theme/Themes";
-import backgroundImage from "../../../Images/background.png";
+import backgroundImage from "../../../Images/background.svg";
+import backgroundBPImage from "../../../theme/backgroundBluePink.svg";
 export default function LoginPage() {
   return (
     <ThemeProvider theme={theme}>
@@ -14,7 +15,7 @@ export default function LoginPage() {
           w={"100vmax"}
           h={"100vmin"}
           justifyItems={"center"}
-          backgroundImage={backgroundImage}
+          backgroundImage={backgroundBPImage}
           backgroundRepeat='no-repeat'
           backgroundSize={"cover"}
         >
@@ -37,7 +38,7 @@ export default function LoginPage() {
 
         <Box
           sx={{
-            backgroundImage: `url(${backgroundImage})`,
+            backgroundImage: `url(${backgroundBPImage})`,
             backgroundSize:'cover',
             backgroundRepeat:'no-repeat',
             backgroundAttachment:'fixed',
@@ -49,7 +50,7 @@ export default function LoginPage() {
         width={'100%'}
         height={'100%'}
           sx={{
-            backdropFilter: "blur(8px)",
+            backdropFilter: "blur(10px)",
             display: { xs: "flex", sm: "flex", md: "flex", lg: "none" },
           }}
         >

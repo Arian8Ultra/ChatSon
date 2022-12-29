@@ -1,3 +1,4 @@
+// Description: This is a modal component that can be used to display any content in a modal window with a glass effect and a close button
 import {
   Modal,
   ModalOverlay,
@@ -23,7 +24,7 @@ export default function MyModal({
   onClose,
   bgColor,
   bgGradient,
-  color,
+  color,children,
   ...rest
 }) {
   return (
@@ -32,23 +33,22 @@ export default function MyModal({
         <ModalContent
           bgColor={bgGradient == null ? bgColor : "black"}
           bgGradient={bgGradient}
-          borderRadius={10}
+          borderRadius={20}
           height={height != null ? height : "60vmin"}
         >
           <ModalHeader
             bgColor={bgGradient == null ? bgColor : "black"}
-            borderTopRadius={10}
+            borderTopRadius={20}
             borderTopColor={primary}
-            borderTopWidth={4}
             {...rest}
           >
             {header}
           </ModalHeader>
           <ModalCloseButton color={color} />
-          <ModalBody bgColor={bgGradient == null ? bgColor : "black"}>{content}</ModalBody>
+          <ModalBody bgColor={bgGradient == null ? bgColor : "black"}>{content}{children}</ModalBody>
           <ModalFooter
             bgColor={bgGradient == null ? bgColor : "transparent"}
-            borderBottomRadius={10}
+            borderBottomRadius={20}
           >
             {footer}
           </ModalFooter>

@@ -19,3 +19,26 @@
 text{
   color:#ffc046 ;
 }
+
+/* width */
+::-webkit-scrollbar {
+  border-radius: 20px;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #fa3757,#fc842d);
+  border-radius: 20px;
+}
+
+::selection {
+  color: #fa3757;
+  background: #fc842d;
+}

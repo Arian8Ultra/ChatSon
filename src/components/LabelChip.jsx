@@ -1,10 +1,13 @@
+// Description: This component is used to display a label chip with a text and a background color
+
 import { Center } from "@chakra-ui/react";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { borderRadiuosButton, borderRadiuosMenu } from "../../theme/Themes";
-import { Green, primary, primaryDark, primaryLight, Red } from "../../theme/Colors";
+import { Green, primary, primaryDark, primaryGradient, primaryLight, Red } from "../../theme/Colors";
 
 export function LabelChip(props) {
+  // getting props from the parent component
   const text = props.text != null ? props.text : "text";
   const link = props.link != null ? props.link : "";
   const disabled = props.disabled != null ? props.disabled : false;
@@ -24,7 +27,9 @@ export function LabelChip(props) {
   const value = props.value != null ? props.value : 0;
   const color = props.color != null ? props.color : "";
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
+  const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
+  // function to handle the progress color
   const handleProgressColor = () => {
     if (value == 100) {
       return Green;
@@ -43,7 +48,7 @@ export function LabelChip(props) {
         width: width,
         height: height,
         borderRadius: borderRadius,
-        backgroundColor: backgroundColor,
+        background: gradient,
         fontSize: fontSize,
         position: position,
         bottom: bottom,
@@ -65,6 +70,7 @@ export function LabelChip(props) {
 }
 
 export function LabelChipFill(props) {
+  // getting props from the parent component
   const text = props.text != null ? props.text : "text";
   const link = props.link != null ? props.link : "";
   const disabled = props.disabled != null ? props.disabled : false;
@@ -88,12 +94,16 @@ export function LabelChipFill(props) {
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const icon = props.icon != null ? props.icon : "";
+  const gradient = props.gradient != null ? props.gradient : primaryGradient;
 
+  // function to handle the prop function
   function fn() {
     return props.fun();
   }
+  //getting the navigate function from react router dom
   const navigate = useNavigate();
 
+  // function to handle the click event
   const handleClick = () => {
     if (props.fun != null) {
       fn();
@@ -103,7 +113,9 @@ export function LabelChipFill(props) {
     }
   };
 
+  // return the component
   return (
+    // box component
     <Box
       variant='contained'
       minWidth={minWidth}
@@ -113,7 +125,7 @@ export function LabelChipFill(props) {
         height: height,
         borderRadius: borderRadius,
         color: textColor,
-        backgroundColor: backgroundColor,
+        background: gradient,
         fontSize: fontSize,
         position: position,
         bottom: bottom,
@@ -128,84 +140,6 @@ export function LabelChipFill(props) {
         p: padding,
         boxShadow: boxShadow,
         display: { xs: "none",md:"block", lg: "block" }
-      }}
-      onClick={handleClick}
-    >
-      <Center height={"100%"}>
-        <Typography color={textColor} fontSize={fontSize} textAlign='center' fontWeight={"bold"}>
-          {text}
-        </Typography>
-        {icon}
-      </Center>
-    </Box>
-  );
-}
-export function LabelChipFillBig(props) {
-  const text = props.text != null ? props.text : "text";
-  const link = props.link != null ? props.link : "";
-  const disabled = props.disabled != null ? props.disabled : false;
-  const fontSize = props.fontSize != null ? props.fontSize : "1.8vmax";
-  const height = props.height != null ? props.height : {};
-  const width = props.width != null ? props.width : {};
-  const minWidth = props.minWidth != null ? props.minWidth : {};
-  const minHeight = props.minHeight != null ? props.minHeight : {};
-  const maxWidth = props.maxWidth != null ? props.maxWidth : {};
-  const maxHeight = props.maxHeight != null ? props.maxHeight : {};
-  const textColor = props.textColor != null ? props.textColor : primaryLight;
-  const backgroundColor = props.backgroundColor != null ? props.backgroundColor : primaryDark;
-  const hoverColor = props.hoverColor != null ? props.hoverColor : primary;
-  const position = props.position != null ? props.position : {};
-  const bottom = props.bottom != null ? props.bottom : {};
-  const right = props.right != null ? props.right : {};
-  const top = props.top != null ? props.top : {};
-  const left = props.left != null ? props.left : {};
-  const margin = props.margin != null ? props.margin : 0;
-  const padding = props.padding != null ? props.padding : 1;
-  const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
-  const boxShadow = props.boxShadow != null ? props.boxShadow : {};
-  const icon = props.icon != null ? props.icon : "";
-  const display = props.display != null ? props.display : "block";
-
-  function fn() {
-    return props.fun();
-  }
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (props.fun != null) {
-      fn();
-    }
-    if (props.link != null) {
-      navigate(`${link}`);
-    }
-  };
-
-  return (
-    <Box
-      variant='contained'
-      minWidth={minWidth}
-      minHeight={minHeight}
-      sx={{
-        width: width,
-        height: height,
-        borderRadius: borderRadius,
-        color: textColor,
-        backgroundColor: backgroundColor,
-        fontSize: fontSize,
-        position: position,
-        bottom: bottom,
-        left: left,
-        right: right,
-        top: top,
-        m: margin,
-        mx:2,
-        minWidth: minWidth,
-        minHeight: minHeight,
-        maxWidth: maxWidth,
-        maxHeight: maxHeight,
-        p: padding,
-        boxShadow: boxShadow,
-        display: { xs: "block", md:"none", lg: "none" },
       }}
       onClick={handleClick}
     >
