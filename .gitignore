@@ -8,3 +8,7 @@ local_settings.py
 db.sqlite3
 venv/*
 venv copy/*
+TODO.txt
+db.sqlite
+db.sqlite
+db.sqlite
