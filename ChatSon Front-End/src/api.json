@@ -36,7 +36,7 @@
       "post": {
         "tags": ["Auth", "Users"],
         "summary": "Login",
-        "description": "Login route.\n\nThis operation path allows a user to login in the app.\n\nParameters:\n- Request body parameters:\n    - user: **LoginRequest**\n\nReturns a json object with the information of the logged user.\n- user: **UserOut**\n- access_token: **str**\n- access_token_expiration: **int**\n- refresh_token: **str**\n- refresh_token_expiration: **int**",
+        "description": "Login route.\n\nThis operation path allows a user to login in the app.\n\nParameters:\n- Request body parameters:    - user: **LoginRequest**\n\nReturns a json object with the information of the logged user.\n- user: **UserOut**\n- access_token: **str**\n- access_token_expiration: **int**\n- refresh_token: **str**\n- refresh_token_expiration: **int**",
         "operationId": "login_auth_login_post",
         "requestBody": {
           "content": {
