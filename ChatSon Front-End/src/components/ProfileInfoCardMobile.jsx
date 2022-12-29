@@ -28,7 +28,7 @@ export default function ProfileInfoCardMobile({
   PeopleList,
 }) {
   return (
-    <Accordion height={"100%"} elevation={0} sx={{ backgroundColor: "transparent", padding: 0 }}>
+    <Accordion elevation={0} sx={{ backgroundColor: "transparent"}}>
       <AccordionSummary sx={{ p: 0 }}>
         <CustomCard>
           <Stack width={"100%"}>
@@ -50,9 +50,10 @@ export default function ProfileInfoCardMobile({
               </Center>
               <IButton
                 icon={<SettingsRoundedIcon />}
-                height={"100%"}
                 pageTitle={"Profile Settings"}
                 link={"/App/Profile Settings"}
+                position='absolute'
+                right={10}
               />
             </Container>
 

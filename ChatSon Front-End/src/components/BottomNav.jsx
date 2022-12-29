@@ -3,12 +3,7 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ChatRoundedIcon from "@mui/icons-material/ChatRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
-import {
-  AppBar,
-  Box, Grid,
-  IconButton,
-  Menu, Toolbar
-} from "@mui/material";
+import { AppBar, Box, Grid, IconButton, Menu, Toolbar } from "@mui/material";
 import React from "react";
 import { GlassBackground, primaryGradient } from "../../theme/Colors";
 import { borderRadiuos, borderRadiuosMenu } from "../../theme/Themes";
@@ -18,10 +13,15 @@ import {
   AddCircleOutlineRounded,
   ChatOutlined,
   HomeOutlined,
-  LocalFireDepartmentOutlined
+  LocalFireDepartmentOutlined,
 } from "@mui/icons-material";
 
-export function BottomNav(handleOpenUserMenuB, changeChatDrawer, anchorElUserB, handleCloseUserMenuB) {
+export function BottomNav(
+  handleOpenUserMenuB,
+  changeChatDrawer,
+  anchorElUserB,
+  handleCloseUserMenuB,
+) {
   return (
     <Box sx={{ display: { xs: "flex", sm: "none" } }}>
       <AppBar
@@ -46,7 +46,8 @@ export function BottomNav(handleOpenUserMenuB, changeChatDrawer, anchorElUserB, 
                   name={"Home"}
                   link={"Home"}
                   icon={<HomeOutlined sx={{ width: "90%", height: "35px" }} />}
-                  activeIcon={<HomeRoundedIcon sx={{ width: "90%", height: "35px" }} />} />
+                  activeIcon={<HomeRoundedIcon sx={{ width: "90%", height: "35px" }} />}
+                />
               </Center>
             </Grid>
             <Grid item xs={2.25}>
@@ -55,7 +56,8 @@ export function BottomNav(handleOpenUserMenuB, changeChatDrawer, anchorElUserB, 
                   name={"My ChatSon"}
                   link={"MyChatSon"}
                   icon={<ChatOutlined sx={{ width: "90%", height: "35px" }} />}
-                  activeIcon={<ChatRoundedIcon sx={{ width: "90%", height: "35px" }} />} />
+                  activeIcon={<ChatRoundedIcon sx={{ width: "90%", height: "35px" }} />}
+                />
               </Center>
             </Grid>
 
@@ -67,7 +69,10 @@ export function BottomNav(handleOpenUserMenuB, changeChatDrawer, anchorElUserB, 
                   name={"Trendings"}
                   link={"Trendings"}
                   icon={<LocalFireDepartmentOutlined sx={{ width: "90%", height: "35px" }} />}
-                  activeIcon={<LocalFireDepartmentRoundedIcon sx={{ width: "90%", height: "35px" }} />} />
+                  activeIcon={
+                    <LocalFireDepartmentRoundedIcon sx={{ width: "90%", height: "35px" }} />
+                  }
+                />
               </Center>
             </Grid>
             <Grid item xs={2.25}>
@@ -93,7 +98,8 @@ export function BottomNav(handleOpenUserMenuB, changeChatDrawer, anchorElUserB, 
                   height: "80px",
                   background: primaryGradient,
                   borderRadius: "100px",
-                }} />
+                }}
+              />
             </IconButton>
           </Center>
 

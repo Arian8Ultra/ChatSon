@@ -8,7 +8,7 @@ import List from "@mui/material/List";
 import { ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
-import { GlassBackgroundLight, primary } from "../../theme/Colors";
+import { GlassBackground, GlassBackgroundLight, primary } from "../../theme/Colors";
 import { theme } from "../../theme/Themes";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import useSideBarStore from "../stores/SideBarStore";
@@ -38,7 +38,7 @@ function SideBarMain() {
         }}
         PaperProps={{
           sx: {
-            backgroundColor: GlassBackgroundLight,
+            backgroundColor: GlassBackground,
             border: 0,
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,

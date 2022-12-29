@@ -1,4 +1,4 @@
-import { Flex, ring, Spacer } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import { GlassBackgroundLight, GlassPrimary, primaryLight } from "../../theme/Colors";

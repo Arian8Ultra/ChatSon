@@ -20,7 +20,6 @@ export default function NotificationA(props) {
   const [Type, setType] = React.useState("info");
 
   const [count, setCount] = React.useState(0);
-  //theme
   const SnackSeverityRedux = () => {
     if (SnackCodeRedux == 200) {
       setType("success");
@@ -86,6 +85,7 @@ export default function NotificationA(props) {
     SnackSeverityRedux();
   });
 
+  // useEffect(() => {
   return (
     <ThemeProvider theme={theme}>
       <Snackbar

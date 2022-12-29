@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { primary, primaryGradient, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
 
-export default function DrawerItem({ text, icon, link,activeIcon }) {
+export default function DrawerItem({ text, icon, link, activeIcon }) {
   const changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
 
@@ -62,9 +62,7 @@ export default function DrawerItem({ text, icon, link,activeIcon }) {
     return 50;
   };
 
-  const handleActiveIcon=()=>{
-    
-  }
+  const handleActiveIcon = () => {};
 
   return (
     <ListItem key={text} disablePadding sx={{ my: 2 }}>
@@ -95,7 +93,7 @@ export default function DrawerItem({ text, icon, link,activeIcon }) {
             justifyContent: "center",
           }}
         >
-          {pageName == text? activeIcon : icon}
+          {pageName == text ? activeIcon : icon}
         </ListItemIcon>
         <ListItemText sx={{ color: textColor, textAlign: "center" }}>
           <Center height={"100%"}>

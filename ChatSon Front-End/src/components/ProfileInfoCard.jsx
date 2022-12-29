@@ -47,9 +47,10 @@ export default function ProfileInfoCard({
         </Center>
         <IButton
           icon={<SettingsRoundedIcon />}
-          height={"100%"}
           pageTitle={"Profile Settings"}
           link={"/App/Profile Settings"}
+          position='absolute'
+          right={10}
         />
       </Container>
 

@@ -29,7 +29,7 @@ function App() {
     <ChakraProvider>
       <Box
         position={"fixed"}
-        height={window.innerHeight}
+        height={'100%'}
         width={"100vmax"}
         sx={{
           backgroundImage: `url(${backgroundAnimation})`,

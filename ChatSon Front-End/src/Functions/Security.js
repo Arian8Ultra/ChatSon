@@ -3,13 +3,8 @@ export function AES_Encryption(key, message) {
   return CryptoJS.AES.encrypt(message, key);
 }
 export function AES_Decryption(key, ciphertext) {
-  return CryptoJS.AES.decrypt(ciphertext,key)
+  return CryptoJS.AES.decrypt(ciphertext, key)
 }
-
-
-
-
-
 export async function AES_Key_Gen(key) {
 
 

@@ -28,7 +28,8 @@ import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import useNewChatModalStore from "../stores/NewChatModalStore";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
-import { LabelChipFill, LabelChipFillBig } from "./LabelChip";
+import { LabelChipFill } from "./LabelChip";
+import { LabelChipFillBig } from "./LabelChipFillBig";
 import NavbarMenuButton from "./NavbarMenuButton";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import { BottomNav } from "./BottomNav";
@@ -118,15 +119,6 @@ export default function Navbar() {
                 <Center height={"70px"}>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: -3 }}>
                     <LabelChipFill
-                      text={"Arian" + " " + "Rezaei"}
-                      textColor='white'
-                      backgroundColor={primaryLight}
-                      minWidth='10vmax'
-                      maxWidth='20vmax'
-                      borderRadius={borderRadiuosButton}
-                      boxShadow={0}
-                    />
-                    <LabelChipFillBig
                       text={"Arian" + " " + "Rezaei"}
                       textColor='white'
                       backgroundColor={primaryLight}

@@ -5,7 +5,6 @@ import { primary, primaryDark, primaryLight } from "../../theme/Colors";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 
-
 export function DrawerItemBig(props) {
   const text = props.text;
   const icon = props.icon;

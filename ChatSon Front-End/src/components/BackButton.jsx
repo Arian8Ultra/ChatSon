@@ -31,7 +31,6 @@ export default function BackButton(props) {
   const borderRadius = props.borderRadius != null ? props.borderRadius : borderRadiuosButton;
   const boxShadow = props.boxShadow != null ? props.boxShadow : {};
   const gradient = props.gradient != null ? props.gradient : primaryGradient;
-
   const navigate = useNavigate();
 
   return (
