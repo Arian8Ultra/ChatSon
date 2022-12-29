@@ -17,7 +17,7 @@ from utils.jsonwebtoken import verify_token
 from config.db import connection
 
 # Models
-from models.user import User
+from config.db import User
 
 # Schemas
 from schemas.user import User as UserSchema

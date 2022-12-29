@@ -11,7 +11,7 @@ from sqlalchemy.exc import IntegrityError
 from config.db import connection
 
 # Models
-from models.user import User
+from config.db import User
 
 # Schemas
 from schemas.user import CreateUser

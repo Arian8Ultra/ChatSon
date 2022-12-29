@@ -18,7 +18,7 @@ from fastapi import Path
 from fastapi import Depends
 
 # Models
-from models import Tweet
+from config.db import Chat
 
 # Database
 from config.db import connection
@@ -170,7 +170,7 @@ def create_tweet(
     tweet_dict = tweet.dict()
     tweet_dict['user_id'] = request_user.id
 
-    response = connection.execute(Tweet.insert().values(**tweet_dict))
+    response = connection.execute(Chat.insert().values(**tweet_dict))
 
     if response is None or (response.rowcount == 0):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -214,7 +214,7 @@ def update_tweet(
     """
 
     tweet_response = connection.execute(
-        Tweet.select().where(Tweet.c.id == id)).fetchone()
+        Chat.select().where(Chat.c.id == id)).fetchone()
 
     if tweet_response is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -224,8 +224,8 @@ def update_tweet(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail='You are not allowed to update this tweet')
 
-    connection.execute(Tweet.update().where(
-        Tweet.c.id == id).values(**tweet.dict()))
+    connection.execute(Chat.update().where(
+        Chat.c.id == id).values(**tweet.dict()))
 
     tweet_dict = {**tweet_response}
     tweet_dict['updated_at'] = datetime.utcnow()
@@ -257,7 +257,7 @@ def delete_tweet(
     """
 
     tweet_response = connection.execute(
-        Tweet.select().where(Tweet.c.id == id)).fetchone()
+        Chat.select().where(Chat.c.id == id)).fetchone()
 
     if tweet_response is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -267,6 +267,6 @@ def delete_tweet(
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail='You are not allowed to delete this tweet')
 
-    connection.execute(Tweet.delete().where(Tweet.c.id == id))
+    connection.execute(Chat.delete().where(Chat.c.id == id))
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)

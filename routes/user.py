@@ -18,7 +18,7 @@ from config.db import connection
 from middleware.auth import get_current_user
 
 # Models
-from models.user import User
+from config.db import User
 
 # Schemas
 from schemas.user import CreateUser
