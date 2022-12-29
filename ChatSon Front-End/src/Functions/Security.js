@@ -22,7 +22,7 @@ export async function AES_Key_Gen(key) {
     console.error(error);
   })
 }
-export function RSA_Key_Gen(privateKey, publicKey) {
+export async function RSA_Key_Gen(privateKey, publicKey) {
   crypto.subtle.generateKey(
     {
       name: "RSA-OAEP",
@@ -40,7 +40,7 @@ export function RSA_Key_Gen(privateKey, publicKey) {
     console.error(error);
   })
 }
-export function Exported_RSA_Key_Gen(privateKey, publicKey) {
+export async function Exported_RSA_Key_Gen(privateKey, publicKey) {
   crypto.subtle.generateKey(
     {
       name: "RSA-OAEP",
