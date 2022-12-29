@@ -1,4 +1,4 @@
-// Description: This component is used to show profile information in mobile version that use the accordion component to show the profile information in a collapsible way
+// Description: This component is used to display the profile information of the user in the profile page of the user and the profile page of other users as well with a follow button
 import { Center } from "@chakra-ui/react";
 import {
   Accordion,
@@ -12,52 +12,69 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { GlassBackgroundDark, primary } from "../../theme/Colors";
+import { GlassBackground, GlassBackgroundDark, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
 import IButton from "./IButton";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import CustomCard from "./CustomCard";
 import ProfileCard from "./ProfileCard";
+import LinkButton from "./LinkButton";
 
-export default function ProfileInfoCardMobile({
+export default function ProfileInfoCardWFollowButton({
   UserName,
   FirstName,
   LastName,
   Posts,
   Likes,
   Followers,
-  PeopleList,
+  Followed,
 }) {
+  const [followed, setFollowed] = React.useState(Followed);
+
+  //handle follow button
+  const handleFollow = () => {
+    console.log("Followed");
+    setFollowed(!followed);
+  };
   return (
-    <Accordion elevation={0} sx={{ backgroundColor: "transparent"}}>
+    <Accordion elevation={0} sx={{ backgroundColor: "transparent" }} expanded={followed}>
       <AccordionSummary sx={{ p: 0 }}>
         <CustomCard>
           <Stack width={"100%"}>
-            <Stack sx={{ display: "block", p: 2 }}>
-              <Center width={"100%"} p={2}>
+            <Container sx={{ display: "flex", p: 2 }}>
+              <Center height={"100%"} width={"min-content"} p={2}>
                 <Avatar sx={{ width: "100px", height: "100px" }} />
-                <IButton
+              </Center>
+
+              <Center height={"100%"} p={2} ml={"10%"}>
+                <Stack spacing={2}>
+                  <Typography variant='h5' textAlign={"left"}>
+                    {UserName != null ? UserName : "Username"}
+                  </Typography>
+                  <Typography variant='subtitle1' textAlign={"left"}>
+                    {FirstName != null ? FirstName : "FirstName"}{" "}
+                    {LastName != null ? LastName : "LastName"}
+                  </Typography>
+                  <Center width={"100%"} my={5}>
+                    <LinkButton
+                      text={followed ? "Unfollow" : "Follow"}
+                      fullWidth
+                      variant={"outlined"}
+                      textColor={primary}
+                      hoverColor={GlassBackground}
+                      fun={handleFollow}
+                    />
+                  </Center>
+                </Stack>
+              </Center>
+              <IButton
                 icon={<SettingsRoundedIcon />}
                 pageTitle={"Profile Settings"}
                 link={"/App/Profile Settings"}
                 position='absolute'
                 right={10}
               />
-              </Center>
-
-              <Center p={2}>
-                <Stack spacing={2}>
-                  <Typography variant='h5' textAlign={"center"}>
-                    {UserName != null ? UserName : "Username"}
-                  </Typography>
-                  <Typography variant='subtitle1' textAlign={"center"}>
-                    {FirstName != null ? FirstName : "FirstName"}{" "}
-                    {LastName != null ? LastName : "LastName"}
-                  </Typography>
-                </Stack>
-              </Center>
-              
-            </Stack>
+            </Container>
 
             <Divider sx={{ width: "100%", borderColor: primary }} />
 

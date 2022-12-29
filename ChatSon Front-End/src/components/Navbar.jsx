@@ -90,7 +90,7 @@ export default function Navbar() {
             left: "2.25vmax",
             width: "95vmax",
             borderRadius: borderRadiuos,
-            backgroundColor: GlassBackground,
+            backgroundColor: GlassBackgroundLight,
             backdropFilter: "blur(6px)",
             elevation: 0,
           }}

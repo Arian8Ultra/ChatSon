@@ -41,7 +41,7 @@ function SideBarMain() {
         }}
         PaperProps={{
           sx: {
-            backgroundColor: GlassBackground,
+            backgroundColor: GlassBackgroundLight,
             border: 0,
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,

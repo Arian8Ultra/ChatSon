@@ -1,6 +1,13 @@
-import { Center, ChakraProvider, Container, Heading } from "@chakra-ui/react";
+import { Center, ChakraProvider, Container, Heading, Image } from "@chakra-ui/react";
 import { useState } from "react";
-import { backgroundC, GlassBackground, GlassBackgroundDark, primary, primaryDark, primaryLight } from "../theme/Colors";
+import {
+  backgroundC,
+  GlassBackground,
+  GlassBackgroundDark,
+  primary,
+  primaryDark,
+  primaryLight,
+} from "../theme/Colors";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import "./App.css";
 import LinkButton from "./components/LinkButton";
@@ -16,6 +23,7 @@ import UploadButton from "./components/UploadButton";
 import { borderRadiuos, theme } from "../theme/Themes";
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 import useModalStore from "./stores/ModalStore";
+import LogoImage from "../Images/Zan-Zendegi-Azadi.jpg";
 import QRCode from "react-qr-code";
 
 function App() {
@@ -29,7 +37,7 @@ function App() {
     <ChakraProvider>
       <Box
         position={"fixed"}
-        height={'100%'}
+        height={"100%"}
         width={"100vmax"}
         sx={{
           backgroundImage: `url(${backgroundAnimation})`,
@@ -37,7 +45,6 @@ function App() {
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
-          
         }}
       ></Box>
       <MainFrame />
@@ -50,12 +57,13 @@ function App() {
         padding={2}
         right={0}
         margin={2}
-        textColor={'white'}
+        textColor={"white"}
         backgroundColor={GlassBackground}
         fun={() => changeModal()}
         icon={<AddCircleRoundedIcon />}
         display={{ xs: "none", sm: "flex" }}
       />
+
       <MyModal
         height={""}
         bgColor={GlassBackground}
@@ -109,11 +117,14 @@ function App() {
           </Container>
         }
         content={
-          <Center width={'100%'} height={'100%'}>
-          <QRCode value={QRid} fgColor={primary} bgColor={GlassBackground}/>
+          <Center width={"100%"} height={"100%"}>
+            <QRCode value={QRid} fgColor={primary} bgColor={GlassBackground} />
           </Center>
         }
       />
+
+      <Image src={LogoImage} position={"fixed"} bottom={20} right={5} width={"50px"} borderRadius={180} zIndex={theme.zIndex.appBar+1}/>
+
     </ChakraProvider>
   );
 }

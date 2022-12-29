@@ -11,6 +11,7 @@ const useUserStore = create(
       Email: "",
       ID: "",
       SignedIn: false,
+      RefreshToken:'',
       signIn: (FirstName, LastName, Token, UserName, ID) =>
         set({
           UserName: UserName,

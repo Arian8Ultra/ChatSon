@@ -5,6 +5,7 @@ import { Stack } from "@mui/system";
 import React from "react";
 import { GlassBackground } from "../../theme/Colors.js";
 import ChatBubble from "./ChatBubble.jsx";
+import MyChatCard from "./MyChatCard.jsx";
 import ProfileCard from "./ProfileCard.jsx";
 
 export default function ChatFeed({ Messages, height, Username, PersonColor }) {
@@ -29,6 +30,7 @@ export default function ChatFeed({ Messages, height, Username, PersonColor }) {
           Date={Message.MessageDate}
         />
       ))}
+
     </Stack>
   );
 }

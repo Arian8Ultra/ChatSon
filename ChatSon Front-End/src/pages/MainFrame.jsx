@@ -1,4 +1,4 @@
-import { Center, ChakraProvider } from "@chakra-ui/react";
+import { Center, ChakraProvider, Image } from "@chakra-ui/react";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useEffect } from "react";
@@ -19,6 +19,7 @@ import SideBarMain from "../components/SideBar";
 import usePageStore from "../stores/PageStore";
 import useSideBarStore from "../stores/SideBarStore";
 import HomePage from "./Home/HomePage";
+import LogoImage from "../../Images/Zan-Zendegi-Azadi.jpg";
 
 export default function MainFrame() {
   let open = useSideBarStore((state) => state.open);
@@ -51,7 +52,7 @@ export default function MainFrame() {
             p: 3,
             pt:1,
             borderRadius: borderRadiuos,
-            bgcolor: GlassBackground,
+            bgcolor: GlassBackgroundLight,
             backdropFilter: "blur(5px)",
             borderTop: 0,
             borderColor: primary,
@@ -86,7 +87,7 @@ export default function MainFrame() {
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
           bgcolor: primaryLight,
-          bgcolor: GlassBackground,
+          bgcolor: GlassBackgroundLight,
           backdropFilter: "blur(5px)",
           borderTop: 0,
           borderColor: primary,
@@ -115,6 +116,7 @@ export default function MainFrame() {
         <Outlet />
       </Box>
       <NewChatDrawer/>
+
     </ThemeProvider>
   );
 }
