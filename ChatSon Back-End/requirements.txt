@@ -9,6 +9,7 @@ h11==0.13.0
 httptools==0.4.0
 idna==3.3
 passlib==1.7.4
+psycopg2-binary
 pyasn1==0.4.8
 pydantic==1.10.0
 python-dotenv==0.20.0
@@ -24,3 +25,6 @@ sqlmodel==0.0.8
 starlette==0.19.1
 typing-extensions==4.3.0
 uvicorn==0.18.3
+uvloop==0.16.0
+watchfiles==0.16.1
+websockets==10.3
