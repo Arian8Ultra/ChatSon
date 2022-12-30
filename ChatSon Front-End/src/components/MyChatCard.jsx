@@ -93,15 +93,15 @@ export default function MyChatCard({
               <Center>
                 <Avatar
                   src={profileImage != null ? profileImage : ""}
-                  sx={{ width: "35px", height: "35px" }}
+                  sx={{ width: "25px", height: "25px" }}
                 />
               </Center>
             </Box>
             <Center>
               <Box sx={{ mt: "50px" }}>
-                <Center>
-                  <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
-                  <FavoriteRoundedIcon />
+              <Center>
+                  <Typography textAlign={"center"} fontSize={'15px'}>{likeNum != null ? likeNum : 0}</Typography>
+                  <FavoriteRoundedIcon sx={{ width: "20px", height: "20px", color: primary }} />
                 </Center>
               </Box>
             </Center>
@@ -121,6 +121,7 @@ export default function MyChatCard({
                         textAlign={"left"}
                         sx={{ display: { xs: "flex", sm: "none" } }}
                         fontSize={"0.9em"}
+                        variant='subtitle1'
                       >
                         {name != null ? name : "Name"}
                       </Typography>
@@ -179,7 +180,7 @@ export default function MyChatCard({
                 {message != null ? message : "Text"}
               </Typography>
 
-            <Box p={5} display={ChatImage == null ? "none" : {}}>
+            <Box p={2} display={ChatImage == null ? "none" : {}}>
               <Center>
                 <Image
                   borderRadius={10}
