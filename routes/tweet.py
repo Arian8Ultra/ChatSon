@@ -40,7 +40,7 @@ router = APIRouter()
             status_code=status.HTTP_200_OK,
             summary='Get all tweets',
             tags=['Tweets'])
-def list_tweets():
+def list_chats():
     """List tweets.
 
     This operation path shows all tweets in the app.
@@ -61,14 +61,11 @@ def list_tweets():
         t.created_at as 'created_at',
         t.updated_at as 'updated_at',
         u.id as 'user.id',
-        u.first_name as 'user.first_name',
-        u.last_name as 'user.last_name',
-        u.birth_date as 'user.birth_date',
-        u.email as 'user.email',
+        u.username as 'user.username',
         u.created_at as 'user.created_at',
         u.updated_at as 'user.updated_at'
     FROM
-        tweets as t
+        chats as t
     INNER JOIN
         users as u
     ON

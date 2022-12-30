@@ -76,14 +76,14 @@ def create_credentials(user: Union[dict, UserOut]) -> Dict[str, Any]:
     if isinstance(user, dict):
         user_payload = {
             'sub': user['id'],
-            'email': user['email'],
-            'name': get_fullname(user),
+            # 'email': user['email'],
+            # 'name': get_fullname(user),
         }
     else:
         user_payload = {
             'sub': user.id,
-            'email': user.email,
-            'name': get_fullname(user),
+            # 'email': user.email,
+            # 'name': get_fullname(user),
         }
 
     access_token, access_expiration_time = create_access_token(user_payload)

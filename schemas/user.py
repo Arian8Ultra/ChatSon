@@ -60,6 +60,11 @@ class NormalUserOut(IDMixin, TimestampMixin, BaseUser):
                              ge=0,
                              le=2,
                              example=0,)
+    password: str = Field(...,
+                            min_length=8,
+                            max_length=255,
+                            example='password',)
+    lastLogin: Optional[date] = None
 
 class NormalUser(PasswordMixin, NormalUserOut):
     pass
@@ -72,5 +77,7 @@ class User(PasswordMixin, UserOut):
     pass
 
 
-class CreateUser(PasswordMixin, BaseUser):
+class CreateUser(BaseUser):
+    pass
+class CreateNormalUser(NormalUserOut):
     pass

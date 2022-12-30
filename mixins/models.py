@@ -11,11 +11,12 @@ class IDMixin(BaseModel):
     This mixin is used to add a unique ID field to a model.
     """
 
-    id: int = Field(...,
+    id: str = Field(...,
                      description='Unique ID of the document.')
 
 
 class TimestampMixin(BaseModel):
+    # pass
 
     created_at: datetime = Field(default_factory=datetime.utcnow,
                                  description='The time the document was created.')

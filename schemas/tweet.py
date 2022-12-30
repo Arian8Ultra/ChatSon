@@ -17,8 +17,7 @@ class BaseTweet(BaseModel):
 
 
 class TweetUserID(BaseModel):
-    user_id: int = Field(...,
-                         ge=1,
+    user_id: str = Field(...,
                          title='User who created the tweet',
                          example=1,)
 

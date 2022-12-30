@@ -12,9 +12,11 @@ from config.db import connection
 
 # Models
 from config.db import User
+from config.db import NormalUser
 
 # Schemas
 from schemas.user import CreateUser
+from schemas.user import CreateNormalUser
 from schemas.user import UserOut
 from schemas.auth import LoginRequest
 from schemas.auth import LoginReponse
@@ -28,17 +30,18 @@ from utils.jsonwebtoken import create_credentials
 from utils.jsonwebtoken import create_access_token
 from utils.jsonwebtoken import verify_token
 from utils.user import get_fullname
-
+from config.db import Session
+from uuid import uuid4
 
 router = APIRouter()
 
 
-@router.post('/signup',
+@router.post('/signup/anonymous',
              response_model=LoginReponse,
              status_code=status.HTTP_201_CREATED,
              summary='Sign up',
              tags=['Auth', 'Users'])
-def signup(user: CreateUser = Body(...)):
+def signupAnonymous(user: CreateUser = Body(...)):
     """Sign up route.
 
     This path operation registers a new user in the app.
@@ -54,15 +57,23 @@ def signup(user: CreateUser = Body(...)):
     - refresh_token: **str**
     - refresh_token_expiration: **int**
     """
-
+    print(62, '-----------------')
+    print(user)
     user_dict = user.dict()
-    user_dict['password'] = hash_password(user_dict['password'])
+    user_dict['id'] = str(uuid4())
+    # last login must be year-month-day
+    user_dict['lastLogin'] = datetime.now().strftime('%Y-%m-%d')
+    user_dict['username'] = str(user_dict['username'])
+    print(user_dict)
 
+    # user_dict['password'] = hash_password(user_dict['password'])
     try:
-        # User has no insert method, so we need to use the execute method.
-        response = connection.execute(
-            User.insert().values(**user_dict))
-        
+        # Session = sessionmaker(bind=connection, autoflush=False, autocommit=False)
+        # add user_dict to database
+        session = Session()
+        session.add(User(**user_dict))
+        session.commit()
+
     except IntegrityError as e:
         str_error = str(e)
         if 'Duplicate entry' in str_error and 'users.email' in str_error:
@@ -73,17 +84,112 @@ def signup(user: CreateUser = Body(...)):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail='Internal server error.') from e
-
-    user_dict['id'] = response.lastrowid
-    user_dict['birth_date'] = str(user_dict['birth_date'])
-    user_dict['created_at'] = str(datetime.utcnow())
-    user_dict['updated_at'] = user_dict['created_at']
-
     response = {
         'user': user_dict,
     }
-    response.update(create_credentials(response['user']))
 
+    user_dict['lastLogin'] = "2022-12-29"
+    user_dict['username'] = str(user_dict['username'])
+
+    response.update(create_credentials(response['user']))
+    print('\033[1;31;40m', response, '\033[0m')
+    return response
+# normal signup
+
+
+@router.post('/signup/normal',
+             response_model=LoginReponse,
+             status_code=status.HTTP_201_CREATED,
+             summary='Sign up',
+             tags=['Auth', 'Users'])
+# class NormalUserOut(IDMixin, TimestampMixin, BaseUser):
+#     name: str = Field(...,
+#                       min_length=3,
+#                       max_length=255,
+#                       example='name',)
+#     surname: str = Field(...,
+#                          min_length=3,
+#                          max_length=255,
+#                          example='surname',)
+#     email: EmailStr = Field(...,
+#                             # min_length=3,
+#                             # max_length=255,
+#                             example='email',)
+#     phone: Optional[str] = Field(None,
+#                                  min_length=3,
+#                                  max_length=255,
+#                                  example='phone',)
+#     address: Optional[str] = Field(None,
+#                                    min_length=3,
+#                                    max_length=255,
+#                                    example='address',)
+#     accessLevel: int = Field(...,
+#                              ge=0,
+#                              le=2,
+#                              example=0,)
+def signupNormal(user: CreateNormalUser = Body(...)):
+    """Sign up route.
+
+    This path operation registers a new user in the app.
+
+    Parameters:
+    - Request body parameters:
+        - NormalUser: **UserRegister**
+
+    Returns a json object with the information of the registered user and its credentials.
+    - user: **UserOut**
+    - access_token: **str**
+    - access_token_expiration: **int**
+    - refresh_token: **str**
+    - refresh_token_expiration: **int**
+    """
+    user_dict = user.dict()
+    user_dict['id'] = str(uuid4())
+    # last login must be year-month-day
+    user_dict['lastLogin'] = datetime.now().strftime('%Y-%m-%d')
+    user_dict['username'] = str(user_dict['username'])
+    user_dict['name'] = str(user_dict['name'])
+    user_dict['surname'] = str(user_dict['surname'])
+    user_dict['email'] = str(user_dict['email'])
+    user_dict['phone'] = str(user_dict['phone'])
+    user_dict['address'] = str(user_dict['address'])
+    user_dict['accessLevel'] = int(user_dict['accessLevel'])
+    print(user_dict)
+    # !if normal user email is already registered
+    # if connection.execute(
+    #         User.select().where(User.c.email == user_dict['email'])).fetchone():
+    #     raise HTTPException(
+    #         status_code=status.HTTP_409_CONFLICT,
+    #         detail='Email already registered.')
+    user_dict['password'] = hash_password(user_dict['password'])
+    try:
+        session = Session()
+        id = user_dict['id']
+        lastLogin = user_dict['lastLogin']
+        username = user_dict['username']
+        token = 'token'
+        user_dict['token'] = token
+        session.add(User(id=id, lastLogin=lastLogin,
+                    username=username, token=token))
+        session.add(NormalUser(**user_dict))
+        session.commit()
+    except IntegrityError as e:
+        str_error = str(e)
+        if 'Duplicate entry' in str_error and 'users.email' in str_error:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail='Email already registered.') from e
+
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail='Internal server error.') from e
+    response = {
+        'user': user_dict,
+    }
+    user_dict['created_at'] = datetime.now()
+    user_dict['updated_at'] = datetime.now()
+    response.update(create_credentials(response['user']))
+    print('\033[1;31;40m', response, '\033[0m')
     return response
 
 
@@ -110,7 +216,7 @@ def login(user: LoginRequest = Body(...)):
     """
 
     registed_user = connection.execute(
-        User.select().where(User.c.email == user.email)).fetchone()
+        User.select().where(User.c.id == user.id)).fetchone()
 
     if registed_user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
@@ -157,8 +263,9 @@ def refresh_token(refresh_token: BaseJWTRefreshToken = Body(...)):
     if decoded_token is None:
         raise base_exception
 
-    user = connection.execute(User.select().where(
-        User.c.id == decoded_token['sub'])).fetchone()
+    session = Session()
+    user = session.query(User).filter_by(id=decoded_token['sub']).first()
+    
 
     if user is None:
         raise base_exception

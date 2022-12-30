@@ -2,7 +2,7 @@
 from pydantic import BaseModel
 from pydantic import EmailStr
 from pydantic import Field
-
+from datetime import datetime
 from schemas.user import UserOut
 
 
@@ -13,8 +13,8 @@ class BaseJWTAccessToken(BaseModel):
 
 
 class JWTAccessToken(BaseJWTAccessToken):
-    access_token_expiration: int = Field(...,
-                                         gt=0,
+    #! change expiration to int
+    access_token_expiration: datetime = Field(...,
                                          example=60,
                                          description='Access token expiration in seconds')
 
@@ -27,8 +27,8 @@ class BaseJWTRefreshToken(BaseModel):
 
 class JWTRefreshToken(BaseJWTRefreshToken):
 
-    refresh_token_expiration: int = Field(...,
-                                          gt=0,
+    refresh_token_expiration: datetime = Field(...,
+                                        #   gt=0,
                                           example=60,
                                           description='Refresh token expiration in seconds')
 
@@ -38,8 +38,6 @@ class JWTCredentials(JWTAccessToken, JWTRefreshToken):
 
 
 class LoginRequest(BaseModel):
-    email: EmailStr = Field(...,)
-
     password: str = Field(...,
                           min_length=8,
                           max_length=255,
