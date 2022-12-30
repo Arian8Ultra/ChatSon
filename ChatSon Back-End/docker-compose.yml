@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: tweet_database
+    image: postgres
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'root'
+      POSTGRES_DB: 'tweet_database'
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5434:5432"
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
