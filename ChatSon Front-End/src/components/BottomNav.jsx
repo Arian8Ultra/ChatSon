@@ -97,7 +97,7 @@ export function BottomNav(
               <AddCircleOutlineRounded
                 sx={{
                   color: "white",
-                  width: "100%",
+                  width: "80px",
                   height: "80px",
                   background: primaryGradient,
                   borderRadius: "100px",
