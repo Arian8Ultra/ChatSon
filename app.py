@@ -1,21 +1,24 @@
-# FastAPI
 from fastapi import FastAPI
+from core.config import settings
+from routers.routers import api_router
+from database import engine, Base
+import logging
 
-# Routers
-from routes.auth import router as auth_router
-from routes.user import router as user_router
-from routes.tweet import router as tweet_router
+logger = logging.getLogger(__name__)
 
-# Database
-from config.db import meta
-from config.db import engine
 
-# Initialize database
-meta.create_all(engine)
+app = FastAPI(title=settings.PROJECT_NAME, openapi_url=settings.OPEN_API)
 
-# Initialize the app
-app = FastAPI()
+@app.on_event("startup")
+async def startup_database():
+    logger.info("creating initial data")
+    Base.metadata.create_all(bind=engine)
+    logger.info("Initial data created")
+    
 
-app.include_router(auth_router, prefix='/auth')
-app.include_router(user_router, prefix='/users')
-app.include_router(tweet_router, prefix='/tweets')
+
+app.include_router(api_router)
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)

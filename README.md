@@ -1,40 +1,8 @@
-# TODOs
+# Twitter FastAPI :bird:
 
-1- user 
-- id
-- token
-- username
-- lastLogin
-- chats --> relation
-- likes --> relation
-- followers --> relation
-  
-2- anonymoseUser
-- id
-  
-3- normalUser
-- id
-- name
-- surname
-- email
-- password
-- phone --> optional
-- address --> optional
-- accessLevel - enum(1,2,3,4,5)
+## :pencil: About The Project
 
-4- chat
-- id
-- user --> relation
-- message
-- date
-- media
-- likes --> relation
+| ![alt text](.midia/diagram.jpeg) | 
+|:--:| 
+| *Class diagram* |
 
-5- follow
-- user --> relation
-- follower --> relation
-
-6- like
-- user --> relation
-- chat --> relation
-- date

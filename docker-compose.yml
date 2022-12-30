@@ -1,32 +1,21 @@
-version: '3.4'
-
-volumes:
-  mysql: {}
+version: '3.5'
 
 services:
-  mysql:
-    image: mysql:8
-    restart: always
-    ports:
-      - 3306:3306
+  postgres:
+    container_name: tweet_database
+    image: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: toor
-      MYSQL_DATABASE: twitter
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'root'
+      POSTGRES_DB: 'tweet_database'
     volumes:
-      - mysql:/var/lib/mysql
-
-  app:
-    build:
-      context: .
-      dockerfile: docker/dockerfile
-    restart: on-failure
-    tty: true
-    stdin_open: true
-    env_file:
-      - .env
+      - postgres:/data/postgres
     ports:
-      - 8000:8000
-    volumes:
-      - .:/usr/src/app
-    depends_on:
-      - mysql
+      - "5434:5432"
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:

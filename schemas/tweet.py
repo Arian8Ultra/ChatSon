@@ -1,36 +1,57 @@
-# Pydantic
+from datetime import datetime
 from pydantic import BaseModel
-from pydantic import Field
+from typing import Optional, Union
+from schemas.user import UserDisplay, UserInTweet
 
-# Models
-from schemas.user import UserOut
-
-# Mixins
-from mixins.models import IDMixin
-from mixins.models import TimestampMixin
+class TweetBase(BaseModel):
+    text: str
 
 
-class BaseTweet(BaseModel):
-    content: str = Field(...,
-                         min_length=1,
-                         max_length=256,)
+class TweetDisplay(BaseModel):
+    id: int
+    likes: Optional[int]
+    retweets: Optional[int]
+    text: str
+    user_id: int
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
 
 
-class TweetUserID(BaseModel):
-    user_id: str = Field(...,
-                         title='User who created the tweet',
-                         example=1,)
+class RetweetBase(BaseModel):
+    tweet: int
+    comment: Optional[str]
 
 
-class Tweet(TweetUserID, IDMixin, TimestampMixin, BaseTweet):
-    pass
+class RetweetDisplay(BaseModel):
+    tweet: int
+    username: str
+    comment: Optional[str]
+
+    class Config:
+        orm_mode = True
 
 
-class TweetWithRelations(IDMixin, TimestampMixin, BaseTweet):
-
-    user: UserOut = Field(...,
-                          title='User who created the tweet',)
+class LikeBase(BaseModel):
+    tweet: int
 
 
-class RegisterTweet(TweetUserID, BaseTweet):
-    pass
+class LikeDisplay(BaseModel):
+    tweet: int
+    username: str
+
+    class Config:
+        orm_mode = True
+
+
+class TweetTimeLineResponse(BaseModel):
+    id: int
+    likes: Optional[int]
+    retweets: Optional[int]
+    text: str
+    user: Union[UserInTweet, None] = None
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
