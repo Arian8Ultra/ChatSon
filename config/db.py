@@ -91,7 +91,7 @@ class Chat(BASE):
     date = Column(TIMESTAMP, nullable=False)
     media = Column(String(255), nullable=True)
     user_id = Column(Integer, ForeignKey('normalUser.id'), nullable=False)
-    like = relationship("Like", backref="chat")
+    like = relationship("Like", backref="chats")
     created_at = Column(TIMESTAMP, nullable=True)
     updated_at = Column(TIMESTAMP, nullable=True)
 
@@ -127,7 +127,7 @@ class Like(BASE):
     id = Column(Integer, primary_key=True, autoincrement=True)
     # relation between user and chat
     user = Column(Integer, ForeignKey('normalUser.id'), nullable=False)
-    chat = Column(Integer, ForeignKey('chat.id'), nullable=False)
+    chat = Column(Integer, ForeignKey('chats.id'), nullable=False)
     date = Column(TIMESTAMP, nullable=False)
 
     def __repr__(self):
