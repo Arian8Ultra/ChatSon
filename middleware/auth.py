@@ -27,13 +27,11 @@ class JWTBearer(HTTPBearer):
     """
     JWT token Handler.
     """
-
     def __init__(self, auto_error: bool = True):
         super(JWTBearer, self).__init__(auto_error=auto_error)
 
     async def __call__(self, request: Request):
         credentials: HTTPAuthorizationCredentials = await super(JWTBearer, self).__call__(request)
-
         if credentials:
             if not credentials.scheme == 'Bearer':
                 raise HTTPException(status_code=403, detail='Invalid authentication scheme.')
@@ -53,7 +51,7 @@ def validate_acccess_token(token: str = Depends(JWTBearer())) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: User data.
     """
-
+    print('here')
     base_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                    detail='Invalid credentials.',
                                    headers={'WWW-Authenticate': 'Bearer'})
@@ -73,7 +71,7 @@ def get_current_user(decoded_token: Dict[str, any] = Depends(validate_acccess_to
     """
     Get current user.
     """
-
+    print('here')
     base_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                    detail='Invalid credentials.',
                                    headers={'WWW-Authenticate': 'Bearer'})

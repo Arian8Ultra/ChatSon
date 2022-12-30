@@ -19,13 +19,19 @@ class PasswordMixin(BaseModel):
                           example='password',)
 
 class BaseUser(BaseModel):
-    username: str = Field(...,
-                          min_length=3,
-                          max_length=255,
-                          example='username',)
-    lastLogin: Optional[date] = None
+    # username: str = Field(...,
+    #                       min_length=3,
+    #                       max_length=255,
+    #                       example='username',)
+    # lastLogin: Optional[date] = None
+    pass
 
 class UserOut(IDMixin, TimestampMixin, BaseUser):
+    username: str = Field(...,
+                            min_length=3,
+                            max_length=255,
+                            example='username',)
+    lastLogin: Optional[date] = None
     pass
 
 class User(PasswordMixin, UserOut):
@@ -70,6 +76,14 @@ class NormalUser(PasswordMixin, NormalUserOut):
     pass
 
 class UserOut(IDMixin, TimestampMixin, BaseUser):
+    token: str = Field(...,
+                          min_length=3, 
+                            max_length=255,
+                            example='token',)
+    username: str = Field(...,
+                            min_length=3,
+                            max_length=255,
+                            example='username',)
     pass
 
 

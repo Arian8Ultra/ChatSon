@@ -15,6 +15,6 @@ def get_fullname(user: Union[UserOut, dict]) -> str:
     """
 
     if isinstance(user, dict):
-        return f"{user['first_name']} {user['last_name']}"
+        return f"{user['first_name']} {user['surname']}"
 
-    return user.first_name + " " + user.last_name
+    return user.first_name + " " + user.surname

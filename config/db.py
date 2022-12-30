@@ -63,9 +63,9 @@ class NormalUser(User):
     phone = Column(String(255), nullable=True)
     address = Column(String(255), nullable=True)
     accessLevel = Column(Integer, nullable=False)
-    # like = relationship("Like", backref="normalUser")
-    # follow = relationship("Follow", backref="normalUser")
-    # chat = relationship("Chat", backref="normalUser")
+    # like = relationship("like", backref="normalUser")
+    # follow = relationship("follow", backref="normalUser")
+    # chat = relationship("chats", backref="normalUser")
 
     def __repr__(self):
         return "<NormalUser (username = '% s', token = '% s')>" % (self.username, self.token)
@@ -91,7 +91,7 @@ class Chat(BASE):
     date = Column(TIMESTAMP, nullable=False)
     media = Column(String(255), nullable=True)
     user_id = Column(Integer, ForeignKey('normalUser.id'), nullable=False)
-    like = relationship("Like", backref="chats")
+    # like = relationship("Like", backref="chats")
     created_at = Column(TIMESTAMP, nullable=True)
     updated_at = Column(TIMESTAMP, nullable=True)
 
@@ -122,21 +122,21 @@ class Chat(BASE):
 #         self.follower = follower
 
 
-class Like(BASE):
-    __tablename__ = 'like'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    # relation between user and chat
-    user = Column(Integer, ForeignKey('normalUser.id'), nullable=False)
-    chat = Column(Integer, ForeignKey('chats.id'), nullable=False)
-    date = Column(TIMESTAMP, nullable=False)
+# class Like(BASE):
+#     __tablename__ = 'like'
+#     id = Column(Integer, primary_key=True, autoincrement=True)
+#     # relation between user and chat
+#     user = Column(Integer, ForeignKey('normalUser.id'), nullable=False)
+#     chat = Column(Integer, ForeignKey('chats.id'), nullable=False)
+#     date = Column(TIMESTAMP, nullable=False)
 
-    def __repr__(self):
-        return
+#     def __repr__(self):
+#         return
 
-    def __init__(self, user, chat, date):
-        self.user = user
-        self.chat = chat
-        self.date = date
+#     def __init__(self, user, chat, date):
+#         self.user = user
+#         self.chat = chat
+#         self.date = date
 
 
 # class Media(BASE):

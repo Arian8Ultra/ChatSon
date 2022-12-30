@@ -10,7 +10,7 @@ from fastapi import Body
 from fastapi import Path
 from fastapi import Depends
 from sqlalchemy.exc import IntegrityError
-
+from config.db import Session
 # Database
 from config.db import connection
 
@@ -51,9 +51,16 @@ def list_users():
     - updated_at: **datetime**
     """
 
-    response = connection.execute(User.select()).fetchall()
-
-    return response
+    session = Session()
+    response = session.query(User).all()
+    session.close()
+    print(response)
+    responses = []
+    for i in response:
+        # convert to userout schema
+        responses.append(UserOut(id=i.id, username=i.username, token=i.token))
+        print(UserOut(id=i.id, username=i.username, token=i.token))
+    return responses
 
 
 @router.get('/users/{id}',

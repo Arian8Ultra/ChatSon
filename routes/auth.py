@@ -32,6 +32,7 @@ from utils.jsonwebtoken import verify_token
 from utils.user import get_fullname
 from config.db import Session
 from uuid import uuid4
+import random
 
 router = APIRouter()
 
@@ -63,14 +64,16 @@ def signupAnonymous(user: CreateUser = Body(...)):
     user_dict['id'] = str(uuid4())
     # last login must be year-month-day
     user_dict['lastLogin'] = datetime.now().strftime('%Y-%m-%d')
-    user_dict['username'] = str(user_dict['username'])
+    user_dict['username'] = 'anonymous' + str(random.randint(100000, 999999))
     print(user_dict)
 
-    # user_dict['password'] = hash_password(user_dict['password'])
     try:
-        # Session = sessionmaker(bind=connection, autoflush=False, autocommit=False)
-        # add user_dict to database
         session = Session()
+        # if username is exist in database raise error
+        if session.query(User).filter(User.username == user_dict['username']).first():
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail='Username already registered.')
         session.add(User(**user_dict))
         session.commit()
 
@@ -102,31 +105,6 @@ def signupAnonymous(user: CreateUser = Body(...)):
              status_code=status.HTTP_201_CREATED,
              summary='Sign up',
              tags=['Auth', 'Users'])
-# class NormalUserOut(IDMixin, TimestampMixin, BaseUser):
-#     name: str = Field(...,
-#                       min_length=3,
-#                       max_length=255,
-#                       example='name',)
-#     surname: str = Field(...,
-#                          min_length=3,
-#                          max_length=255,
-#                          example='surname',)
-#     email: EmailStr = Field(...,
-#                             # min_length=3,
-#                             # max_length=255,
-#                             example='email',)
-#     phone: Optional[str] = Field(None,
-#                                  min_length=3,
-#                                  max_length=255,
-#                                  example='phone',)
-#     address: Optional[str] = Field(None,
-#                                    min_length=3,
-#                                    max_length=255,
-#                                    example='address',)
-#     accessLevel: int = Field(...,
-#                              ge=0,
-#                              le=2,
-#                              example=0,)
 def signupNormal(user: CreateNormalUser = Body(...)):
     """Sign up route.
 
@@ -145,7 +123,6 @@ def signupNormal(user: CreateNormalUser = Body(...)):
     """
     user_dict = user.dict()
     user_dict['id'] = str(uuid4())
-    # last login must be year-month-day
     user_dict['lastLogin'] = datetime.now().strftime('%Y-%m-%d')
     user_dict['username'] = str(user_dict['username'])
     user_dict['name'] = str(user_dict['name'])
@@ -155,15 +132,13 @@ def signupNormal(user: CreateNormalUser = Body(...)):
     user_dict['address'] = str(user_dict['address'])
     user_dict['accessLevel'] = int(user_dict['accessLevel'])
     print(user_dict)
-    # !if normal user email is already registered
-    # if connection.execute(
-    #         User.select().where(User.c.email == user_dict['email'])).fetchone():
-    #     raise HTTPException(
-    #         status_code=status.HTTP_409_CONFLICT,
-    #         detail='Email already registered.')
     user_dict['password'] = hash_password(user_dict['password'])
     try:
         session = Session()
+        if session.query(User).filter(User.username == user_dict['username']).first():
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail='Username already registered.')
         id = user_dict['id']
         lastLogin = user_dict['lastLogin']
         username = user_dict['username']
@@ -214,10 +189,9 @@ def login(user: LoginRequest = Body(...)):
     - refresh_token: **str**
     - refresh_token_expiration: **int**
     """
-
-    registed_user = connection.execute(
-        User.select().where(User.c.id == user.id)).fetchone()
-
+    session = Session()
+    registed_user = session.query(User).filter(User.username == user.username).update(
+        {User.lastLogin: datetime.now().strftime('%Y-%m-%d')})
     if registed_user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail='User not found')
@@ -265,7 +239,6 @@ def refresh_token(refresh_token: BaseJWTRefreshToken = Body(...)):
 
     session = Session()
     user = session.query(User).filter_by(id=decoded_token['sub']).first()
-    
 
     if user is None:
         raise base_exception

@@ -138,7 +138,7 @@ def retrieve_tweet(
     return pydottie.transform(tweet)
 
 
-@router.post('/',
+@router.post('/tweet/',
              response_model=TweetOut,
              status_code=status.HTTP_200_OK,
              summary='Create a new tweet',
