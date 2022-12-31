@@ -12,6 +12,10 @@ router = APIRouter()
 
 @router.post("/")
 def login(request: OAuth2PasswordRequestForm = Depends()):
+    """Login user and return access token
+    :param request: **OAuth2PasswordRequestForm**
+    :return: access_token, token_type, user_id, username, email, is_active
+    """
     with SessionLocal() as session:
         user = session.query(User).filter(User.username == request.username).first()
 
