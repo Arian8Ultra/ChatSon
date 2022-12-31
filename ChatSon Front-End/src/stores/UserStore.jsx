@@ -19,6 +19,7 @@ const useUserStore = create(
           LastName: LastName,
           Token: Token,
           SignedIn: true,
+          ID: ID,
         }),
       signOut: () =>
         set({
