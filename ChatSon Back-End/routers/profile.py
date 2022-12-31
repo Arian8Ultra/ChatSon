@@ -27,15 +27,3 @@ def get_profile(username: str) -> Any:
 @router.patch("/deactivate/")
 def deactivate(request_user: UserAuth = Depends(get_current_user)) -> Any:
     return user.deactivate_account(request_user=request_user)
-
-
-# @router.get('/{username}/followers/', response_model=List[UserDisplay])
-# async def get_me_followers(username: str) -> Any:
-#     with Session(engine) as session:
-#         return user.me_followers(db=session, username=username)
-
-
-# @router.get('/{username}/following/', response_model=List[UserDisplay])
-# async def get_me_followers(username: str) -> Any:
-#     with Session(engine) as session:
-#         return user.me_following(db=session, username=username)
