@@ -14,4 +14,10 @@ router = APIRouter()
 async def create_like(
     tweet_id: int, request_user: UserAuth = Depends(get_current_user)
 ) -> Any:
+    """
+    Create like
+    :param tweet_id: **int**
+    :param request_user: **UserAuth
+    :return: **LikeResponse**
+    """
     return like.create(tweet_id, request_user=request_user)
