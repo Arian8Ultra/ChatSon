@@ -9,11 +9,17 @@ from services.user import user as user_service
 
 
 class RetweetService:
-    def create(self, tweet_id: int, request: RetweetRequest, request_user: UserAuth) -> Retweet:
+    def create(
+        self, tweet_id: int, request: RetweetRequest, request_user: UserAuth
+    ) -> Retweet:
         with SessionLocal() as session:
-            user = user_service.get_profile_by_id(request_user['id'])
-            
-            retweet = session.query(Retweet).filter(Retweet.tweet_id == tweet_id, Retweet.user_id == user.id).first()
+            user = user_service.get_profile_by_id(request_user["id"])
+
+            retweet = (
+                session.query(Retweet)
+                .filter(Retweet.tweet_id == tweet_id, Retweet.user_id == user.id)
+                .first()
+            )
 
             if retweet:
                 if not retweet.is_active:
@@ -26,14 +32,18 @@ class RetweetService:
                 return retweet
 
             if user:
-                retweet = Retweet(user_id=user.id, tweet_id=tweet_id, comment=request.comment)
+                retweet = Retweet(
+                    user_id=user.id, tweet_id=tweet_id, comment=request.comment
+                )
 
                 session.add(retweet)
                 session.commit()
                 session.refresh(retweet)
                 return retweet
-        
-            raise HTTPException(detail='User not exists', status_code=status.HTTP_404_NOT_FOUND)
+
+            raise HTTPException(
+                detail="User not exists", status_code=status.HTTP_404_NOT_FOUND
+            )
 
 
 retweet = RetweetService()
