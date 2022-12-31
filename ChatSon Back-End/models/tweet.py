@@ -44,6 +44,8 @@ class Like(Base):
 
     tweet = relationship("Tweet", lazy="subquery", foreign_keys=[tweet_id])
     user = relationship("User", lazy="subquery", foreign_keys=[user_id])
+    has_media = Column(Boolean, default=False, nullable=True)
+    media_path = Column(String(255), nullable=True, default=None)
 
 
 class Retweet(Base):
