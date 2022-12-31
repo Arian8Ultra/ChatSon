@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiURL = 'http://172.16.23.59:8050/api'
+const apiURL = 'http://localhost:8000'
 
 
 export function SignInUser(
@@ -14,8 +14,16 @@ export function SignInUser(
     console.warn("signing in");
     const options = {
         method: 'POST',
-        url: apiURL + '/Account/SignIn',
-        data: {userName: String(userName), password: String(password)},
+        url: apiURL + '/login/',
+        data: {
+            grant_type: '',
+            username: String(userName),
+            password: String(password),
+            scope: '',
+            client_id: '',
+            client_secret: ','
+
+        },
     };
 
     axios
@@ -41,14 +49,12 @@ export function SignInUser(
 
 
 }
-
-
 export function SignUpUser(
     userName,
     password,
     firstName,
     lastName,
-    nationalCode,
+    email,
     onSuccess,
     onFail,
     AlertChange,
@@ -56,12 +62,11 @@ export function SignUpUser(
     // console.warn("signing up");
     const options = {
         method: "POST",
-        url: apiURL + '/Account/SignUp',
+        url: apiURL + '/users/',
         data: {
             userName: userName,
-            firstName: firstName,
-            lastName: lastName,
-            nationalCode: nationalCode,
+            name: firstName + '' + lastName,
+            email: email,
             password: password,
         },
     };
@@ -80,45 +85,40 @@ export function SignUpUser(
             return error;
         });
 }
-
-
-export function AuthCheck(
-    token,
+export function NewChat(
     onSuccess,
     onFail,
     AlertChange,
+    text,
+    image,
+    token
 ) {
-    // console.warn("signing up");
     const options = {
-        method: "GET",
-        url: apiURL + '/Account/AuthCheck',
-        headers: {
-            token: token
-        }
+        method: 'POST',
+        url: apiURL + '/tweets/',
+        headers: { token: token },
+        data: {
+            text: String(text),
+        },
     };
 
     axios
         .request(options)
         .then(function (response) {
-            // console.warn(response.data);
-            if (response.data) {
-                onSuccess != null ? onSuccess() : {}
-            } else {
-                AlertChange(String(response.data));
-                onFail != null ? onFail() : {};
-            }
+            onSuccess != '' ? onSuccess() : {};
+            console.log(response);
+            AlertChange(200)
             return response.data.result;
+
         })
         .catch(function (error) {
             console.error(error);
             AlertChange(String(error));
-            onFail != null ? onFail() : {};
+            onFail != '' ? onFail() : {};
             return error;
         });
 }
-
-
-export function GetAllSheets(
+export function GetChats(
     onSuccess,
     onFail,
     AlertChange,
@@ -127,23 +127,19 @@ export function GetAllSheets(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/DocTitle/GetAll',
-        headers: {token: token}
+        url: apiURL + '/tweets/',
+        headers: { token: token }
     };
 
     axios
         .request(options)
         .then(function (response) {
-            if (response.data != "Can't authenticate user!") {
-                onSuccess != '' ? onSuccess() : {};
-                setArray(response.data.result)
-                console.log(response);
-                AlertChange(200)
-                return response.data.result;
-            } else {
-                setArray([{content: 'error', id: '404'}])
-                AlertChange(404);
-            }
+            onSuccess != '' ? onSuccess() : {};
+            setArray(response.data.result)
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
+
         })
         .catch(function (error) {
             console.error(error);
@@ -152,37 +148,30 @@ export function GetAllSheets(
             return error;
         });
 }
-
-
-export function GetTitleByID(
+export function GetChatsByUsername(
     onSuccess,
     onFail,
     AlertChange,
+    username,
     setArray,
-    token,
-    ParentID
+    token
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/Title/GetByParentId',
-        params: {parentId: ParentID},
-        headers: {
-            token: token
-        }
+        url: apiURL + '/tweets/profile/',
+        headers: { token: token },
+        params: { username: username },
+
     };
 
     axios
         .request(options)
         .then(function (response) {
-            if (response.data != "Can't authenticate user!") {
-                onSuccess != '' ? onSuccess() : {};
-                setArray(response.data.result)
-                AlertChange(200)
-                return response.data.result;
-            } else {
-                setArray([{content: 'error', id: '404'}])
-                AlertChange(404);
-            }
+            onSuccess != '' ? onSuccess() : {};
+            setArray(response.data.result)
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
         })
         .catch(function (error) {
             console.error(error);
@@ -191,36 +180,28 @@ export function GetTitleByID(
             return error;
         });
 }
-
-export function GetSubTitleByID(
+export function GetChatsByID(
     onSuccess,
     onFail,
     AlertChange,
-    setArray,
-    token,
-    ParentID
+    id,
+    token
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/Subtitle/GetByParentId',
-        params: {parentId: ParentID},
-        headers: {
-            token: token
-        }
+        url: apiURL + '/tweets/',
+        headers: { token: token },
+        params: { id: id },
+
     };
 
     axios
         .request(options)
         .then(function (response) {
-            if (response.data != "Can't authenticate user!") {
-                onSuccess != '' ? onSuccess() : {};
-                setArray(response.data.result)
-                AlertChange(200)
-                return response.data.result;
-            } else {
-                setArray([{content: 'error', id: '404'}])
-                AlertChange(404);
-            }
+            onSuccess != '' ? onSuccess() : {};
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
         })
         .catch(function (error) {
             console.error(error);
@@ -229,71 +210,152 @@ export function GetSubTitleByID(
             return error;
         });
 }
-
-export function GetQuestionByID(
+export function LikeChatByID(
     onSuccess,
     onFail,
     AlertChange,
-    setArray,
-    token,
-    ParentID
-) {
-    const options = {
-        method: 'GET',
-        url: apiURL + '/Question/GetByParentId',
-        params: {parentId: ParentID},
-        headers: {
-            token: token
-        }
-    };
-
-    axios
-        .request(options)
-        .then(function (response) {
-            if (response.data != "Can't authenticate user!") {
-                onSuccess != '' ? onSuccess() : {};
-                setArray(response.data.result)
-                AlertChange(200)
-                return response.data.result;
-            } else {
-                setArray([{content: 'error', id: '404'}])
-                AlertChange(404);
-            }
-        })
-        .catch(function (error) {
-            console.error(error);
-            AlertChange(String(error));
-            onFail != '' ? onFail() : {};
-            return error;
-        });
-}
-
-export function QuestionAnswerByID(
-    onSuccess,
-    onFail,
-    AlertChange,
-    token,
-    answer,
-    QuestionID
+    id,
+    token
 ) {
     const options = {
         method: 'POST',
-        url: apiURL + '/Question/Answer',
-        headers: {token: token},
-        data: [{questionId: QuestionID, answer: answer}]
+        url: apiURL + '/likes/',
+        headers: { token: token },
+        params: { tweet_id: id },
+
     };
 
     axios
         .request(options)
         .then(function (response) {
-            if (response.data != "Can't authenticate user!") {
-                console.log(response.data)
-                onSuccess != '' ? onSuccess() : {};
-                AlertChange(200)
-                return response.data.result;
-            } else {
-                AlertChange(404);
-            }
+            onSuccess != '' ? onSuccess() : {};
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
+        })
+        .catch(function (error) {
+            console.error(error);
+            AlertChange(String(error));
+            onFail != '' ? onFail() : {};
+            return error;
+        });
+}
+export function FollowByUsername(
+    onSuccess,
+    onFail,
+    AlertChange,
+    username,
+    token
+) {
+    const options = {
+        method: 'POST',
+        url: apiURL + '/follow/',
+        headers: { token: token },
+        data: { user_ref: username },
+
+    };
+
+    axios
+        .request(options)
+        .then(function (response) {
+            onSuccess != '' ? onSuccess() : {};
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
+        })
+        .catch(function (error) {
+            console.error(error);
+            AlertChange(String(error));
+            onFail != '' ? onFail() : {};
+            return error;
+        });
+}
+export function GetFollowers(
+    onSuccess,
+    onFail,
+    AlertChange,
+    setArray,
+    username,
+    token
+) {
+    const options = {
+        method: 'GET',
+        url: apiURL + `/follow/${username}/followers`,
+        headers: { token: token }
+    };
+
+    axios
+        .request(options)
+        .then(function (response) {
+            onSuccess != '' ? onSuccess() : {};
+            setArray(response.data.result)
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
+
+        })
+        .catch(function (error) {
+            console.error(error);
+            AlertChange(String(error));
+            onFail != '' ? onFail() : {};
+            return error;
+        });
+}
+export function GetFollowings(
+    onSuccess,
+    onFail,
+    AlertChange,
+    setArray,
+    username,
+    token
+) {
+    const options = {
+        method: 'GET',
+        url: apiURL + `/follow/${username}/followings`,
+        headers: { token: token }
+    };
+
+    axios
+        .request(options)
+        .then(function (response) {
+            onSuccess != '' ? onSuccess() : {};
+            setArray(response.data.result)
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
+
+        })
+        .catch(function (error) {
+            console.error(error);
+            AlertChange(String(error));
+            onFail != '' ? onFail() : {};
+            return error;
+        });
+}
+export function GetProfileByUsername(
+    onSuccess,
+    onFail,
+    AlertChange,
+    username,
+    setArray,
+    token
+) {
+    const options = {
+        method: 'GET',
+        url: apiURL + '/profiles/',
+        headers: { token: token },
+        params: { username: username },
+
+    };
+
+    axios
+        .request(options)
+        .then(function (response) {
+            onSuccess != '' ? onSuccess() : {};
+            setArray(response.data.result)
+            console.log(response);
+            AlertChange(200)
+            return response.data.result;
         })
         .catch(function (error) {
             console.error(error);

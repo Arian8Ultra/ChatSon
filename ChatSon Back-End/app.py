@@ -2,12 +2,22 @@ from fastapi import FastAPI
 from core.config import settings
 from routers.routers import api_router
 from database import engine, Base
+from fastapi.middleware.cors import CORSMiddleware
 import logging
 
 logger = logging.getLogger(__name__)
+origins = ["*"]
 
 
 app = FastAPI(title=settings.PROJECT_NAME, openapi_url=settings.OPEN_API)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup_database():
