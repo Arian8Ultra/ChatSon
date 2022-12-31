@@ -18,7 +18,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import useAlertStore from "../../stores/AlertStore";
 import useUserStore from "../../stores/UserStore";
-import { SignInUser } from "../../Services/API";
+import { SignInUser, SignUpUser } from "../../Services/API";
 
 export default function SignInPage() {
   const [Username, setUserName] = React.useState();
@@ -33,30 +33,6 @@ export default function SignInPage() {
   const AlertChange = useAlertStore((state) => state.changeAlert);
   const signIn = useUserStore((state) => state.signIn);
 
-  const handleSignIn = () => {
-    if (Username == null) {
-      setUsernameError(true);
-      setUsernameErrorHelperText("Enter your Username");
-      console.log("username is null");
-    } else {
-      setUsernameError(false);
-      setUsernameErrorHelperText("");
-    }
-    if (Password == null) {
-      setPasswordError(true);
-      setPasswordErrorHelperText("Enter your Password");
-      console.log("password is null");
-    } else {
-      setPasswordError(false);
-    }
-
-    if (Password == "admin" && Username == "admin") {
-      setTimeout(() => {
-        handleNavigate();
-      }, 500);
-    } else {
-    }
-  };
 
   const handleAPI = () => {
     setLoading(true);
@@ -82,10 +58,40 @@ export default function SignInPage() {
   };
 
   const handleAnonSignIn = () => {
+    setLoading(true);
+    const onSuccess = () => {
+      setLoading(false);
+
+      setTimeout(() => {
+        handleNavigate();
+      }, 500);
+    };
+
+    const onFail = () => {
+      setUsernameError(true);
+      setUsernameErrorHelperText("Wrong Username");
+      setPasswordError(true);
+      setPasswordErrorHelperText("Wrong Password");
+      setLoading(false);
+    };
+    const anonUserName=String('Anon'+Math.floor(Math.random() * 1000000000));
+    const anonPassword=String('Anon'+Math.floor(Math.random() * 1000000000));
+    const SignIn = () => {
+      SignInUser(anonUserName, anonPassword, onSuccess, signIn, null, AlertChange);
+    };
     setTimeout(() => {
-      handleNavigate();
+      SignUpUser(
+        String(anonUserName),
+        String(anonPassword),
+        String(''),
+        String(''),
+        SignIn,
+        onFail,
+        AlertChange,
+      );
     }, 500);
   };
+
 
   const handleNavigate = useCallback(() => navigate("/App/Home", { replace: true }), [navigate]);
 

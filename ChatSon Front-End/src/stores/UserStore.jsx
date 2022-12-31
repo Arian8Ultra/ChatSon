@@ -5,29 +5,24 @@ const useUserStore = create(
   persist(
     (set, get) => ({
       UserName: "",
-      FirstName: "",
-      LastName: "",
       Token: "",
       Email: "",
       ID: "",
       SignedIn: false,
-      RefreshToken:'',
-      signIn: (FirstName, LastName, Token, UserName, ID) =>
+      signIn: (Token, UserName, ID,Email) =>
         set({
           UserName: UserName,
-          FirstName: FirstName,
-          LastName: LastName,
           Token: Token,
           SignedIn: true,
           ID: ID,
+          Email:Email
         }),
       signOut: () =>
         set({
           UserName: "",
-          FirstName: "",
-          LastName: "",
           Token: "",
           Email: "",
+          ID: "",
           SignedIn: false,
         }),
     }),

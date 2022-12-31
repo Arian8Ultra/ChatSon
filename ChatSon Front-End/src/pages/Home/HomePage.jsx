@@ -10,19 +10,43 @@ import testImage from "../../../Images/testImage.jpg";
 import Logo from "../../../Images/ChatSonLogo.svg";
 import { useEffect } from "react";
 import usePageStore from "../../stores/PageStore";
+import { GetChats } from "../../Services/API";
+import useAlertStore from "../../stores/AlertStore";
+import useUserStore from "../../stores/UserStore";
 
 export default function HomePage() {
   const changePageName = usePageStore((state) => state.changePageName);
+  const AlertChange = useAlertStore((state) => state.changeAlert);
+  const token = useUserStore((state) => state.Token);
+  const [chatList, setChatList] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
 
-  useEffect(()=>{
+  const onFail = () => {};
+  const onSuccess = () => {};
+  useEffect(() => {
     // changing page name to Home
-    changePageName('Home')
-  },[])
+    changePageName("Home");
+    if (counter == 0) {
+      // getting chats from server
+      GetChats(onSuccess, onFail,setChatList,token);
+      setCounter(1);
+    }
+  });
   return (
     <Box width={"100%"}>
       <Stack spacing={2}>
 
-        <ChatCard
+        {chatList.map((chat) => {
+            <ChatCard
+              name={chat.user.username}
+              date={chat.created_a}
+              time={''}
+              message={chat.text}
+              id={chat.id}
+              likeNumber={chat.likes}
+            />
+        })}
+        {/* <ChatCard
           name={"Arian Rezaei"}
           date='1/1/1401'
           time={"7:30"}
@@ -33,7 +57,7 @@ export default function HomePage() {
         />
 
         <ChatCard official='news' />
-        <ChatCard official='danger' />
+        <ChatCard official='danger' /> */}
       </Stack>
     </Box>
   );

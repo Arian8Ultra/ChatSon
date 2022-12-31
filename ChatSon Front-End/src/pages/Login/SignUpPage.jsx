@@ -135,7 +135,7 @@ export default function SignUpPage() {
   };
 
   const SignIn = () => {
-    SignInUser(Username, Password, null, signIn, null, AlertChange);
+    SignInUser(Username, Password, onSuccess, signIn, null, AlertChange);
   };
   const handleAxios = () => {
     SignUpUser(

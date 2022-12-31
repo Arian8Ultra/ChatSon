@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import querystring from "querystring";
 const apiURL = 'http://localhost:8000'
 
 
@@ -12,31 +12,26 @@ export function SignInUser(
     AlertChange
 ) {
     console.warn("signing in");
-    const options = {
-        method: 'POST',
-        url: apiURL + '/login/',
-        data: {
-            grant_type: '',
-            username: String(userName),
-            password: String(password),
-            scope: '',
-            client_id: '',
-            client_secret: ','
 
-        },
-    };
+    axios.post(apiURL + '/login/', querystring.stringify({
+        grant_type: '',
+        username: String(userName),
+        password: String(password),
+        scope: '',
+        client_id: '',
+        client_secret: ','
 
-    axios
-        .request(options)
+    }))
         .then(function (response) {
             console.warn(response);
-            AlertChange("Hello " + response.data.result.firstName);
+            console.info(response.data);
+            AlertChange("Hello " + userName);
             onSuccess != null ? onSuccess() : {};
             signIn(
-                response.data.result.firstName,
-                response.data.result.lastName,
-                response.data.result.token,
+                response.data.access_token,
                 userName,
+                response.data.user_id,
+                response.data.email,
             );
             return response.data.result;
         })
@@ -64,8 +59,8 @@ export function SignUpUser(
         method: "POST",
         url: apiURL + '/users/',
         data: {
-            userName: userName,
-            name: firstName + '' + lastName,
+            username: userName,
+            name: firstName + ' ' + lastName,
             email: email,
             password: password,
         },
@@ -96,10 +91,11 @@ export function NewChat(
     const options = {
         method: 'POST',
         url: apiURL + '/tweets/',
-        headers: { token: token },
         data: {
             text: String(text),
         },
+        headers: { "Authorization": `Bearer ${token}` }
+
     };
 
     axios
@@ -107,13 +103,11 @@ export function NewChat(
         .then(function (response) {
             onSuccess != '' ? onSuccess() : {};
             console.log(response);
-            AlertChange(200)
             return response.data.result;
 
         })
         .catch(function (error) {
             console.error(error);
-            AlertChange(String(error));
             onFail != '' ? onFail() : {};
             return error;
         });
@@ -121,29 +115,28 @@ export function NewChat(
 export function GetChats(
     onSuccess,
     onFail,
-    AlertChange,
     setArray,
     token
 ) {
     const options = {
         method: 'GET',
         url: apiURL + '/tweets/',
-        headers: { token: token }
+        headers: { "Authorization": `Bearer ${token}` }
     };
+
+    console.log(token);
 
     axios
         .request(options)
         .then(function (response) {
             onSuccess != '' ? onSuccess() : {};
-            setArray(response.data.result)
+            setArray(response.data)
             console.log(response);
-            AlertChange(200)
-            return response.data.result;
+            return response.data;
 
         })
         .catch(function (error) {
             console.error(error);
-            AlertChange(String(error));
             onFail != '' ? onFail() : {};
             return error;
         });
@@ -159,7 +152,7 @@ export function GetChatsByUsername(
     const options = {
         method: 'GET',
         url: apiURL + '/tweets/profile/',
-        headers: { token: token },
+        headers: { "Authorization": `Bearer ${token}` },
         params: { username: username },
 
     };
@@ -190,9 +183,8 @@ export function GetChatsByID(
     const options = {
         method: 'GET',
         url: apiURL + '/tweets/',
-        headers: { token: token },
         params: { id: id },
-
+        headers: { "Authorization": `Bearer ${token}` }
     };
 
     axios
@@ -220,9 +212,8 @@ export function LikeChatByID(
     const options = {
         method: 'POST',
         url: apiURL + '/likes/',
-        headers: { token: token },
         params: { tweet_id: id },
-
+        headers: { "Authorization": `Bearer ${token}` }
     };
 
     axios
@@ -250,9 +241,8 @@ export function FollowByUsername(
     const options = {
         method: 'POST',
         url: apiURL + '/follow/',
-        headers: { token: token },
         data: { user_ref: username },
-
+        headers: { "Authorization": `Bearer ${token}` }
     };
 
     axios
@@ -281,7 +271,7 @@ export function GetFollowers(
     const options = {
         method: 'GET',
         url: apiURL + `/follow/${username}/followers`,
-        headers: { token: token }
+        headers: { "Authorization": `Bearer ${token}` }
     };
 
     axios
@@ -312,7 +302,7 @@ export function GetFollowings(
     const options = {
         method: 'GET',
         url: apiURL + `/follow/${username}/followings`,
-        headers: { token: token }
+        headers: { "Authorization": `Bearer ${token}` }
     };
 
     axios
@@ -337,29 +327,26 @@ export function GetProfileByUsername(
     onFail,
     AlertChange,
     username,
-    setArray,
-    token
+    token,
+    setProfile,
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/profiles/',
-        headers: { token: token },
+        url: apiURL + `/profiles/${username}`,
         params: { username: username },
-
+        headers: { "Authorization": `Bearer ${token}` }
     };
 
     axios
         .request(options)
         .then(function (response) {
             onSuccess != '' ? onSuccess() : {};
-            setArray(response.data.result)
             console.log(response);
-            AlertChange(200)
-            return response.data.result;
+            setProfile(response.data);
+            return response.data;
         })
         .catch(function (error) {
             console.error(error);
-            AlertChange(String(error));
             onFail != '' ? onFail() : {};
             return error;
         });

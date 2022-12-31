@@ -25,14 +25,25 @@ import ImageRoundedIcon from "@mui/icons-material/ImageRounded";
 import useModalStore from "./stores/ModalStore";
 import LogoImage from "../Images/Zan-Zendegi-Azadi.jpg";
 import QRCode from "react-qr-code";
+import { NewChat } from "./Services/API";
+import useUserStore from "./stores/UserStore";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [newChatText, setNewChatText] = useState("");
   const openModal = useNewChatModalStore((state) => state.open);
   const changeModal = useNewChatModalStore((state) => state.changeModal);
   const openQRModal = useModalStore((state) => state.openQRmodal);
   const QRid = useModalStore((state) => state.QRid);
   const changeQRModal = useModalStore((state) => state.changeQRmodal);
+  const token = useUserStore((state) => state.Token);
+
+  const onFail = () => {};
+  const onSuccess = () => {};
+
+  const handleNewChat=(text)=>{
+    NewChat(onSuccess,onFail,null,text,null,token)
+  }
   return (
     <ChakraProvider>
       <Box
@@ -77,7 +88,7 @@ function App() {
             </Heading>
           </Container>
         }
-        content={<TextInputNormal borderRadius={3} multiline={true} label={"body of the chat"} />}
+        content={<TextInputNormal borderRadius={3} multiline={true} getText={setNewChatText} label={"body of the chat"} />}
         footer={
           <ThemeProvider theme={theme}>
             <Grid container>
@@ -96,6 +107,7 @@ function App() {
                     borderRadius={borderRadiuos}
                     icon={<AddCircleRoundedIcon />}
                     fullWidth
+                    fun={() => handleNewChat(newChatText)}
                   />
                 </Center>
               </Grid>

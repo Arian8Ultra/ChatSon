@@ -19,14 +19,15 @@ import IButton from "./IButton";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import CustomCard from "./CustomCard";
 import ProfileCard from "./ProfileCard";
+import { useEffect } from "react";
 
 export default function ProfileInfoCard({
   UserName,
-  FirstName,
-  LastName,
+  name,
   Posts,
   Likes,
   Followers,
+  ID
 }) {
   return (
     <CustomCard>
@@ -42,8 +43,7 @@ export default function ProfileInfoCard({
               {UserName != null ? UserName : "Username"}
             </Typography>
             <Typography variant='subtitle1' textAlign={"left"}>
-              {FirstName != null ? FirstName : "FirstName"}{" "}
-              {LastName != null ? LastName : "LastName"}
+              {name != null ? name : "name"}{" "}
             </Typography>
           </Stack>
         </Center>

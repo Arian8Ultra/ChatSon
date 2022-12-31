@@ -35,6 +35,7 @@ import { LabelChipFillBig } from "./LabelChipFillBig";
 import NavbarMenuButton from "./NavbarMenuButton";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 import { BottomNav } from "./BottomNav";
+import useUserStore from "../stores/UserStore";
 
 export default function Navbar() {
   // create a state for the menu button
@@ -74,6 +75,7 @@ export default function Navbar() {
   let open = useSideBarStore((state) => state.open);
   const changeDrawer = useSideBarStore((state) => state.changeSideBar);
   const changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
+  const UserName=useUserStore((state) => state.UserName);
 
   // return the navbar component
   return (
@@ -130,7 +132,7 @@ export default function Navbar() {
                 <Center height={"70px"}>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mr: -3 }}>
                     <LabelChipFill
-                      text={"Arian" + " " + "Rezaei"}
+                      text={UserName}
                       textColor='white'
                       backgroundColor={primaryLight}
                       minWidth='10vmax'

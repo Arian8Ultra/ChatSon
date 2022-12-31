@@ -14,23 +14,31 @@ import usePageStore from "../../stores/PageStore";
 import { useNavigate } from "react-router-dom";
 import ProfileInfoCard from "../../components/ProfileInfoCard";
 import ProfileInfoCardMobile from "../../components/ProfileInfoCardMobile";
+import useUserStore from "../../stores/UserStore";
+import { GetProfileByUsername } from "../../Services/API";
+import LinkButton from "../../components/LinkButton";
 
 export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
-
+  const [profile, setProfile] = React.useState('')
   const changePageName = usePageStore((state) => state.changePageName);
   const navigate = useNavigate();
+  const token = useUserStore((state) => state.Token);
+  const UserName=useUserStore((state) => state.UserName);
+  const onFail = () => {};
+  const onSuccess = () => {};
 
   useEffect(() => {
     changePageName("My ChatSon");
     changeDrawerWidth(2);
+    GetProfileByUsername(onSuccess,onFail,null,UserName,token,setProfile)
   }, []);
   return (
     <Box width={"100%"}>
       <Grid container sx={{ display: { xs: "none", md: "flex" } }} spacing={2}>
         <Grid item lg={3}>
           <Stack spacing={2}>
-            <ProfileInfoCard />
+            <ProfileInfoCard UserName={UserName} name={profile.name!=null ? profile.name : ''} />
             <Card
               sx={{
                 width: "100%",
