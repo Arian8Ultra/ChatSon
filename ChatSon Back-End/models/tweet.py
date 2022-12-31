@@ -8,25 +8,32 @@ from database.session import SessionLocal
 
 class Tweet(Base):
     id = Column(Integer, primary_key=True, index=True)
-    text =  Column(String(140), nullable=False)
+    text = Column(String(140), nullable=False)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
 
     user_id = Column(Integer, ForeignKey("user.id"))
-    
-    user = relationship("User", lazy='subquery', foreign_keys=[user_id])
+
+    user = relationship("User", lazy="subquery", foreign_keys=[user_id])
 
     @hybrid_property
     def likes(self):
         with SessionLocal() as session:
-            return session.query(Like).filter(Like.tweet_id == self.id, Like.is_active == True).count()
-    
+            return (
+                session.query(Like)
+                .filter(Like.tweet_id == self.id, Like.is_active == True)
+                .count()
+            )
+
     @hybrid_property
     def retweets(self):
         with SessionLocal() as session:
-            return session.query(Retweet).filter(Retweet.tweet_id == self.id, Retweet.is_active == True).count()
-
+            return (
+                session.query(Retweet)
+                .filter(Retweet.tweet_id == self.id, Retweet.is_active == True)
+                .count()
+            )
 
 
 class Like(Base):
@@ -35,8 +42,8 @@ class Like(Base):
     user_id = Column(Integer, ForeignKey("user.id"))
     is_active = Column(Boolean, default=True)
 
-    tweet = relationship("Tweet", lazy='subquery', foreign_keys=[tweet_id])
-    user = relationship("User", lazy='subquery', foreign_keys=[user_id])
+    tweet = relationship("Tweet", lazy="subquery", foreign_keys=[tweet_id])
+    user = relationship("User", lazy="subquery", foreign_keys=[user_id])
 
 
 class Retweet(Base):
