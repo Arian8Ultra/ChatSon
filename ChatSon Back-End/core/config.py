@@ -7,11 +7,6 @@ class Settings(BaseSettings):
     OPEN_API: str = '/api/v1/openapi.json'
     SECRET_KEY: str = 'f6db58daedd17dec5f5493456476bed06d83852be22cf3eb9509b5e6cc782aab'
     PROJECT_NAME: str = 'TT'
-    
-    # SQLAlCHEMY_DATABASE_URI: str = PostgresDsn.build(
-    #     scheme='postgresql', user='root', password='root', host='localhost:5434',
-    #     path='/tweet_database'
-    # )
     SQLAlCHEMY_DATABASE_URI = 'sqlite:///./sql_app.db'
     
     ALGORITHM: str = 'HS256'
