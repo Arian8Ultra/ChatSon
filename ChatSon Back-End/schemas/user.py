@@ -5,9 +5,8 @@ from typing import Optional, Union
 
 class UserBase(BaseModel):
     name: str = Field()
-    # birthday: date
     username: str = Field(min_length=3)
-    email:  EmailStr
+    email: EmailStr
     password: str = Field(min_length=5)
 
 
@@ -58,4 +57,3 @@ class UserInTweet(BaseModel):
 
     class Config:
         orm_mode = True
-    
