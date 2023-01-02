@@ -17,6 +17,7 @@ import {
   HomeOutlined,
   LocalFireDepartmentOutlined,
 } from "@mui/icons-material";
+import useUserStore from "../stores/UserStore";
 // exporting the BottomNav component
 export function BottomNav(
   handleOpenUserMenuB,
@@ -24,6 +25,8 @@ export function BottomNav(
   anchorElUserB,
   handleCloseUserMenuB,
 ) {
+  const signOut = useUserStore((state) => state.signOut);
+
   // returning the JSX for the component
   return (
     <Box sx={{ display: { xs: "flex", sm: "none" } }}>
@@ -128,7 +131,7 @@ export function BottomNav(
             }}
           >
             <NavbarMenuButton name='Profile Settings' link='Profile Settings' />
-            <NavbarMenuButton name='Sign Out' link='/' />
+            <NavbarMenuButton name='Sign Out' link='/'  fun={signOut}  />
           </Menu>
         </Toolbar>
       </AppBar>

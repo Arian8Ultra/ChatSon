@@ -85,6 +85,7 @@ export default function SignInPage() {
         String(anonPassword),
         String(''),
         String(''),
+        String(anonUserName+'@email.anon'),
         SignIn,
         onFail,
         AlertChange,

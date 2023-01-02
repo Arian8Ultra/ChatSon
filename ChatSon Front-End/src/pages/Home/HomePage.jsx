@@ -28,25 +28,29 @@ export default function HomePage() {
     changePageName("Home");
     if (counter == 0) {
       // getting chats from server
-      GetChats(onSuccess, onFail,setChatList,token);
       setCounter(1);
+      GetChats(token, onSuccess, onFail,setChatList);
+      setInterval(() => {
+        GetChats(token, onSuccess, onFail,setChatList);
+      }, 60000);
     }
-  });
+  }, []);
+
+
   return (
     <Box width={"100%"}>
       <Stack spacing={2}>
-
-        {chatList.map((chat) => {
-            <ChatCard
-              name={chat.user.username}
-              date={chat.created_a}
-              time={''}
-              message={chat.text}
-              id={chat.id}
-              likeNumber={chat.likes}
-            />
-        })}
-        {/* <ChatCard
+        {chatList.map((chat) => (
+          <ChatCard
+            key={chat.id}
+            name={chat.username}
+            date={chat.date}
+            time={chat.time}
+            message={chat.content}
+            id={chat.id}
+          />
+        ))}
+        <ChatCard
           name={"Arian Rezaei"}
           date='1/1/1401'
           time={"7:30"}
@@ -55,9 +59,26 @@ export default function HomePage() {
           profileImage={Logo}
           official='chatSon'
         />
-
-        <ChatCard official='news' />
-        <ChatCard official='danger' /> */}
+        <ChatCard
+          name={"Hanieh"}
+          date='17/4/1401'
+          time={"9:45"}
+          message='this is a news chat'
+          official='news'
+        />
+        <ChatCard
+          name={"Niloofar"}
+          date='5/8/1401'
+          time={"19:28"}
+          message='this is a normal chat'
+        />
+        <ChatCard
+          name={"Parinaz"}
+          date='27/9/1401'
+          time={"10:13"}
+          message='این یک تست برای چت فارسی است'
+          official='news'
+        />
       </Stack>
     </Box>
   );

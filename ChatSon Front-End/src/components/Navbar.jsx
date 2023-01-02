@@ -76,6 +76,7 @@ export default function Navbar() {
   const changeDrawer = useSideBarStore((state) => state.changeSideBar);
   const changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
   const UserName=useUserStore((state) => state.UserName);
+  const signOut = useUserStore((state) => state.signOut);
 
   // return the navbar component
   return (
@@ -167,7 +168,7 @@ export default function Navbar() {
                   }}
                 >
                   <NavbarMenuButton name='Profile Settings' link='Profile Settings' />
-                  <NavbarMenuButton name='Sign Out' link='/' />
+                  <NavbarMenuButton name='Sign Out' link='/' fun={signOut} />
                 </Menu>
               </Box>
             </Toolbar>

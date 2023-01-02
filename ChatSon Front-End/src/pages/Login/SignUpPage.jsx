@@ -34,22 +34,7 @@ export default function SignUpPage() {
 
   const navigate = useNavigate();
 
-  const handleOnClick = useCallback(
-    () => navigate("/Client/Projects", { replace: true }),
-    [navigate],
-  );
-
-  const [myErrorE, setMyErrorE] = React.useState(false);
-  const [ErrorHelperE, setHelperE] = React.useState("");
-
-  const [myErrorP, setMyErrorP] = React.useState(false);
-  const [ErrorHelperP, setHelperP] = React.useState("");
-
-  const [myErrorFN, setMyErrorFN] = React.useState(false);
-  const [ErrorHelperFN, setHelperFN] = React.useState("");
-
-  const [myErrorLN, setMyErrorLN] = React.useState(false);
-  const [ErrorHelperLN, setHelperLN] = React.useState("");
+  const handleOnClick = useCallback(() => navigate("/App", { replace: true }), [navigate]);
 
   const [UsernameError, setUsernameError] = React.useState(false);
   const [UsernameErrorHelperText, setUsernameErrorHelperText] = React.useState("");
@@ -70,7 +55,7 @@ export default function SignUpPage() {
   const [Password, setPassword] = React.useState();
   const [Fname, setFname] = React.useState();
   const [Lname, setLname] = React.useState();
-  const [Role, setRole] = React.useState();
+  const [Email, setEmail] = React.useState();
 
   const handleClick = () => {
     if (Username == null) {
@@ -88,28 +73,14 @@ export default function SignUpPage() {
       console.log("password is null");
     } else if (String(Password).length >= 6) {
       setPasswordError(true);
-      setPasswordErrorHelperText("طول مرز عبور میبایست بیشتر از 6 باشد");
+      setPasswordErrorHelperText("Password must be at least 6 characters");
     } else {
       setPasswordError(false);
     }
-
-    if (Fname == null) {
-      setFnameError(true);
-      setFnameErrorHelperText("First Name is null");
-      console.log("First Name is null");
-    } else {
-      setFnameError(false);
+    if (Password != null && Username != null && String(Password).length >= 6) {
+      console.warn("signing up");
+      handleAxios();
     }
-
-    if (Lname == null) {
-      setLnameError(true);
-      setLnameErrorHelperText("Last Name is null");
-      console.log("Last Name is null");
-    } else {
-      setLnameError(false);
-    }
-    console.warn("signing up");
-    handleAxios();
   };
 
   const signIn = useUserSotre((state) => state.signIn);
@@ -138,15 +109,7 @@ export default function SignUpPage() {
     SignInUser(Username, Password, onSuccess, signIn, null, AlertChange);
   };
   const handleAxios = () => {
-    SignUpUser(
-      String(Username),
-      String(Password),
-      String(Fname),
-      String(Lname),
-      SignIn,
-      onFail,
-      AlertChange,
-    );
+    SignUpUser(String(Username), String(Password), Email, SignIn, onFail, AlertChange);
   };
 
   return (
@@ -158,11 +121,11 @@ export default function SignUpPage() {
           flexDirection: "column",
           alignItems: "center",
           my: 2,
-          px:4,
+          px: 4,
         }}
       >
         <Stack spacing={3} width='100%' justifyContent={"center"} justifyItems={"center"}>
-          <Center width={'30%'}>
+          <Center width={"30%"}>
             <BackButton fullWidth={false} />
           </Center>
 
@@ -181,7 +144,7 @@ export default function SignUpPage() {
             fullWidth
             getText={setUsername}
           />
-          <TextInputNormalBig
+          {/* <TextInputNormalBig
             id='FnameTextInput'
             label='First Name'
             type='text'
@@ -204,7 +167,7 @@ export default function SignUpPage() {
             autoComplete='Last Name'
             fullWidth
             getText={setLname}
-          />
+          /> */}
           <TextInputNormalBig
             id='passwordTextInput'
             label='Password'
@@ -216,6 +179,18 @@ export default function SignUpPage() {
             autoComplete='password'
             fullWidth
             getText={setPassword}
+          />
+          <TextInputNormalBig
+            id='passwordTextInput'
+            label='Email'
+            type='email'
+            idNum='1'
+            value={""}
+            error={PasswordError}
+            helperText={PasswordErrorHelperText}
+            autoComplete='email'
+            fullWidth
+            getText={setEmail}
           />
           <Center>
             <LinkButton text='Creat Account' fun={() => handleClick()} />

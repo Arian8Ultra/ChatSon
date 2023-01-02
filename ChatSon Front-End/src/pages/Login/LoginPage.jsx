@@ -2,12 +2,28 @@ import { Center } from "@chakra-ui/react";
 import { Box, Container } from "@mui/material";
 import { ThemeProvider } from "@mui/system";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { backgroundC, GlassBackgroundLight, primary, primaryDark } from "../../../theme/Colors";
 import { borderRadiuos, theme } from "../../../theme/Themes";
 import backgroundImage from "../../../Images/background.svg";
 import backgroundBPImage from "../../../theme/backgroundBluePink.svg";
+import useUserStore from "../../stores/UserStore";
+import { useCallback } from "react";
+import { useEffect } from "react";
 export default function LoginPage() {
+  const SignedIn = useUserStore((state) => state.SignedIn);
+  const navigate = useNavigate();
+  const handleNavigate = useCallback(
+    () => navigate("/App", { replace: true }),
+    [navigate],
+  );
+
+  useEffect(() => {
+    document.title = 'Check List';
+    if (SignedIn) {
+      handleNavigate();
+    }
+  });
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: { xs: "none", sm: "none", md: "none", lg: "block" } }}>

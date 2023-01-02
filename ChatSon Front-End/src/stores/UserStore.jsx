@@ -9,13 +9,24 @@ const useUserStore = create(
       Email: "",
       ID: "",
       SignedIn: false,
-      signIn: (Token, UserName, ID,Email) =>
+      Type: "",
+      signIn: (Token, UserName, ID, Email) =>
         set({
           UserName: UserName,
           Token: Token,
           SignedIn: true,
           ID: ID,
-          Email:Email
+          Email: Email,
+          Type:'Normal'
+        }),
+      anonSignIn: (Token, UserName, ID, Email) =>
+        set({
+          UserName: UserName,
+          Token: Token,
+          SignedIn: true,
+          ID: ID,
+          Email: Email,
+          Type:'Anon'
         }),
       signOut: () =>
         set({
@@ -24,15 +35,16 @@ const useUserStore = create(
           Email: "",
           ID: "",
           SignedIn: false,
+          Type:''
         }),
     }),
 
     {
       name: "user-store", // unique name
       getStorage: () => sessionStorage,
-       // (optional) by default, 'localStorage' is used
-    }
-  )
+      // (optional) by default, 'localStorage' is used
+    },
+  ),
 );
 
 export default useUserStore;

@@ -15,30 +15,36 @@ import { useNavigate } from "react-router-dom";
 import ProfileInfoCard from "../../components/ProfileInfoCard";
 import ProfileInfoCardMobile from "../../components/ProfileInfoCardMobile";
 import useUserStore from "../../stores/UserStore";
-import { GetProfileByUsername } from "../../Services/API";
+import { GetCurrentUserProfile, GetProfileByUsername } from "../../Services/API";
 import LinkButton from "../../components/LinkButton";
 
 export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
-  const [profile, setProfile] = React.useState('')
+  const [profile, setProfile] = React.useState("");
   const changePageName = usePageStore((state) => state.changePageName);
   const navigate = useNavigate();
   const token = useUserStore((state) => state.Token);
-  const UserName=useUserStore((state) => state.UserName);
+  const UserName = useUserStore((state) => state.UserName);
+  const [chatList, setChatList] = React.useState([]);
   const onFail = () => {};
   const onSuccess = () => {};
 
   useEffect(() => {
     changePageName("My ChatSon");
     changeDrawerWidth(2);
-    GetProfileByUsername(onSuccess,onFail,null,UserName,token,setProfile)
+    GetCurrentUserProfile(onSuccess, onFail, token, setProfile);
+    console.warn(profile);
   }, []);
   return (
     <Box width={"100%"}>
       <Grid container sx={{ display: { xs: "none", md: "flex" } }} spacing={2}>
         <Grid item lg={3}>
           <Stack spacing={2}>
-            <ProfileInfoCard UserName={UserName} name={profile.name!=null ? profile.name : ''} />
+            
+            <ProfileInfoCard
+              UserName={profile.username}
+              name={profile.name != null ? profile.name : ""}
+            />
             <Card
               sx={{
                 width: "100%",
@@ -53,6 +59,21 @@ export default function MyChatSonPage() {
               <Divider sx={{ width: "100%", borderColor: primary, my: 1 }} />
 
               <Stack width={"100%"} spacing={1}>
+
+              {profile.following != null
+              ? JSON.parse(profile.following)
+                  .reverse()
+                  .map(
+                    (
+                      item, //following
+                    ) => (
+                      <ProfileInfoCard
+                        UserName={item.username}
+                        name={item.name != null ? item.name : ""}
+                      />
+                    ),
+                  )
+              : ""}
                 <ProfileCard
                   username={"Arian"}
                   onClick={() => navigate(`/App/Profile/${"Arian"}`)}
@@ -75,44 +96,37 @@ export default function MyChatSonPage() {
         </Grid>
         <Grid item lg={9}>
           <Stack spacing={2}>
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this'
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard official='news' />
-            <MyChatCard official='danger' />
+            {chatList.map((item) =>
+              item.username == UserName ? (
+                <MyChatCard
+                  name={"Arian Rezaei"}
+                  date='1/1/1401'
+                  time={"7:30"}
+                  message='this is a test for this'
+                  ChatImage={testImage}
+                  profileImage={Logo}
+                  official='chatSon'
+                />
+              ) : (
+                ""
+              ),
+            )}
+
+            {profile.tweets != null
+              ? JSON.parse(profile.tweets)
+                  .reverse()
+                  .map((item) => (
+                    <MyChatCard
+                      name={item.username}
+                      date='1/1/1401'
+                      time={"7:30"}
+                      message={item.content}
+                      ChatImage={item.image != null ? item.image : ""}
+                      profileImage={Logo}
+                      official='chatSon'
+                    />
+                  ))
+              : ""}
           </Stack>
         </Grid>
       </Grid>
@@ -124,44 +138,21 @@ export default function MyChatSonPage() {
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={2}>
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard
-              name={"Arian Rezaei"}
-              date='1/1/1401'
-              time={"7:30"}
-              message='this is a test for this  '
-              ChatImage={testImage}
-              profileImage={Logo}
-              official='chatSon'
-            />
-            <MyChatCard official='news' />
-            <MyChatCard official='danger' />
+          {profile.tweets != null
+              ? JSON.parse(profile.tweets)
+                  .reverse()
+                  .map((item) => (
+                    <MyChatCard
+                      name={item.username}
+                      date='1/1/1401'
+                      time={item.date}
+                      message={item.content}
+                      ChatImage={item.image != null ? item.image : ""}
+                      profileImage={Logo}
+                      official='chatSon'
+                    />
+                  ))
+              : ""}
           </Stack>
         </Grid>
       </Grid>

@@ -27,8 +27,13 @@ import LogoImage from "../Images/Zan-Zendegi-Azadi.jpg";
 import QRCode from "react-qr-code";
 import { NewChat } from "./Services/API";
 import useUserStore from "./stores/UserStore";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
+import { useEffect } from "react";
+import { Message } from "./Classes/Message";
 
 function App() {
+
   const [count, setCount] = useState(0);
   const [newChatText, setNewChatText] = useState("");
   const openModal = useNewChatModalStore((state) => state.open);
@@ -37,13 +42,30 @@ function App() {
   const QRid = useModalStore((state) => state.QRid);
   const changeQRModal = useModalStore((state) => state.changeQRmodal);
   const token = useUserStore((state) => state.Token);
+  const UserName = useUserStore((state) => state.UserName);
 
   const onFail = () => {};
-  const onSuccess = () => {};
+  const onSuccess = () => {
+    changeModal()
+  };
 
   const handleNewChat=(text)=>{
-    NewChat(onSuccess,onFail,null,text,null,token)
+    NewChat(onSuccess,onFail,text,token);
   }
+
+  const SignedIn = useUserStore((state) => state.SignedIn);
+  const navigate = useNavigate();
+  const handleNavigate = useCallback(
+    () => navigate("/", { replace: true }),
+    [navigate],
+  );
+
+  useEffect(() => {
+    document.title = 'Check List';
+    if (!SignedIn) {
+      handleNavigate();
+    }
+  });
   return (
     <ChakraProvider>
       <Box

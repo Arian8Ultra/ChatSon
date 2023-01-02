@@ -10,6 +10,7 @@ import * as React from "react";
 import { GlassBackground, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
+import useUserStore from "../stores/UserStore";
 import LinkButton from "./LinkButton";
 import TextInputNormal from "./TextInputNormal";
 import UploadButton from "./UploadButton";
@@ -18,6 +19,17 @@ export function NewChatDrawer() {
   // getting the state and the actions from the store
   let openChatDrawer = useNewChatDrawerStore((state) => state.open);
   let changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
+  let token = useUserStore((state) => state.token);
+
+  const [text,getText] = React.useState("");
+  const onFail = () => {};
+  const onSuccess = () => {
+    changeChatDrawer()
+  };
+  
+  const handleNewChat=()=>{
+    NewChat(onSuccess,onFail,text,token);
+  }
   return <Drawer
     sx={{
       "height": "100%",
@@ -73,6 +85,7 @@ export function NewChatDrawer() {
           multiline={true}
           label={"body of the chat"}
           rows={15} />
+          getText={getText}
       </Box>
 
       <Box mt={2} mb={2}>
@@ -88,6 +101,7 @@ export function NewChatDrawer() {
           text='Send'
           borderRadius={borderRadiuos}
           icon={<SendRoundedIcon />}
+          fun={handleNewChat}
           fullWidth={true} />
       </Box>
     </Stack>

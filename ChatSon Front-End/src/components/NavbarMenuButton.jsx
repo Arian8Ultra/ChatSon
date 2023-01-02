@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { primaryLight } from "../../theme/Colors";
 import { borderRadiuosButton } from "../../theme/Themes";
 import usePageStore from "../stores/PageStore";
+import useUserStore from "../stores/UserStore";
 
 function NavbarMenuButton(props, { ...rest }) {
   // getting props from the parent component
@@ -18,6 +19,7 @@ function NavbarMenuButton(props, { ...rest }) {
   // getting the page name from the page store
   let changePageName = usePageStore((state) => state.changePageName);
   const pageName = usePageStore((state) => state.pageName);
+  const signOut = useUserStore((state) => state.signOut);
 
 
   // function to handle the click event
@@ -25,6 +27,7 @@ function NavbarMenuButton(props, { ...rest }) {
     if (!link == "") {
       if (link == "/") {
         handleOnClick();
+        signOut();
         console.warn("signOut");
       } else {
         navigate(`${link}`);

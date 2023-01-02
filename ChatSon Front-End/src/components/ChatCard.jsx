@@ -8,6 +8,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { GlassBackgroundDark, primary, Red, Yellow } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
+import { LikeChatByID } from "../Services/API";
+import useUserStore from "../stores/UserStore";
 
 export default function ChatCard({
   name,
@@ -24,6 +26,13 @@ export default function ChatCard({
   id,
   ...rest
 }) {
+
+  const token = useUserStore((state) => state.Token);
+
+  const handleLike =()=>{
+    
+    LikeChatByID(SetLike(!Like),{},id,token)
+  }
   // function to change the color of the border
   const borderColor = () => {
     switch (official) {
@@ -75,7 +84,7 @@ export default function ChatCard({
               </Center>
             </Box>
             <Box sx={{ position: "absolute", bottom: 10, left: 20, mt: "50px" }}>
-              <IconButton onClick={() => SetLike(!Like)}>
+              <IconButton onClick={handleLike}>
                 <Center>
                   {Like ? (
                     <FavoriteRoundedIcon sx={{ width: "35px", height: "35px", color: primary }} />
@@ -112,7 +121,7 @@ export default function ChatCard({
             </Center>
             <Box width={'10%'} sx={{ position: "absolute", bottom: 10, mt: "50px", left: 10 }}>
               <Center>
-                <IconButton onClick={() => SetLike(!Like)}>
+                <IconButton onClick={handleLike}>
                   <Center>
                     {Like ? (
                       <FavoriteRoundedIcon sx={{ width: "20px", height: "20px", color: primary }} />
@@ -157,7 +166,7 @@ export default function ChatCard({
 
                 <Grid item xs={1} sm={1} md={1} lg={6}></Grid>
 
-                <Grid item xs={2.5} sm={2.5} md={2.5} lg={1}>
+                <Grid item xs={5} sm={5} md={5} lg={2}>
                   <Center height={"100%"}>
                     <Typography
                       mx={2}
@@ -179,27 +188,6 @@ export default function ChatCard({
                   </Center>
                 </Grid>
 
-                <Grid item xs={2.5} sm={2.5} md={2.5} lg={1}>
-                  <Center height={"100%"}>
-                    <Typography
-                      mx={2}
-                      textAlign={"end"}
-                      color='gray'
-                      sx={{ display: { xs: "none", sm: "flex" } }}
-                    >
-                      {time != null ? time : "Time"}
-                    </Typography>
-                    <Typography
-                      mx={2}
-                      textAlign={"end"}
-                      color='gray'
-                      fontSize={"0.8em"}
-                      sx={{ display: { xs: "flex", sm: "none" } }}
-                    >
-                      {time != null ? time : "Time"}
-                    </Typography>
-                  </Center>
-                </Grid>
               </Grid>
             </Box>
 
