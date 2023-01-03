@@ -18,6 +18,8 @@ import IButton from "./IButton";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import CustomCard from "./CustomCard";
 import ProfileCard from "./ProfileCard";
+import { useEffect } from "react";
+import { GetCurrentUserProfile } from "../Services/API";
 
 export default function ProfileInfoCardMobile({
   UserName,

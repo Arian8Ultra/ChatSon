@@ -203,15 +203,19 @@ function Login(req, res, next) {
     };
     knex('users').where({ username: User.username }).select().then((result) => {
         if (result.length > 0) {
-            if (result[0].password === User.password) {
-                const token = GenerateJWT(result[0]);
-                knex('users').where({ username: User.username }).update({ token: token }).then(() => {
-                    console.log('User logged in');
-                });
-                res.status(200).json({ token: token });
-            } else {
-                res.status(401).json({ message: 'Wrong password or username' });
-            }
+            decrypt(result[0].password).then((decrypted) => {
+                result[0].password=decrypted;
+                if (result[0].password === User.password) {
+                    const token = GenerateJWT(result[0]);
+                    knex('users').where({ username: User.username }).update({ token: token }).then(() => {
+                        console.log('User logged in');
+                    });
+                    res.status(200).json({ token: token });
+                } else {
+                    res.status(401).json({ message: 'Wrong password or username' });
+                }
+            });
+            
         } else {
             res.status(401).json({ message: 'Unauthorized' });
         }
@@ -225,20 +229,27 @@ function Register(req, res, next) {
         res.status(400).json({ message: 'Request body is empty' });
     }
     else {
-
-        const User = {
+        let User = {
             username: req.body.username,
             email: req.body.email,
-            password: (String(req.body.password)),
+            password: String(req.body.password),
         };
         knex('users').where({ username: User.username }).select().then((result) => {
             if (result.length > 0) {
                 res.status(401).json({ message: 'User already exists' });
             } else {
-                knex('users').insert(User).then(() => {
-                    console.log('User registered');
+                encrypt(User.password).then((hash) => {
+                    User.password = hash;
+                    User = {
+                        username: User.username,
+                        email: User.email,
+                        password: User.password,
+                    }
+                    knex('users').insert(User).then(() => {
+                        console.log('User registered');
+                    });
+                    res.status(200).json({ message: 'User registered' });
                 });
-                res.status(200).json({ message: 'User registered' });
             }
         });
     }
@@ -302,8 +313,8 @@ function FollowByUsername(req, res) {
                 }
             })
         }).catch((err) => {
-                res.status(401).json({ error: 'Failed to authenticate' });
-            });
+            res.status(401).json({ error: 'Failed to authenticate' });
+        });
     } else {
         res.status(401).json({ error: 'Failed to authenticate' });
     }
@@ -343,8 +354,8 @@ function UnfollowByUsername(req, res) {
                 }
             })
         }).catch((err) => {
-                res.status(401).json({ error: 'Failed to authenticate' });
-            });
+            res.status(401).json({ error: 'Failed to authenticate' });
+        });
     } else {
         res.status(401).json({ error: 'Failed to authenticate' });
     }
@@ -352,70 +363,70 @@ function UnfollowByUsername(req, res) {
 
 
 // get users tweets from tweets table by username with token check
-function GetTweetsByUsername(req, res) {
-    if (req.headers && req.headers.authorization) {
-        const authorization = req.headers.authorization.split(' ');
-        if (authorization[0] === 'JWT') {
-            req.jwt = authorization[1];
-        }
-    }
+// function GetTweetsByUsername(req, res) {
+//     if (req.headers && req.headers.authorization) {
+//         const authorization = req.headers.authorization.split(' ');
+//         if (authorization[0] === 'JWT') {
+//             req.jwt = authorization[1];
+//         }
+//     }
 
-    if (req.jwt) {
-        CheckToken(req.jwt).then((decoded) => {
-            req.user = decoded.username
-            knex('users').where({ username: req.user }).select().then((result) => {
-                if (result.length > 0) {
-                    knex('tweets').where({ username: req.body.username }).select().then((result) => {
-                        if (result.length > 0) {
-                            res.status(200).json(result);
-                        } else {
-                            res.status(401).json({ message: 'User not found' });
-                        }
-                    });
-                } else {
-                    res.status(401).json({ message: 'User not found' });
-                }
-            })
-        }).catch((err) => {
-                res.status(401).json({ error: 'Failed to authenticate' });
-            });
-    } else {
-        res.status(401).json({ error: 'Failed to authenticate' });
-    }
-}
+//     if (req.jwt) {
+//         CheckToken(req.jwt).then((decoded) => {
+//             req.user = decoded.username
+//             knex('users').where({ username: req.user }).select().then((result) => {
+//                 if (result.length > 0) {
+//                     knex('tweets').where({ username: req.body.username }).select().then((result) => {
+//                         if (result.length > 0) {
+//                             res.status(200).json(result);
+//                         } else {
+//                             res.status(401).json({ message: 'User not found' });
+//                         }
+//                     });
+//                 } else {
+//                     res.status(401).json({ message: 'User not found' });
+//                 }
+//             })
+//         }).catch((err) => {
+//                 res.status(401).json({ error: 'Failed to authenticate' });
+//             });
+//     } else {
+//         res.status(401).json({ error: 'Failed to authenticate' });
+//     }
+// }
 
-// get current user tweets from tweets table with token check
-function GetTweets(req, res) {
-    if (req.headers && req.headers.authorization) {
-        const authorization = req.headers.authorization.split(' ');
-        if (authorization[0] === 'JWT') {
-            req.jwt = authorization[1];
-        }
-    }
+// // get current user tweets from tweets table with token check
+// function GetTweets(req, res) {
+//     if (req.headers && req.headers.authorization) {
+//         const authorization = req.headers.authorization.split(' ');
+//         if (authorization[0] === 'JWT') {
+//             req.jwt = authorization[1];
+//         }
+//     }
 
-    if (req.jwt) {
-        CheckToken(req.jwt).then((decoded) => {
-            req.user = decoded.username
-            knex('users').where({ username: req.user }).select().then((result) => {
-                if (result.length > 0) {
-                    knex('tweets').where({ username: req.user }).select().then((result) => {
-                        if (result.length > 0) {
-                            res.status(200).json(result);
-                        } else {
-                            res.status(401).json({ message: 'User not found' });
-                        }
-                    });
-                } else {
-                    res.status(401).json({ message: 'User not found' });
-                }
-            })
-        }).catch((err) => {
-                res.status(401).json({ error: 'Failed to authenticate' });
-            });
-    } else {
-        res.status(401).json({ error: 'Failed to authenticate' });
-    }
-}
+//     if (req.jwt) {
+//         CheckToken(req.jwt).then((decoded) => {
+//             req.user = decoded.username
+//             knex('users').where({ username: req.user }).select().then((result) => {
+//                 if (result.length > 0) {
+//                     knex('tweets').where({ username: req.user }).select().then((result) => {
+//                         if (result.length > 0) {
+//                             res.status(200).json(result);
+//                         } else {
+//                             res.status(401).json({ message: 'User not found' });
+//                         }
+//                     });
+//                 } else {
+//                     res.status(401).json({ message: 'User not found' });
+//                 }
+//             })
+//         }).catch((err) => {
+//                 res.status(401).json({ error: 'Failed to authenticate' });
+//             });
+//     } else {
+//         res.status(401).json({ error: 'Failed to authenticate' });
+//     }
+// }
 
 
 // get current user
@@ -439,8 +450,8 @@ function GetCurrentUser(req, res) {
                 }
             })
         }).catch((err) => {
-                res.status(401).json({ error: 'Failed to authenticate' });
-            });
+            res.status(401).json({ error: 'Failed to authenticate' });
+        });
     } else {
         res.status(401).json({ error: 'Failed to authenticate' });
     }

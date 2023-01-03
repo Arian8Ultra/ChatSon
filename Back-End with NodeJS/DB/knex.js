@@ -21,6 +21,7 @@ knex.schema.hasTable('users').then((exists) => {
                 table.string('followers');
                 table.string('following');
                 table.string('tweets');
+                table.string('KEY');
             }).then(() => {
                 console.log('Table created');
             }),

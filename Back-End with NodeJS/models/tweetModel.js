@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 const express = require('express');
 const router = express.Router()
+let { encrypt, decrypt } = require('../cipher');
 
 // tweet object with username as foreign key
 class Tweet {
@@ -28,27 +29,31 @@ function CreateTweet(req, res) {
             if (err) {
                 res.status(401).json({ message: 'Unauthorized Token' });
             } else {
-                const Tweet = { username: decoded.username, content: req.body.content, date: new Date().getHours() + ':' + new Date().getMinutes() + ' ' + new Date().getDate() + '/' + new Date().getMonth() + '/' + new Date().getFullYear() };
-                knex('tweets').insert(Tweet).then(() => {
-                    console.log('Test : ' + decoded.username);
-                    // select user tweets and add new tweet to it
-                    knex('users').select('tweets').where({ username: decoded.username }).then((result) => {
-                        let tweets = []
-                        tweets = result[0].tweets;
-                        if (tweets == null) { tweets = []; }
-                        else {
-                            tweets = JSON.parse(tweets);
-                            console.log('Tweets : ' + tweets);
-                        }
-                        tweets.push(Tweet);
-                        tweets = JSON.stringify(tweets);
-                        knex('users').update({ tweets: tweets }).where({ username: decoded.username }).then(() => {
-                            res.status(200).json(Tweet);
-                        });
-                    })
+                let Tweet = { username: decoded.username, content: req.body.content, date: new Date().getHours() + ':' + new Date().getMinutes() + ' ' + new Date().getDate() + '/' + new Date().getMonth() + '/' + new Date().getFullYear() };
+
+                encrypt(Tweet.content).then((encrypted) => {
+                    Tweet = { username: decoded.username, content: Tweet.content, date: new Date().getHours() + ':' + new Date().getMinutes() + ' ' + new Date().getDate() + '/' + new Date().getMonth() + '/' + new Date().getFullYear() }
+                    // insert tweet to tweets table
+                    knex('tweets').insert(Tweet).then(() => {
+                        console.log('Test : ' + decoded.username);
+                        // select user tweets and add new tweet to it
+                        knex('users').select('tweets').where({ username: decoded.username }).then((result) => {
+                            let tweets = []
+                            tweets = result[0].tweets;
+                            if (tweets == null) { tweets = []; }
+                            else {
+                                tweets = JSON.parse(tweets);
+                                console.log('Tweets : ' + tweets);
+                            }
+                            tweets.push(Tweet);
+                            tweets = JSON.stringify(tweets);
+                            knex('users').update({ tweets: tweets }).where({ username: decoded.username }).then(() => {
+                                res.status(200).json(Tweet);
+                            });
+                        })
+                    });
                 });
 
-                // res.status(200).json(Tweet);
             }
         });
     } else {
@@ -212,7 +217,7 @@ function LikeTweet(req, res) {
                         // adding 1 to like count of the tweet
                         knex('tweets').where({ id: req.params.id }).select('like_count').then((result) => {
                             const like_count = result[0].like_count;
-                            if(like_count == null) { like_count = 0; }
+                            if (like_count == null) { like_count = 0; }
                             knex('tweets').where({ id: req.params.id }).update({ like_count: like_count + 1 }).then(() => {
                                 console.log('Like count updated');
                             });

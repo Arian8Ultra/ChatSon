@@ -40,7 +40,6 @@ export default function MyChatSonPage() {
       <Grid container sx={{ display: { xs: "none", md: "flex" } }} spacing={2}>
         <Grid item lg={3}>
           <Stack spacing={2}>
-            
             <ProfileInfoCard
               UserName={profile.username}
               name={profile.name != null ? profile.name : ""}
@@ -59,21 +58,20 @@ export default function MyChatSonPage() {
               <Divider sx={{ width: "100%", borderColor: primary, my: 1 }} />
 
               <Stack width={"100%"} spacing={1}>
-
-              {profile.following != null
-              ? JSON.parse(profile.following)
-                  .reverse()
-                  .map(
-                    (
-                      item, //following
-                    ) => (
-                      <ProfileInfoCard
-                        UserName={item.username}
-                        name={item.name != null ? item.name : ""}
-                      />
-                    ),
-                  )
-              : ""}
+                {profile.following != null
+                  ? JSON.parse(profile.following)
+                      .reverse()
+                      .map(
+                        (
+                          item, //following
+                        ) => (
+                          <ProfileInfoCard
+                            UserName={item.username}
+                            name={item.name != null ? item.name : ""}
+                          />
+                        ),
+                      )
+                  : ""}
                 <ProfileCard
                   username={"Arian"}
                   onClick={() => navigate(`/App/Profile/${"Arian"}`)}
@@ -133,12 +131,15 @@ export default function MyChatSonPage() {
       <Grid container sx={{ display: { xs: "flex", md: "none" } }} spacing={2}>
         <Grid item xs={12}>
           <Stack spacing={2}>
-            <ProfileInfoCardMobile />
+            <ProfileInfoCardMobile
+              UserName={profile.username}
+              name={profile.name != null ? profile.name : ""}
+            />
           </Stack>
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={2}>
-          {profile.tweets != null
+            {profile.tweets != null
               ? JSON.parse(profile.tweets)
                   .reverse()
                   .map((item) => (

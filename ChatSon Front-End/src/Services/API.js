@@ -1,6 +1,6 @@
 import axios from "axios";
 import querystring from "querystring";
-const apiURL = 'http://45.138.133.109:3000'
+const apiURL = 'http://localhost:3000'
 
 export function SignUpUser(
     userName,
@@ -35,7 +35,6 @@ export function SignUpUser(
             return error;
         });
 }
-
 export function SignInUser(
     userName,
     password,
@@ -76,7 +75,6 @@ export function SignInUser(
 
 
 }
-
 export function NewChat(
     onSuccess,
     onFail,
