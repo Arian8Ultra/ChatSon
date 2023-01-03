@@ -15,7 +15,36 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
+@font-face {
+  font-family: "Comfortaa";
+  src: local("ComfortaaBold"),
+   url("./fonts/Comfortaa/static/Comfortaa-Bold.ttf") format("truetype");
+  font-weight: bold;
+  }
+@font-face {
+  font-family: "Comfortaa";
+  src: local("ComfortaaLight"),
+   url("./fonts/Comfortaa/static/Comfortaa-Light.ttf") format("truetype");
+  font-weight: lighter;
+  }
+@font-face {
+  font-family: "Comfortaa";
+  src: local("ComfortaaMedium"),
+   url("./fonts/Comfortaa/static/Comfortaa-Medium.ttf") format("truetype");
+  font-weight: 500;
+  }
+@font-face {
+  font-family: "Comfortaa";
+  src: local("ComfortaaReqular"),
+   url("./fonts/Comfortaa/static/Comfortaa-Regular.ttf") format("truetype");
+  font-weight: normal;
+  }
+@font-face {
+  font-family: "Comfortaa";
+  src: local("ComfortaaSemiBold"),
+   url("./fonts/Comfortaa/static/Comfortaa-SemiBold.ttf") format("truetype");
+  font-weight: bold;
+  }
 text{
   color:#ffc046 ;
 }
