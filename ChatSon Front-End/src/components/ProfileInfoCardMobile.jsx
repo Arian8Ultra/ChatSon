@@ -1,25 +1,21 @@
 // Description: This component is used to show profile information in mobile version that use the accordion component to show the profile information in a collapsible way
 import { Center } from "@chakra-ui/react";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Avatar,
-  Card,
-  Container,
-  Divider,
+  Card, Divider,
   Stack,
-  Typography,
+  Typography
 } from "@mui/material";
 import React from "react";
 import { GlassBackgroundDark, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
-import IButton from "./IButton";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import CustomCard from "./CustomCard";
+import IButton from "./IButton";
 import ProfileCard from "./ProfileCard";
-import { useEffect } from "react";
-import { GetCurrentUserProfile } from "../Services/API";
 
 export default function ProfileInfoCardMobile({
   UserName,

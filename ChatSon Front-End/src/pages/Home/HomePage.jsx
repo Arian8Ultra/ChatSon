@@ -10,7 +10,7 @@ import testImage from "../../../Images/testImage.jpg";
 import Logo from "../../../Images/ChatSonLogo.svg";
 import { useEffect } from "react";
 import usePageStore from "../../stores/PageStore";
-import { GetChats } from "../../Services/API";
+import { GetAllChats } from "../../Services/API";
 import useAlertStore from "../../stores/AlertStore";
 import useUserStore from "../../stores/UserStore";
 
@@ -29,9 +29,9 @@ export default function HomePage() {
     if (counter == 0) {
       // getting chats from server
       setCounter(1);
-      GetChats(token, onSuccess, onFail,setChatList);
+      GetAllChats(token, onSuccess, onFail,setChatList);
       setInterval(() => {
-        GetChats(token, onSuccess, onFail,setChatList);
+        GetAllChats(token, onSuccess, onFail,setChatList);
       }, 60000);
     }
   }, []);
@@ -48,9 +48,11 @@ export default function HomePage() {
             time={chat.time}
             message={chat.content}
             id={chat.id}
+            liked={chat.liked}
+            likeNum={chat.likeCount}
           />
         ))}
-        <ChatCard
+        {/* <ChatCard
           name={"Arian Rezaei"}
           date='1/1/1401'
           time={"7:30"}
@@ -78,7 +80,7 @@ export default function HomePage() {
           time={"10:13"}
           message='این یک تست برای چت فارسی است'
           official='news'
-        />
+        /> */}
       </Stack>
     </Box>
   );

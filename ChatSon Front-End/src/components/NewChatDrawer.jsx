@@ -9,6 +9,7 @@ import { Box } from "@mui/system";
 import * as React from "react";
 import { GlassBackground, primary } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
+import { NewChat } from "../Services/API";
 import useNewChatDrawerStore from "../stores/NewChatDrawerStore";
 import useUserStore from "../stores/UserStore";
 import LinkButton from "./LinkButton";
@@ -19,13 +20,14 @@ export function NewChatDrawer() {
   // getting the state and the actions from the store
   let openChatDrawer = useNewChatDrawerStore((state) => state.open);
   let changeChatDrawer = useNewChatDrawerStore((state) => state.changeSideBar);
-  let token = useUserStore((state) => state.token);
+  let token = useUserStore((state) => state.Token);
 
   const [text,getText] = React.useState("");
   const onFail = () => {};
   const onSuccess = () => {
     changeChatDrawer()
   };
+
   
   const handleNewChat=()=>{
     NewChat(onSuccess,onFail,text,token);
@@ -84,8 +86,9 @@ export function NewChatDrawer() {
           borderRadius={3}
           multiline={true}
           label={"body of the chat"}
-          rows={15} />
+          rows={15}
           getText={getText}
+          />
       </Box>
 
       <Box mt={2} mb={2}>

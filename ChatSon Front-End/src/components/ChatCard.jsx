@@ -4,11 +4,11 @@ import { Center, Image } from "@chakra-ui/react";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { Avatar, Box, Card, Grid, IconButton, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlassBackgroundDark, primary, Red, Yellow } from "../../theme/Colors";
 import { borderRadiuos } from "../../theme/Themes";
-import { LikeChatByID } from "../Services/API";
+import { likeChat, checkIfLiked, unlikeChat } from "../Services/API";
 import useUserStore from "../stores/UserStore";
 
 export default function ChatCard({
@@ -26,13 +26,18 @@ export default function ChatCard({
   id,
   ...rest
 }) {
-
   const token = useUserStore((state) => state.Token);
+  const [counter, setCounter] = React.useState(0);
 
-  const handleLike =()=>{
-    
-    LikeChatByID(SetLike(!Like),{},id,token)
-  }
+  const handleLike = () => {
+    if (Like) {
+      unlikeChat(()=>SetLike(false),{},id, token);
+      SetLikeNum(LikeNum - 1);
+    } else {
+      likeChat(()=>SetLike(true),{}, id, token);
+      SetLikeNum(LikeNum + 1);
+    }
+  };
   // function to change the color of the border
   const borderColor = () => {
     switch (official) {
@@ -52,7 +57,7 @@ export default function ChatCard({
 
   // function to handle the click event of like button
   const [Like, SetLike] = React.useState(liked != null ? liked : false);
-
+  const [LikeNum, SetLikeNum] = React.useState(likeNum != null ? likeNum : 0);
   // returning the card component
   return (
     <Card
@@ -79,7 +84,7 @@ export default function ChatCard({
             </Box>
             <Box sx={{ mb: "60px" }}>
               <Center>
-                <Typography textAlign={"center"}>{likeNum != null ? likeNum : 0}</Typography>
+                <Typography textAlign={"center"}>{LikeNum}</Typography>
                 <FavoriteRoundedIcon />
               </Center>
             </Box>
@@ -114,12 +119,14 @@ export default function ChatCard({
             <Center>
               <Box sx={{ mb: "50px", mt: "20px" }}>
                 <Center>
-                  <Typography textAlign={"center"} fontSize={'15px'}>{likeNum != null ? likeNum : 0}</Typography>
+                  <Typography textAlign={"center"} fontSize={"15px"}>
+                    {LikeNum}
+                  </Typography>
                   <FavoriteRoundedIcon sx={{ width: "20px", height: "20px", color: primary }} />
                 </Center>
               </Box>
             </Center>
-            <Box width={'10%'} sx={{ position: "absolute", bottom: 10, mt: "50px", left: 10 }}>
+            <Box width={"10%"} sx={{ position: "absolute", bottom: 10, mt: "50px", left: 10 }}>
               <Center>
                 <IconButton onClick={handleLike}>
                   <Center>
@@ -187,7 +194,6 @@ export default function ChatCard({
                     </Typography>
                   </Center>
                 </Grid>
-
               </Grid>
             </Box>
 

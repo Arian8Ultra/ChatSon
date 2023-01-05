@@ -16,7 +16,7 @@ export function SignUpUser(
     // console.warn("signing up");
     const options = {
         method: "POST",
-        url: apiURL + '/api/user/register',
+        url: apiURL + '/api/user/',
         data: {
             username: userName,
             email: email,
@@ -142,7 +142,7 @@ export function GetUserById(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/user/',
+        url: apiURL + '/api/user/id/',
         params: { id: id },
         headers: { "Authorization": `JWT ${token}` }
     };
@@ -236,8 +236,7 @@ export function followUser(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/user/follow',
-        params: { username: username },
+        url: apiURL + `/api/user/follow/:${username}`,
         headers: { "Authorization": `JWT ${token}` }
     };
 
@@ -264,8 +263,7 @@ export function unfollowUser(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/user/unfollow',
-        params: { username: username },
+        url: apiURL + `/api/user/unfollow/:${username}`,
         headers: { "Authorization": `JWT ${token}` }
     };
 
@@ -292,8 +290,7 @@ export function GetFollowers(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/user/followers/',
-        params: { username: username },
+        url: apiURL + `/api/user/followers/:${username}`,
         headers: { "Authorization": `JWT ${token}` }
     };
 
@@ -320,8 +317,7 @@ export function GetFollowing(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/user/following/',
-        params: { username: username },
+        url: apiURL + `/api/user/following/:${username}`,
         headers: { "Authorization": `JWT ${token}` }
     };
 
@@ -391,17 +387,43 @@ export function getCurrentUserFollowing(
         });
 }
 
-export function CheckIfFollowing(
+// export function CheckIfFollowing(
+//     onSuccess,
+//     onFail,
+//     AlertChange,
+//     username,
+//     token,
+// ) {
+//     const options = {
+//         method: 'GET',
+//         url: apiURL + '/api/user/checkiffollowing/',
+//         params: { username: username },
+//         headers: { "Authorization": `JWT ${token}` }
+//     };
+
+//     axios.request(options)
+//         .then(function (response) {
+//             onSuccess != '' ? onSuccess() : {};
+//             console.log(response);
+//             AlertChange(200)
+//             return response.data;
+//         }).catch(function (error) {
+//             console.error(error);
+//             AlertChange(String(error));
+//             onFail != '' ? onFail() : {};
+//             return error;
+//         });
+// }
+
+export function GetCurrentUser(
     onSuccess,
     onFail,
-    AlertChange,
-    username,
     token,
+    setProfile,
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/user/checkiffollowing/',
-        params: { username: username },
+        url: apiURL + '/api/user/current',
         headers: { "Authorization": `JWT ${token}` }
     };
 
@@ -409,11 +431,10 @@ export function CheckIfFollowing(
         .then(function (response) {
             onSuccess != '' ? onSuccess() : {};
             console.log(response);
-            AlertChange(200)
+            setProfile(response.data);
             return response.data;
         }).catch(function (error) {
             console.error(error);
-            AlertChange(String(error));
             onFail != '' ? onFail() : {};
             return error;
         });
@@ -482,6 +503,36 @@ export function GetAllChats(
         });
 }
 
+export function GetAllChatsByLikes(
+    token,
+    onSuccess,
+    onFail,
+    setArray,
+) {
+    const options = {
+        method: 'GET',
+        url: apiURL + '/api/post/likes',
+        headers: { "Authorization": `JWT ${token}` }
+    };
+
+    console.log(token);
+
+    axios
+        .request(options)
+        .then(function (response) {
+            onSuccess != '' ? onSuccess() : {};
+            setArray(response.data.posts)
+            console.log(response);
+            return response.data.posts;
+
+        })
+        .catch(function (error) {
+            console.error(error);
+            onFail != '' ? onFail() : {};
+            return error;
+        });
+}
+
 export function GetChatByID(
     onSuccess,
     onFail,
@@ -491,8 +542,7 @@ export function GetChatByID(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/post/',
-        params: { id: id },
+        url: apiURL + `/api/post/${id}`,
         headers: { "Authorization": `JWT ${token}` },
 
     };
@@ -521,8 +571,7 @@ export function UpdateChat(
 ) {
     const options = {
         method: 'PUT',
-        url: apiURL + '/api/post/',
-        params: { id: id },
+        url: apiURL + `/api/post/${id}`,
         data: {
             content: String(content),
         },
@@ -553,8 +602,7 @@ export function GetChatsByUsername(
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/post/username/',
-        params: { username: username },
+        url: apiURL + `/api/post/username/${username}`,
         headers: { "Authorization": `JWT ${token}` },
     }
 
@@ -580,7 +628,7 @@ export function GetCurrentUserChats (
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/post/currentuser',
+        url: apiURL + '/api/post/current',
         headers: { "Authorization": `JWT ${token}` },
     }
 
@@ -606,8 +654,7 @@ export function likeChat(
 ) {
     const options = {
         method: 'POST',
-        url: apiURL + '/api/post/like/',
-        params: { id: id },
+        url: apiURL + `/api/post/like/${id}`,
         headers: { "Authorization": `JWT ${token}` },
     }
 
@@ -632,8 +679,7 @@ export function unlikeChat(
 ) {
     const options = {
         method: 'POST',
-        url: apiURL + '/api/post/unlike/',
-        params: { id: id },
+        url: apiURL + `/api/post/unlike/${id}`,
         headers: { "Authorization": `JWT ${token}` },
     }
 
@@ -651,29 +697,23 @@ export function unlikeChat(
 }
 
 export function checkIfLiked (
-    onSuccess,
-    onFail,
     id,
-    setArray,
     token
 ) {
     const options = {
         method: 'GET',
-        url: apiURL + '/api/post/checkifliked/',
-        params: { id: id },
+        url: apiURL + `/api/post/checkifliked/${id}`,
         headers: { "Authorization": `JWT ${token}` },
     }
 
     axios.request(options)
         .then(function (response) {
-            onSuccess != '' ? onSuccess() : {};
-            setArray(response.data)
+            console.log(id);
             console.log(response);
-            return response.data;
+            return response.data.liked;
         }
         ).catch(function (error) {
             console.error(error);
-            onFail != '' ? onFail() : {};
             return error;
         });
 }

@@ -1,22 +1,18 @@
-import { Center } from "@chakra-ui/react";
-import { Avatar, Box, Card, Container, Divider, Grid, Stack, Typography } from "@mui/material";
+import { Box, Card, Divider, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { GlassBackgroundDark, primary } from "../../../theme/Colors";
-import useSideBarStore from "../../stores/SideBarStore";
-import { borderRadiuos } from "../../../theme/Themes";
-import testImage from "../../../Images/testImage.jpg";
-import Logo from "../../../Images/ChatSonLogo.svg";
-import MyChatCard from "../../components/MyChatCard";
-import IButton from "../../components/IButton";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import ProfileCard from "../../components/ProfileCard";
-import usePageStore from "../../stores/PageStore";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../../Images/ChatSonLogo.svg";
+import testImage from "../../../Images/testImage.jpg";
+import { GlassBackgroundDark, primary } from "../../../theme/Colors";
+import { borderRadiuos } from "../../../theme/Themes";
+import MyChatCard from "../../components/MyChatCard";
+import ProfileCard from "../../components/ProfileCard";
 import ProfileInfoCard from "../../components/ProfileInfoCard";
 import ProfileInfoCardMobile from "../../components/ProfileInfoCardMobile";
+import { GetCurrentUser, GetCurrentUserChats } from "../../Services/API";
+import usePageStore from "../../stores/PageStore";
+import useSideBarStore from "../../stores/SideBarStore";
 import useUserStore from "../../stores/UserStore";
-import { GetCurrentUserProfile, GetProfileByUsername } from "../../Services/API";
-import LinkButton from "../../components/LinkButton";
 
 export default function MyChatSonPage() {
   const changeDrawerWidth = useSideBarStore((state) => state.changeDrawerWidth);
@@ -26,14 +22,24 @@ export default function MyChatSonPage() {
   const token = useUserStore((state) => state.Token);
   const UserName = useUserStore((state) => state.UserName);
   const [chatList, setChatList] = React.useState([]);
+  const [peopleList, setPeopleList] = React.useState([]);
+
   const onFail = () => {};
-  const onSuccess = () => {};
+  const onSuccess = () => {
+    const onFailChats = () => {};
+    const onSuccessChats = () => {};
+    GetCurrentUserChats(onSuccessChats, onFailChats, setChatList,token);
+    console.log(chatList);
+  };
 
   useEffect(() => {
     changePageName("My ChatSon");
     changeDrawerWidth(2);
-    GetCurrentUserProfile(onSuccess, onFail, token, setProfile);
-    console.warn(profile);
+    GetCurrentUser(onSuccess, onFail, token, setProfile);
+    console.log(chatList);
+    if (profile.following != null) {
+      setPeopleList(JSON.parse(profile.following));
+    }
   }, []);
   return (
     <Box width={"100%"}>
@@ -58,21 +64,10 @@ export default function MyChatSonPage() {
               <Divider sx={{ width: "100%", borderColor: primary, my: 1 }} />
 
               <Stack width={"100%"} spacing={1}>
-                {profile.following != null
-                  ? JSON.parse(profile.following)
-                      .reverse()
-                      .map(
-                        (
-                          item, //following
-                        ) => (
-                          <ProfileInfoCard
-                            UserName={item.username}
-                            name={item.name != null ? item.name : ""}
-                          />
-                        ),
-                      )
-                  : ""}
-                <ProfileCard
+                {peopleList.map((item) => {
+                  <ProfileCard username={item} onClick={() => navigate(`/App/Profile/${item}`)} />;
+                })}
+                {/* <ProfileCard
                   username={"Arian"}
                   onClick={() => navigate(`/App/Profile/${"Arian"}`)}
                 />
@@ -87,7 +82,7 @@ export default function MyChatSonPage() {
                 <ProfileCard
                   username={"Nilofar"}
                   onClick={() => navigate(`/App/Profile/${"Nilofar"}`)}
-                />
+                /> */}
               </Stack>
             </Card>
           </Stack>
@@ -97,34 +92,17 @@ export default function MyChatSonPage() {
             {chatList.map((item) =>
               item.username == UserName ? (
                 <MyChatCard
-                  name={"Arian Rezaei"}
-                  date='1/1/1401'
-                  time={"7:30"}
-                  message='this is a test for this'
-                  ChatImage={testImage}
-                  profileImage={Logo}
-                  official='chatSon'
+                  name={item.username}
+                  date={item.date}
+                  message={item.content}
+                  likeNum={item.likeCount}
                 />
               ) : (
                 ""
               ),
             )}
 
-            {profile.tweets != null
-              ? JSON.parse(profile.tweets)
-                  .reverse()
-                  .map((item) => (
-                    <MyChatCard
-                      name={item.username}
-                      date='1/1/1401'
-                      time={"7:30"}
-                      message={item.content}
-                      ChatImage={item.image != null ? item.image : ""}
-                      profileImage={Logo}
-                      official='chatSon'
-                    />
-                  ))
-              : ""}
+            
           </Stack>
         </Grid>
       </Grid>
@@ -139,21 +117,18 @@ export default function MyChatSonPage() {
         </Grid>
         <Grid item xs={12}>
           <Stack spacing={2}>
-            {profile.tweets != null
-              ? JSON.parse(profile.tweets)
-                  .reverse()
-                  .map((item) => (
-                    <MyChatCard
-                      name={item.username}
-                      date='1/1/1401'
-                      time={item.date}
-                      message={item.content}
-                      ChatImage={item.image != null ? item.image : ""}
-                      profileImage={Logo}
-                      official='chatSon'
-                    />
-                  ))
-              : ""}
+          {chatList.map((item) =>
+              item.username == UserName ? (
+                <MyChatCard
+                  name={item.username}
+                  date={item.date}
+                  message={item.content}
+                  likeNum={item.likeCount}
+                />
+              ) : (
+                ""
+              ),
+            )}
           </Stack>
         </Grid>
       </Grid>

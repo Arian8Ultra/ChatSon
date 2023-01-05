@@ -131,7 +131,7 @@ export default function MyChatCard({
 
                 <Grid item xs={1} sm={1} md={1} lg={6}></Grid>
 
-                <Grid item xs={2.5} sm={2.5} md={2.5} lg={1}>
+                <Grid item xs={5} sm={5} md={5} lg={2}>
                   <Center height={"100%"}>
                     <Typography
                       mx={2}
@@ -149,28 +149,6 @@ export default function MyChatCard({
                       sx={{ display: { xs: "flex", sm: "none" } }}
                     >
                       {date != null ? date : "Date"}
-                    </Typography>
-                  </Center>
-                </Grid>
-
-                <Grid item xs={2.5} sm={2.5} md={2.5} lg={1}>
-                  <Center height={"100%"}>
-                    <Typography
-                      mx={2}
-                      textAlign={"end"}
-                      color='gray'
-                      sx={{ display: { xs: "none", sm: "flex" } }}
-                    >
-                      {time != null ? time : "Time"}
-                    </Typography>
-                    <Typography
-                      mx={2}
-                      textAlign={"end"}
-                      color='gray'
-                      fontSize={"0.8em"}
-                      sx={{ display: { xs: "flex", sm: "none" } }}
-                    >
-                      {time != null ? time : "Time"}
                     </Typography>
                   </Center>
                 </Grid>
