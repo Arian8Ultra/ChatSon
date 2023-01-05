@@ -1,182 +1,29 @@
-/*  @swagger
- /api/user:
-  get:
-    summary: Get all users
-    description: Get all users
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-  post:
-    summary: Create a user
-    description: Create a user
-    properties:
-      username:
-        type: string
-      password:
-        type: string
-      email:
-        type: string
-    requestBody:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-              email:
-                type: string
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-/api/user/login:
-  post:
-    summary: Login
-    description: Login
-    requestBody:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-/api/user/register:
-  post:
-    summary: Register
-    description: Register
-    requestBody:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-              email:
-                type: string
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-/api/user/auth:
-  get:
-    summary: Auth Check
-    description: Auth Check
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-/api/user/{id}:
-  get:
-    summary: Get a user
-    description: Get a user
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The user id
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-  put:
-    summary: Update a user
-    description: Update a user
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The user id
-    requestBody:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              username:
-                type: string
-              password:
-                type: string
-              email:
-                type: string
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error
-  delete:
-    summary: Delete a user
-    description: Delete a user
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The user id
-    responses:
-      200:
-        description: Success
-      401:
-        description: Unauthorized
-      500:
-        description: Internal Server Error */
+
 const express = require('express');
-const { CreateUser, GetUser, GetUsers, UpdateUser, DeleteUser, Login, Register, AuthCheck, FollowByUsername, UnfollowByUsername,GetCurrentUser,GetUserByUsername } = require('../models/userModel');
+// import methods from '../methods/userMethods';
+const { register, login, logout, deleteUser,updateUser,getAllUsers,getCurrentUser,getUserById,getUserByUsername,authCheck, followUser, unfollowUser,checkIfFollowing,getCurrentUserFollowers,getCurrentUserFollowing,getUserFollowers,getUserFollowing } = require('../Methods/UserMethods');
+
 const router = express.Router();
 
 
 
-
-
-router.get('/', GetUsers);
-router.get('/:id', GetUser);
-router.put('/:id', UpdateUser);
-router.delete('/:id', DeleteUser);
-router.post('/', CreateUser);
-router.post('/login', Login);
-router.post('/register', Register);
-router.get('/auth', AuthCheck);
-router.post('/follow', FollowByUsername);
-router.post('/unfollow', UnfollowByUsername);
-router.get('/currentuser', GetCurrentUser);
-router.get('/username/:username', GetUserByUsername);
+router.get('/', getAllUsers);
+router.get('/:id', getUserById);
+router.put('/:id', updateUser);
+router.delete('/:id', deleteUser);
+router.post('/', register);
+router.post('/login', login);
+router.post('/register', register);
+router.get('/auth', authCheck);
+router.get('/currentuser', getCurrentUser);
+router.get('/username/:username', getUserByUsername);
+router.get('/logout', logout);
+router.get('/follow/:username', followUser);
+router.get('/unfollow/:username', unfollowUser);
+router.get('/checkiffollowing/:username', checkIfFollowing);
+router.get('/currentuser/followers', getCurrentUserFollowers);
+router.get('/currentuser/following', getCurrentUserFollowing);
+router.get('/followers/:username', getUserFollowers);
+router.get('/following/:username', getUserFollowing);
 
 module.exports = router;

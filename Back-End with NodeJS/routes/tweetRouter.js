@@ -1,5 +1,6 @@
 const express = require('express');
 const { CreateTweet, GetTweet, GetTweets, UpdateTweet, DeleteTweet, GetTweetByUsername,GetCurentUserTweets,LikeTweet,UnlikeTweet } = require('../models/tweetModel');
+const { newPost,checkIfLiked,deletePost,getCurrentUserPosts,getPost,getPosts,getPostsByUsername,likePost,unlikePost,updatePost } = require('../Methods/PostMethods');
 const router = express.Router();
 
 router.post('/', CreateTweet);

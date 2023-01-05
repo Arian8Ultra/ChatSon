@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js --host",
     "start": "node app.js"
   },
@@ -25,9 +24,12 @@
     "sequelize": "^6.28.0",
     "sqlite3": "^5.1.4",
     "swagger-jsdoc": "^6.2.7",
-    "swagger-ui-express": "^4.6.0"
+    "swagger-ui-express": "^4.6.0",
+    "@prisma/client": "^4.8.0"
+
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "prisma": "^4.8.0"
   }
 }
