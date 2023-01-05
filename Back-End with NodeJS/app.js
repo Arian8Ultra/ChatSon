@@ -1,9 +1,7 @@
 // express
 const express = require('express');
 const app = express();
-const { CreateUser, GetUser, GetUsers, UpdateUser, DeleteUser, Login, Register, test, AuthCheck } = require('./models/userModel');
 const UserRouter = require('./routes/userRouter');
-const TweetRouter = require('./routes/tweetRouter');
 const PostRouter = require('./routes/postRouter');
 const cors = require('cors')
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -43,7 +41,6 @@ app.get('/', (req, res) => {
 
 
 app.use('/api/user', UserRouter);
-app.use('/api/tweet', TweetRouter);
 app.use('/api/post', PostRouter);
 
 app.use(

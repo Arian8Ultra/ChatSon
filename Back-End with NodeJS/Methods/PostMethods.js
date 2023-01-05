@@ -23,16 +23,19 @@ exports.newPost = async (req, res) => {
             else {
 
                 console.log(decoded.username);
-                prisma.post.create({
-                    data: {
-                        username: decoded.username,
-                        content: req.body.content,
-                        date: new Date()
-                    }
-                }).then((post) => {
-                    res.status(200).json({ post: post });
-                }).catch((err) => {
-                    res.status(500).json({ message: err.message });
+                encrypt(req.body.content).then((encrypted) => {
+
+                    prisma.post.create({
+                        data: {
+                            username: decoded.username,
+                            content: encrypted,
+                            date: new Date().getHours() + ':' + new Date().getMinutes() + ' ' + new Date().getDate() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear()
+                        }
+                    }).then((post) => {
+                        res.status(200).json({ post: post });
+                    }).catch((err) => {
+                        res.status(500).json({ message: err.message });
+                    });
                 });
             }
         });
@@ -62,15 +65,129 @@ exports.getPosts = async (req, res) => {
         }
         prisma.post.findMany({
             orderBy: {
-                date: "desc"
-            }
+                id: "desc"
+            },
         }).then((posts) => {
-            res.status(200).json({ posts: posts });
+            const decryptedPosts = [];
+            // decrypt posts content and send them at the end
+            posts.forEach((post) => {
+                decrypt(post.content).then((decrypted) => {
+                    post.likedBy = post.likedBy ? post.likedBy : '[]';
+                    likeCount = JSON.parse(post.likedBy).length;
+                    if (JSON.parse(post.likedBy).includes(decoded.username)) {
+                        decryptedPosts.push({ ...post, content: decrypted, liked: true, likeCount: likeCount });
+                        if (decryptedPosts.length === posts.length) {
+                            res.status(200).json({ posts: decryptedPosts });
+                        }
+                    }
+                    else {
+                        decryptedPosts.push({ ...post, content: decrypted, liked: false, likeCount: likeCount });
+                        if (decryptedPosts.length === posts.length) {
+                            res.status(200).json({ posts: decryptedPosts });
+                        }
+                    }
+
+                });
+            });
+
         }).catch((err) => {
             res.status(500).json({ message: err.message });
         });
     });
 }
+
+// get all posts sorted by latest with jwt check with pagination by page number in query
+
+exports.getPostsPagination = async (req, res) => {
+    if (req.headers && req.headers.authorization) {
+        const authorization = req.headers.authorization.split(' ');
+        if (authorization[0] === 'JWT') {
+            req.jwt = authorization[1];
+        }
+    }
+    const token = req.jwt
+    if (!token) {
+        return res.status(401).json({ auth: false, message: 'No token provided.' });
+    }
+    jwt.verify(token, config.jwtSecret, (err, decoded) => {
+        if (err) {
+            return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+        }
+        prisma.post.findMany({
+            orderBy: {
+                id: "desc"
+            },
+            skip: (req.query.page - 1) * 20,
+            take: 20
+        }).then((posts) => {
+            const decryptedPosts = [];
+            // decrypt posts content and send them at the end
+            posts.forEach((post) => {
+                decrypt(post.content).then((decrypted) => {
+                    post.likedBy = post.likedBy ? post.likedBy : '[]';
+                    likeCount = JSON.parse(post.likedBy).length;
+                    if (JSON.parse(post.likedBy).includes(decoded.username)) {
+                        decryptedPosts.push({ ...post, content: decrypted, liked: true, likeCount: likeCount });
+                        if (decryptedPosts.length === posts.length) {
+                            res.status(200).json({ posts: decryptedPosts });
+                        }
+                    }
+                    else {
+                        decryptedPosts.push({ ...post, content: decrypted, liked: false, likeCount: likeCount });
+                        if (decryptedPosts.length === posts.length) {
+                            res.status(200).json({ posts: decryptedPosts });
+                        }
+                    }
+
+                });
+            });
+
+        }).catch((err) => {
+            res.status(500).json({ message: err.message });
+        });
+    });
+}
+
+// exports.getPostsCheckIfLiked = async (req, res) => {
+//     if (req.headers && req.headers.authorization) {
+//         const authorization = req.headers.authorization.split(' ');
+//         if (authorization[0] === 'JWT') {
+//             req.jwt = authorization[1];
+//         }
+//     }
+//     console.log(req.jwt);
+//     const token = req.jwt
+//     if (!token) {
+//         return res.status(401).json({ auth: false, message: 'No token provided.' });
+//     }
+//     jwt.verify(token, config.jwtSecret, (err, decoded) => {
+//         if (err) {
+//             return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+//         }
+//         prisma.post.findMany({
+//             orderBy: {
+//                 date: "desc"
+//             }
+//         }).then((posts) => {
+//             let postsWithLiked = [];
+//             posts.forEach((post) => {
+//                 const likedByArray = JSON.parse(post.likedBy);
+//                 if(likedByArray.includes(decoded.username)){
+//                     postsWithLiked.push({ ...post, liked: true });
+//                 }
+//                 else{
+//                     postsWithLiked.push({ ...post, liked: false });
+//                 }
+
+//             })
+//             res.status(200).json({ posts: postsWithLiked });
+
+//         }).catch((err) => {
+//             res.status(500).json({ message: err });
+//         });
+//     });
+// }
+
 
 // get post by id with jwt check
 exports.getPost = async (req, res) => {
@@ -160,7 +277,7 @@ exports.getCurrentUserPosts = async (req, res) => {
     else {
         jwt.verify(token, config.jwtSecret, (err, decoded) => {
             if (err) {
-                return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+                return res.status(401).json({ auth: false, message: 'Failed to authenticate token.' });
             }
             prisma.post.findMany({
                 where: {
@@ -173,7 +290,17 @@ exports.getCurrentUserPosts = async (req, res) => {
                 if (!posts) {
                     return res.status(404).json({ message: "No posts found." });
                 }
-                res.status(200).json({ posts: posts });
+                const decryptedPosts = [];
+                posts.forEach((post) => {
+                    decrypt(post.content).then((decrypted) => {
+                        post.likedBy = post.likedBy ? post.likedBy : '[]';
+                        likeCount = JSON.parse(post.likedBy).length;
+                        decryptedPosts.push({ ...post, content: decrypted, likeCount: likeCount });
+                        if (decryptedPosts.length === posts.length) {
+                            res.status(200).json({ posts: decryptedPosts });
+                        }
+                    });
+                });
             }).catch((err) => {
                 res.status(500).json({ message: err.message });
             });
@@ -181,6 +308,59 @@ exports.getCurrentUserPosts = async (req, res) => {
 
     }
 }
+
+// get all posts with jwt check sorted by likes
+exports.getPostsByLikes = async (req, res) => {
+    if (req.headers && req.headers.authorization) {
+        const authorization = req.headers.authorization.split(' ');
+        if (authorization[0] === 'JWT') {
+            req.jwt = authorization[1];
+        }
+    }
+    const token = req.jwt
+    if (!token) {
+        return res.status(401).json({ auth: false, message: 'No token provided.' });
+    }
+    else {
+        jwt.verify(token, config.jwtSecret, (err, decoded) => {
+            if (err) {
+                return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+            }
+            prisma.post.findMany({
+                orderBy: {
+                    likedBy: "desc"
+                }
+            }).then((posts) => {
+                if (!posts) {
+                    return res.status(404).json({ message: "No posts found." });
+                }
+                const decryptedPosts = [];
+                posts.forEach((post) => {
+                    decrypt(post.content).then((decrypted) => {
+                        post.likedBy = post.likedBy ? post.likedBy : '[]';
+                        if (JSON.parse(post.likedBy).includes(decoded.username)) {
+                            decryptedPosts.push({ ...post, content: decrypted, liked: true });
+                            if (decryptedPosts.length === posts.length) {
+                                res.status(200).json({ posts: decryptedPosts });
+                            }
+                        }
+                        else {
+                            decryptedPosts.push({ ...post, content: decrypted, liked: false });
+                            if (decryptedPosts.length === posts.length) {
+                                res.status(200).json({ posts: decryptedPosts });
+                            }
+                        }
+
+                    });
+                });
+            }).catch((err) => {
+                res.status(500).json({ message: err.message });
+            });
+        });
+
+    }
+}
+
 
 // delete post by id with jwt check
 exports.deletePost = async (req, res) => {
@@ -196,7 +376,7 @@ exports.deletePost = async (req, res) => {
     }
     else {
         jwt.verify(token, config.jwtSecret, (err, decoded) => {
-            if(err) {
+            if (err) {
                 return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
             }
             prisma.post.delete({
@@ -278,10 +458,17 @@ exports.likePost = async (req, res) => {
                     id: parseInt(req.params.id)
                 }
             }).then((post) => {
-                const likedByArray = JSON.parse(post.likedBy);
                 if (!post) {
                     return res.status(404).json({ message: "No post found." });
                 }
+                let likedByArray;
+                if (post.likedBy === '') {
+                    likedByArray = [];
+                } else {
+                    likedByArray = JSON.parse(post.likedBy);
+                }
+
+
                 // check if user already liked the post
                 if (likedByArray.includes(decoded.username)) {
                     return res.status(400).json({ message: "You already liked this post." });
@@ -294,7 +481,8 @@ exports.likePost = async (req, res) => {
                         id: parseInt(req.params.id)
                     },
                     data: {
-                        likedBy: JSON.stringify(likedByArray)
+                        likedBy: JSON.stringify(likedByArray),
+                        likes: likedByArray.length
                     }
                 }).then((post) => {
                     if (!post) {
@@ -337,8 +525,12 @@ exports.unlikePost = async (req, res) => {
                     id: parseInt(req.params.id)
                 }
             }).then((post) => {
-                const likedByArray = JSON.parse(post.likedBy);
-                if (!post) {
+                let likedByArray;
+                if (post.likedBy === '') {
+                    likedByArray = [];
+                } else {
+                    likedByArray = JSON.parse(post.likedBy);
+                } if (!post) {
                     return res.status(404).json({ message: "No post found." });
                 }
                 // check if user already liked the post
@@ -353,7 +545,8 @@ exports.unlikePost = async (req, res) => {
                         id: parseInt(req.params.id)
                     },
                     data: {
-                        likedBy: JSON.stringify(likedByArray)
+                        likedBy: JSON.stringify(likedByArray),
+                        likes: likedByArray.length
                     }
                 }).then((post) => {
                     if (!post) {
@@ -383,6 +576,7 @@ exports.checkIfLiked = async (req, res) => {
         }
     }
     const token = req.jwt
+
     if (!token) {
         return res.status(401).json({ auth: false, message: 'No token provided.' });
     }
@@ -392,26 +586,31 @@ exports.checkIfLiked = async (req, res) => {
                 return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
             }
             // select post by id
-            prisma.post.findUnique({
+            prisma.post.findFirst({
                 where: {
                     id: parseInt(req.params.id)
                 }
             }).then((post) => {
-                const likedByArray = JSON.parse(post.likedBy);
                 if (!post) {
                     return res.status(404).json({ message: "No post found." });
                 }
+                if (post.likedBy == '') {
+                    return res.status(200).json({ liked: false });
+                }
+                let likedByArray;
+                if (post.likedBy === '') {
+                    likedByArray = [];
+                } else {
+                    likedByArray = JSON.parse(post.likedBy);
+                }
                 // check if user already liked the post
                 if (likedByArray.includes(decoded.username)) {
-                    return res.status(200).json({ message: "You liked this post." });
+                    return res.status(200).json({ liked: true });
                 }
                 else {
-                    return res.status(200).json({ message: "You didn't like this post." });
+                    return res.status(200).json({ liked: false });
                 }
-
-            }).catch((err) => {
-                res.status(500).json({ message: err.message });
-            });
+            })
 
         });
     }

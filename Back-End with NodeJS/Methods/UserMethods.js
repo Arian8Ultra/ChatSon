@@ -70,17 +70,6 @@ exports.login = async (req, res) => {
     });
 }
 
-function CheckToken(token) {
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, config.jwtSecret, (err, decoded) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(decoded);
-        });
-    });
-}
-
 //user auth check with jwt
 exports.authCheck = async (req, res) => {
     if (req.headers && req.headers.authorization) {
@@ -104,13 +93,6 @@ exports.authCheck = async (req, res) => {
 
 }
 
-
-
-
-//user logout with jwt
-exports.logout = async (req, res) => {
-    res.status(200).send({ auth: false, token: null });
-}
 
 //user delete with jwt
 exports.deleteUser = async (req, res) => {
@@ -226,7 +208,7 @@ exports.getUserByUsername = async (req, res) => {
         }
         prisma.user.findUnique({
             where: {
-                username: req.params.username
+                username: req.query.username
             }
         }).then((user) => {
             if (!user) {
@@ -250,15 +232,15 @@ exports.getCurrentUser = async (req, res) => {
     }
     const token = req.jwt
     if (!token) {
-        return res.status(401).json({ auth: false, message: 'No token provided.' });
+        return res.status(401).json({ auth: false, message: 'No token provided. current' });
     }
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
         if (err) {
             return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
         }
-        prisma.user.findUnique({
+        prisma.user.findFirst({
             where: {
-                id: decoded.id
+                username: decoded.username
             }
         }).then((user) => {
             if (!user) {
